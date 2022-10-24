@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 // import Header from "./components/Header";
-// import Container from "./components/Container";
+import Container from "./components/Container";
 // import About from "./components/About";
 // import Cats from "./components/Cats";
 // import NewItemForm from "./components/NewItemForm";
@@ -14,12 +14,13 @@ function App() {
   // const [loggedIn, setLoggedIn] = useState(false)
   return (
     <BrowserRouter>
-    
-    <div className="App">
+      <div className="App">
         {/* Use the component */}
         <Header />
-
-    </div>
+        <Routes>
+          <Route path="/" element={<Container />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
