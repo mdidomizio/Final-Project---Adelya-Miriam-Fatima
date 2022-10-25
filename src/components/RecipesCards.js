@@ -11,11 +11,34 @@ const RecipesCard = (props) => {
       let mealTag = props.recipes.strTags;
       let mealOrigin = props.recipes.strArea;
       let instructions = props.recipes.strInstructions;
-      let combinedIngredients = []; 
+
+      let ingredients = [];
+      let measurements = [];
+      
+
+      const objectKeys = Object.keys(props.recipes);
+      console.log(objectKeys);
+      objectKeys.forEach((key) => {
+        if (key.startsWith("strIngredient")) {
+          ingredients.push(props.recipes[key]);
+        } else if (key.startsWith("strMeasure")) {
+          measurements.push(props.recipes[key]);
+        }
+      });
+
+      ingredients = ingredients
+        .filter((ingredient) => ingredient !== "")
+        .filter((measurement) => measurement !== null);
+
+      let combinedIngredients = [];
+      for (let i = 0; i < ingredients.length; i++) {
+        combinedIngredients.push([ingredients[i], measurements[i]]);
+      }
+      console.log("combinedIngredients", combinedIngredients);
 
   return (
     <>
-    <Card style={{ width: '18rem' }}>
+    <Card className="card m-2" style={{ width: '18rem' }}>
       <Card.Img variant="top" src={mealPic} />
       <Card.Body>
         <Card.Title>{mealName}</Card.Title>
@@ -23,9 +46,11 @@ const RecipesCard = (props) => {
           {mealTag} {mealOrigin}
         </Card.Text>
 
-        <button type="button" className="btn btn-outline-success btn-floating" data-mdb-ripple-color="dark">
-          <i class="fas fa-star"></i>
-        </button>
+        {/* <button type="button" className="btn btn-outline-success btn-floating" data-mdb-ripple-color="dark">
+        <i class="bi bi-heart-fill"></i>
+        </button> */}
+
+        <Button variant="primary"><i class="bi bi-heart-fill"></i></Button>{' '}
 
         <Button
           onClick={() => setOpen(!open)}
@@ -37,14 +62,19 @@ const RecipesCard = (props) => {
         <Collapse in={open}>
           <div id="example-collapse-text">
           <div>
-          <h3>Ingredients:</h3>
+          <h5>Ingredients:</h5>
           </div>
           <div>
-          <p>{combinedIngredients}</p>
+          <ul className="ingredients">
+        {combinedIngredients.map(function (item) {
+          return <li key={item}>{item[0]}: {item[1]}</li>;
+        })}
+          </ul>
+
           </div>
 
           <div>
-            <h3>Preparations:</h3>
+            <h5>Preparations:</h5>
             <p>{instructions}</p>
           </div>
           
