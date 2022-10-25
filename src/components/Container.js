@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 // import SeasonBtn from "./SeasonBtn";
-import Reciepes from "./Reciepes";
+import Recipes from "./Recipes";
 // import Outfit from "./Outfit";
 // import Error from "./Error";
 
@@ -14,14 +14,14 @@ const Container = () => {
   const fetchRecipes = async () => {
     try {
       let path = `https://www.themealdb.com/api/json/v1/1/search.php?f=b`;
-      let response = await fetch(path);
+      let response = await fetch(path, {mode: "cors"})
       let data = await response.json();
       console.log(data);
-      let MealName = data.meals[0].strMeal;
-      let MealPic = data.meals[0].strMealThumb;
-      let MealTag = data.meals[0].strTags;
-      let MealOrigin = data.meals[0].strArea;
-      let Instructions = data.meals[0].strInstructions;
+      let mealName = data.meals[0].strMeal;
+      let mealPic = data.meals[0].strMealThumb;
+      let mealTag = data.meals[0].strTags;
+      let mealOrigin = data.meals[0].strArea;
+      let instructions = data.meals[0].strInstructions;
       let ingredients = [];
       let measurements = [];
       console.log("data.meal", data.meals);
@@ -46,7 +46,7 @@ const Container = () => {
       }
       console.log("combinedIngredients", combinedIngredients);
 
-      // setRecipes({});
+       setRecipes(data.meals);
       // console.log("my Recipes object", setRecipes);
     } catch (error) {
       console.log("there is an error", error);
@@ -56,6 +56,6 @@ const Container = () => {
     fetchRecipes();
   }, []);
 
-  return <Reciepes recipes={recipes} />;
+  return <Recipes recipes={recipes} />;
 };
 export default Container;
