@@ -17,29 +17,6 @@ const Container = () => {
       let response = await fetch(path, { mode: "cors" });
       let data = await response.json();
       console.log(data);
-      // let ingredients = [];
-      // let measurements = [];
-      // console.log("data.meal", data.meals);
-
-      // const objectKeys = Object.keys(data.meals[0]);
-      // console.log(objectKeys);
-      // objectKeys.forEach((key) => {
-      //   if (key.startsWith("strIngredient")) {
-      //     ingredients.push(data.meals[0][key]);
-      //   } else if (key.startsWith("strMeasure")) {
-      //     measurements.push(data.meals[0][key]);
-      //   }
-      // });
-
-      // ingredients = ingredients
-      //   .filter((ingredient) => ingredient !== "")
-      //   .filter((measurement) => measurement !== null);
-
-      // let combinedIngredients = [];
-      // for (let i = 0; i < ingredients.length; i++) {
-      //   combinedIngredients.push([ingredients[i], measurements[i]]);
-      // }
-      // console.log("combinedIngredients", combinedIngredients);
 
       setRecipes(data.meals);
       // console.log("my Recipes object", setRecipes);
