@@ -17,11 +17,6 @@ const Container = () => {
       let response = await fetch(path, {mode: "cors"})
       let data = await response.json();
       console.log(data);
-      let mealName = data.meals[0].strMeal;
-      let mealPic = data.meals[0].strMealThumb;
-      let mealTag = data.meals[0].strTags;
-      let mealOrigin = data.meals[0].strArea;
-      let instructions = data.meals[0].strInstructions;
       let ingredients = [];
       let measurements = [];
       console.log("data.meal", data.meals);

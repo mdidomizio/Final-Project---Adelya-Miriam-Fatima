@@ -3,16 +3,15 @@ import Card from 'react-bootstrap/Card';
 import React, { useState } from 'react';
 import Collapse from 'react-bootstrap/Collapse';
 
-const RecipesCard = (recipes) => {
+const RecipesCard = (props) => {
   const [open, setOpen] = useState(false)
 
-  let mealName = recipes.strMeal;
-  let mealPic = recipes.strMealThumb;
-      let mealTag = recipes.strTags;
-      let mealOrigin = recipes.strArea;
-      let instructions = recipes.strInstructions;
-      let combinedIngredients = [];
- 
+  let mealName = props.recipes.strMeal;
+  let mealPic = props.recipes.strMealThumb;
+      let mealTag = props.recipes.strTags;
+      let mealOrigin = props.recipes.strArea;
+      let instructions = props.recipes.strInstructions;
+      let combinedIngredients = []; 
 
   return (
     <>
@@ -24,25 +23,29 @@ const RecipesCard = (recipes) => {
           {mealTag} {mealOrigin}
         </Card.Text>
 
-        <Button variant="primary">Add Favorites</Button>
+        <button type="button" className="btn btn-outline-success btn-floating" data-mdb-ripple-color="dark">
+          <i class="fas fa-star"></i>
+        </button>
 
         <Button
           onClick={() => setOpen(!open)}
           aria-controls="example-collapse-text"
           aria-expanded={open}
         >
-        click
+        See More
         </Button>
         <Collapse in={open}>
           <div id="example-collapse-text">
           <div>
-          Ingredients:
-            {combinedIngredients}
+          <h3>Ingredients:</h3>
+          </div>
+          <div>
+          <p>{combinedIngredients}</p>
           </div>
 
           <div>
-            Preparations:
-            {instructions}
+            <h3>Preparations:</h3>
+            <p>{instructions}</p>
           </div>
           
           </div>
