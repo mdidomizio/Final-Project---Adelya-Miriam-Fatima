@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-// import SeasonBtn from "./SeasonBtn";
+import FilterButton from "./FilterButton";
 import Recipes from "./Recipes";
 // import Outfit from "./Outfit";
 // import Error from "./Error";
@@ -8,7 +8,7 @@ const Container = () => {
   const [recipes, setRecipes] = useState([]);
   // const [deleteMessage, setDeleteMessage] = useState(false);
   // const [outfit, setOutfit] = useState([]);
-  // const [seasonWardrobe, setSeasonWardrobe] = useState([]);
+  const [countryFilter, setCountryFilter] = useState([]);
   // const [error, setError] = useState(false);
 
   const fetchRecipes = async () => {
@@ -51,6 +51,12 @@ const Container = () => {
     fetchRecipes();
   }, []);
 
-  return <Recipes recipes={recipes} />;
+  return 
+  
+  <Recipes 
+  recipes={countryFilter.length > 0 ? countryFilter : recipes}
+//   resetCountryFilter={resetCountryFilter}
+//   filteredRecipes={filteredRecipes}
+  />;
 };
 export default Container;
