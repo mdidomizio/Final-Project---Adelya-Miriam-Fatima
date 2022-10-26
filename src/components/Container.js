@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import Recipes from "./Recipes";
+import Recipes from "./Recipes.js";
+import FilterButton from "./FilterButton.js";
 // import Outfit from "./Outfit";
 // import Error from "./Error";
 
 const Container = () => {
   const [recipes, setRecipes] = useState([]);
-  const [countryFilter, setCountryFilter] = useState([]);
   // const [deleteMessage, setDeleteMessage] = useState(false);
   // const [outfit, setOutfit] = useState([]);
 
@@ -28,9 +28,29 @@ const Container = () => {
     fetchRecipes();
   }, []);
 
+  const countriesCuisine = ["Canadian", "American", "French", "Italian"];
+  const [countryFilter, setCountryFilter] = useState([]);
+
+  const displayCountryCuisine = (event) => {
+    let countryFilter = recipes.filter(
+      (item) => item.recipes.strArea === event.target.id
+    );
+    setCountryFilter(countryFilter);
+  };
+
+  const resetCountryCuisine = () => {
+    setCountryFilter([]);
+  };
+
   return (
-    <Recipes recipes={recipes} />
-    // <Recipes recipes={countryFilter.length > 0 ? countryFilter : recipes} />
+    <>
+      <FilterButton
+        countriesCuisine={countriesCuisine}
+        displayCountryCuisine={displayCountryCuisine}
+        resetCountryCuisine={resetCountryCuisine}
+      />
+      <Recipes recipes={countryFilter.length > 0 ? countryFilter : recipes} />
+    </>
   );
 };
 export default Container;

@@ -44,7 +44,8 @@ const RecipesCard = (props) => {
           <Card.Title>{mealName}</Card.Title>
           <Card.Text>
             <p className="tags fst-italic">
-              {mealTag}, {mealOrigin}
+              {mealTag}
+              {mealOrigin}
             </p>
           </Card.Text>
           <Button

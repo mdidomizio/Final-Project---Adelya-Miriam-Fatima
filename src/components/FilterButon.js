@@ -24,7 +24,7 @@ const FilterButton = (props) => {
     //     >
     //       {item}
     //     </button>
-    //   ))}      
+    //   ))}
     // </div>
     <div
       className="filterButtons d-flex flex-row justify-content-around"
@@ -43,7 +43,7 @@ const FilterButton = (props) => {
           <li>
             <button
               className="dropdown-item"
-              onClick={props.filter}
+              onClick={props.displayCountryCuisine}
               id="American"
             >
               American
@@ -52,7 +52,7 @@ const FilterButton = (props) => {
           <li>
             <button
               className="dropdown-item"
-              onClick={props.filter}
+              onClick={props.displayCountryCuisine}
               id="French"
             >
               French
@@ -61,7 +61,7 @@ const FilterButton = (props) => {
           <li>
             <button
               className="dropdown-item"
-              onClick={props.filter}
+              onClick={props.displayCountryCuisine}
               id="Mexican"
             >
               Mexican
@@ -70,7 +70,7 @@ const FilterButton = (props) => {
           <li>
             <button
               className="dropdown-item"
-              onClick={props.filter}
+              onClick={props.displayCountryCuisine}
               id="British"
             >
               British
@@ -79,7 +79,7 @@ const FilterButton = (props) => {
           <li>
             <button
               className="dropdown-item"
-              onClick={props.filter}
+              onClick={props.displayCountryCuisine}
               id="Russian"
             >
               Russian
