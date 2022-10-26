@@ -1,31 +1,5 @@
 const FilterButton = (props) => {
   return (
-    // <div className="countryBtn">
-    //   <button
-    //     type="reset"
-    //     className="btn btn-secondary m-2"
-    //     onClick={(event) => {
-    //       props.resetFilter(event);
-    //     }}
-    //     id="reset"
-    //   >
-    //     All
-    //   </button>
-
-    //   {countryList.map((item) => (
-    //     <button
-    //       type="button"
-    //       className="btn btn-warning m-2"
-    //       id={item}
-    //       key={item}
-    //       onClick={(event) => {
-    //         return props.filteredSeasonWardrobe(event);
-    //       }}
-    //     >
-    //       {item}
-    //     </button>
-    //   ))}
-    // </div>
     <div
       className="filterButtons d-flex flex-row justify-content-around"
       style={{ width: "90rem" }}
@@ -41,54 +15,22 @@ const FilterButton = (props) => {
         </button>
         <ul className="dropdown-menu">
           <li>
-            <button
-              className="dropdown-item"
-              onClick={props.displayCountryCuisine}
-              id="American"
-            >
-              American
-            </button>
+            {props.countriesCuisine.map((element) => (
+              <button
+                className="dropdown-item"
+                onClick={props.displayCountryCuisine}
+                id={element}
+                key={element}
+              >
+                {element}
+              </button>
+            ))}
           </li>
+
           <li>
             <button
               className="dropdown-item"
-              onClick={props.displayCountryCuisine}
-              id="French"
-            >
-              French
-            </button>
-          </li>
-          <li>
-            <button
-              className="dropdown-item"
-              onClick={props.displayCountryCuisine}
-              id="Mexican"
-            >
-              Mexican
-            </button>
-          </li>
-          <li>
-            <button
-              className="dropdown-item"
-              onClick={props.displayCountryCuisine}
-              id="British"
-            >
-              British
-            </button>
-          </li>
-          <li>
-            <button
-              className="dropdown-item"
-              onClick={props.displayCountryCuisine}
-              id="Russian"
-            >
-              Russian
-            </button>
-          </li>
-          <li>
-            <button
-              className="dropdown-item"
-              onClick={props.reset}
+              onClick={props.resetCountryCuisine}
               id="resetEvent"
             >
               All
@@ -96,7 +38,7 @@ const FilterButton = (props) => {
           </li>
         </ul>
       </div>
-      <div className="dropdown">
+      {/* <div className="dropdown">
         <button
           className="btn btn-secondary dropdown-toggle"
           type="button"
@@ -161,7 +103,7 @@ const FilterButton = (props) => {
             </button>
           </li>
         </ul>
-      </div>
+      </div> */}
     </div>
   );
 };

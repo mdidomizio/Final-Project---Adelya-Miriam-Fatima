@@ -28,7 +28,24 @@ const Container = () => {
     fetchRecipes();
   }, []);
 
-  const countriesCuisine = ["Canadian", "American", "French", "Italian"];
+  const countriesCuisine = [
+    "American",
+    "British",
+    "Canadian",
+    "Chinese",
+    "Croatian",
+    "Dutch",
+    "French",
+    "Indian",
+    "Irish",
+    "Italian",
+    "Jamaican",
+    "Malaysian",
+    "Mexican",
+    "Polish",
+    "Russian",
+    "Vietnamese",
+  ];
   const [countryFilter, setCountryFilter] = useState([]);
 
   const displayCountryCuisine = (event) => {
