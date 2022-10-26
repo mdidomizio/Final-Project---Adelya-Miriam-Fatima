@@ -50,8 +50,10 @@ const Container = () => {
 
   const displayCountryCuisine = (event) => {
     let countryFilter = recipes.filter(
-      (item) => item.recipes.strArea === event.target.id
+      (recipe) => recipe.strArea === event.target.id
     );
+
+    console.log(countryFilter);
     setCountryFilter(countryFilter);
   };
 
