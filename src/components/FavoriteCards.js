@@ -3,50 +3,19 @@ import Card from "react-bootstrap/Card";
 import React, { useState } from "react";
 import Collapse from "react-bootstrap/Collapse";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import RecipesCard from "./RecipesCards";
 
-const RecipesCard = (props) => {
+const FavoriteCards = (props) => {
   const [open, setOpen] = useState(false);
-
-  let mealName = props.recipes.strMeal;
-  let mealPic = props.recipes.strMealThumb;
-  let mealTag = props.recipes.strTags;
-  let mealOrigin = props.recipes.strArea;
-  let instructions = props.recipes.strInstructions;
-  let mealId = props.recipes.idMeal;
-  let mealType = props.recipes.strCategory;
-
-  let ingredients = [];
-  let measurements = [];
-
-  const objectKeys = Object.keys(props.recipes);
-  console.log(objectKeys);
-  objectKeys.forEach((key) => {
-    if (key.startsWith("strIngredient")) {
-      ingredients.push(props.recipes[key]);
-    } else if (key.startsWith("strMeasure")) {
-      measurements.push(props.recipes[key]);
-    }
-  });
-
-  ingredients = ingredients
-    .filter((ingredient) => ingredient !== "")
-    .filter((measurement) => measurement !== null);
-
-  let combinedIngredients = [];
-  for (let i = 0; i < ingredients.length; i++) {
-    combinedIngredients.push([ingredients[i], measurements[i]]);
-  }
-  console.log("combinedIngredients", combinedIngredients);
-
   return (
     <Card className="card m-2" style={{ width: "18rem" }}>
-      <Card.Img variant="top" src={mealPic} />
+      <Card.Img variant="top" src={props.mealPic} />
       <Card.Body>
-        <Card.Title>{mealName}</Card.Title>
+        <Card.Title>{props.mealName}</Card.Title>
         <Card.Text>
           <p className="tags fst-italic">
-            {mealTag} <br />
-            {mealOrigin}
+            {props.mealTag} <br />
+            {props.mealOrigin}
           </p>
         </Card.Text>
         <Button
@@ -54,11 +23,12 @@ const RecipesCard = (props) => {
             console.log("button works");
             props.addToFavorite(event);
           }}
-          id={mealId}
+          id={props.mealId}
           type="button"
           className="btn btn-danger position-absolute top-0 end-0 opacity-85"
         >
-          <i className="bi bi-bookmark-heart-fill"></i> Save to favorites
+          <i className="bi bi-trash"></i>
+          Remove
         </Button>
         <Button
           onClick={() => setOpen(!open)}
@@ -74,7 +44,7 @@ const RecipesCard = (props) => {
             </div>
             <div>
               <ul className="ingredients">
-                {combinedIngredients.map(function (item) {
+                {props.combinedIngredients.map(function (item) {
                   return (
                     <li key={item}>
                       {item[0]}: {item[1]}
@@ -86,7 +56,7 @@ const RecipesCard = (props) => {
 
             <div>
               <h5>Preparations:</h5>
-              <p>{instructions}</p>
+              <p>{props.instructions}</p>
             </div>
           </div>
         </Collapse>
@@ -94,5 +64,4 @@ const RecipesCard = (props) => {
     </Card>
   );
 };
-
-export default RecipesCard;
+export default FavoriteCards;

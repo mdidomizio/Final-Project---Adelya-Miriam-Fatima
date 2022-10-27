@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import Recipes from "./Recipes.js";
 import FilterButton from "./FilterButton.js";
-// import Outfit from "./Outfit";
+import Favorites from "./Favorites.js";
 // import Error from "./Error";
 
 const Container = () => {
   const [recipes, setRecipes] = useState([]);
+  const [favorite, setFavorite] = useState([]);
   // const [deleteMessage, setDeleteMessage] = useState(false);
-  // const [outfit, setOutfit] = useState([]);
 
   // const [error, setError] = useState(false);
 
@@ -61,21 +61,45 @@ const Container = () => {
   const resetCountryCuisine = () => {
     setCountryFilter([]);
   };
-  const mealTypeArray = ["Beef", "Breakfast", "Chicken", "Dessert",  "Miscellaneous", "Pork", "Seafood", "Side", "Starter", "Vegetarian"]
-  
+  const mealTypeArray = [
+    "Beef",
+    "Breakfast",
+    "Chicken",
+    "Dessert",
+    "Miscellaneous",
+    "Pork",
+    "Seafood",
+    "Side",
+    "Starter",
+    "Vegetarian",
+  ];
+
   const displayMealType = (event) => {
     let mealTypeFilter = recipes.filter(
       (recipe) => recipe.strCategory === event.target.id
-      );
-      console.log("meal type filter", mealTypeFilter);
-      setMealTypeFilter(mealTypeFilter)
-  }
+    );
+    console.log("meal type filter", mealTypeFilter);
+    setMealTypeFilter(mealTypeFilter);
+  };
   const resetMealType = () => {
     setMealTypeFilter([]);
   };
 
+  const addToFavorite = (event) => {
+    let id = event.target.id;
+    let clickedItem = recipes.find((recipe) => recipe.idMeal === id);
+    setFavorite([...favorite, clickedItem]);
+  };
+  const removeFromFavorite = (event) => {
+    let updatedFavorite = favorite.filter(
+      (item) => item.id !== event.target.id
+    );
+    setFavorite(updatedFavorite);
+  };
+
   return (
     <>
+      <Favorites favorite={favorite} removeFromFavorite={removeFromFavorite} />
       <FilterButton
         countriesCuisine={countriesCuisine}
         displayCountryCuisine={displayCountryCuisine}
@@ -84,7 +108,10 @@ const Container = () => {
         displayMealType={displayMealType}
         resetMealType={resetMealType}
       />
-      <Recipes recipes={countryFilter.length > 0 ? countryFilter : recipes || mealTypeFilter.length > 0 ? mealTypeFilter : recipes} />
+      <Recipes
+        recipes={countryFilter.length > 0 ? countryFilter : recipes}
+        addToFavorite={addToFavorite}
+      />
     </>
   );
 };
