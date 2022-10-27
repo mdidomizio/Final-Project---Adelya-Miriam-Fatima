@@ -47,6 +47,7 @@ const Container = () => {
     "Vietnamese",
   ];
   const [countryFilter, setCountryFilter] = useState([]);
+  const [mealTypeFilter, setMealTypeFilter] = useState([]);
 
   const displayCountryCuisine = (event) => {
     let countryFilter = recipes.filter(
@@ -61,12 +62,26 @@ const Container = () => {
     setCountryFilter([]);
   };
 
+
+  const displayMealType = (event) => {
+    let mealTypeFilter = recipes.filter(
+      (recipe) => recipe.strCategory === event.target.id
+      );
+      console.log(mealTypeFilter);
+      setMealTypeFilter(mealTypeFilter)
+  }
+  const resetMealType = () => {
+    setMealTypeFilter([]);
+  };
+
   return (
     <>
       <FilterButton
         countriesCuisine={countriesCuisine}
         displayCountryCuisine={displayCountryCuisine}
         resetCountryCuisine={resetCountryCuisine}
+        displayMealType={displayMealType}
+        resetMealType={resetMealType}
       />
       <Recipes recipes={countryFilter.length > 0 ? countryFilter : recipes} />
     </>
