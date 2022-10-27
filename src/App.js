@@ -1,12 +1,11 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
-// import Header from "./components/Header";
 import Container from "./components/Container";
+import Favorites from "./components/Favorites";
 // import About from "./components/About";
-// import Cats from "./components/Cats";
-// import NewItemForm from "./components/NewItemForm";
-// import SignUpForm from "./components/SignUpForm";
-// import Login from "./components/Login";
+import Signup from "./components/Signup";
+import NewRecipe from "./components/NewRecipe";
+import Login from "./components/Login";
 // import { useState } from "react";
 import Header from "./components/Header";
 
@@ -19,6 +18,10 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Container />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/newrecipe" element={<NewRecipe />} />
         </Routes>
       </div>
     </BrowserRouter>
