@@ -5,9 +5,9 @@ const FilterButton = (props) => {
 
   return (
     
-    <div className="dropdown d-flex justify-content-center align-items-center">
+    <div className="dropdown d-flex justify-content-center align-items-center m-2">
       <Dropdown>
-        <Dropdown.Toggle variant="success" id="dropdown-basic">
+        <Dropdown.Toggle variant="success" id="dropdown-basic" className="btn m2">
           Country cuisine
         </Dropdown.Toggle>
         <Dropdown.Menu>
@@ -31,7 +31,7 @@ const FilterButton = (props) => {
         </Dropdown.Menu>
       </Dropdown>
       <Dropdown>
-        <Dropdown.Toggle variant="success" id="dropdown-basic">
+        <Dropdown.Toggle variant="success" id="dropdown-basic" className="btn m2">
           Meal type
         </Dropdown.Toggle>
 

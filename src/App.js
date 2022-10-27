@@ -1,14 +1,12 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
-// import Header from "./components/Header";
-import Container from "./components/Container";
+import Container from "./components/Container.js";
 // import About from "./components/About";
-// import Cats from "./components/Cats";
-// import NewItemForm from "./components/NewItemForm";
+import AddRecipeForm from "./components/AddRecipeForm.js";
 // import SignUpForm from "./components/SignUpForm";
 // import Login from "./components/Login";
 // import { useState } from "react";
-import Header from "./components/Header";
+import Header from "./components/Header.js";
 
 function App() {
   // const [loggedIn, setLoggedIn] = useState(false)
@@ -19,6 +17,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Container />} />
+          <Route path="/newRecipe" element={<AddRecipeForm />} />
         </Routes>
       </div>
     </BrowserRouter>

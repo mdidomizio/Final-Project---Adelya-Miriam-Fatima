@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-const  AddRecipeForm = () => {
+const AddRecipeForm = () => {
 
   const[error, setError] = useState(false)
   const [messageAdded, setMessageAdded] = useState(false)
@@ -74,27 +74,49 @@ const  AddRecipeForm = () => {
   });
 
   const createRecipeEntry = async (item) =>{
-  
-  try{
-//   TODO let path = `${process.env.REACT_APP_WARDROBE_API}/users`;
-//   let response = await fetch(path, {
-//   method: "POST",
-//   headers: { "Content-type": "application/json" },
-//   body: JSON.stringify({...item}),
-//   mode: "cors"
-//   });
-//   if (response.status === 201) {
-//     setMessageAdded(response.statusText)
-//   } else {
-//   let error = new Error(`${response.statusText}: ${response}`);
-//   error.status = response.status;
-//   throw error;
-//   }
-//   } catch (error) {
-//   console.log("something went wrong Recipe not added", error);
-//   setError(error.message);
-//   }
-//   };
+  // upload image to cloudinary:
+  let preset = 'wardrobe_bootcamp'
+  let cloudName = 'dajs1jldd'
+  let cloudPath = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`
+  // create body to post: 
+  let dataForBody = new FormData()
+  dataForBody.append('file', item.url[0])
+  dataForBody.append('upload_preset', preset)
+  dataForBody.append('cloud_name', cloudName)
+
+  const uploadImageToCloudinary = await fetch(cloudPath, {
+        method: 'POST',
+        body: dataForBody
+      })
+      let imageData = await uploadImageToCloudinary.json()
+      console.log('post to cloud', imageData);
+
+      // get access to token in local storage:
+      let tokenFromLS = localStorage.getItem('token')
+      let JWT_TOKEN = JSON.parse(tokenFromLS)  
+
+try{
+    let path = `${process.env.REACT_APP_WARDROBE_API}/wardrobe`;
+    let response = await fetch(path, {
+      method: "POST",
+      headers: { 
+        "Content-type": "application/json",
+        'Authorization': `Bearer ${JWT_TOKEN}`
+    },
+      body: JSON.stringify({...item, url: imageData.url}),
+    });
+if (response.status === 201) {
+//   TODO setMessageUpload(response.statusText)
+} else {
+  let error = new Error(`${response.statusText}: ${response.url}`);
+  error.status = response.status;
+  throw error;
+}
+} catch (error) {
+console.log("something went wrong creating the New Item", error);
+setError(error.message);
+}
+};
 
   return (
     <>
@@ -115,8 +137,8 @@ const  AddRecipeForm = () => {
           onChange={formik.handleChange}
           />
 
-          {formik.touched.username && formik.errors.username ? (
-                  <div className='text-danger'>{`Username is ${formik.errors.username}`}</div>
+          {formik.touched.nameRecipe && formik.errors.nameRecipe ? (
+                  <div className='text-danger'>{`the name of the recipe is ${formik.errors.nameRecipe}`}</div>
                 ) : null
                 }
         </Form.Group>
@@ -129,8 +151,8 @@ const  AddRecipeForm = () => {
           type="text" 
           placeholder="Select a meal type"
           onChange={formik.handleChange} />
-          {formik.touched.email && formik.errors.email ? (
-                  <div className='text-danger'>{`Email is ${formik.errors.email}`}</div>
+          {formik.touched.mealType && formik.errors.mealType ? (
+                  <div className='text-danger'>{`The meal type is ${formik.errors.mealType}`}</div>
                 ) : null
                 }
 
@@ -144,12 +166,32 @@ const  AddRecipeForm = () => {
           type="text" 
           placeholder="Select a Country Cousine" 
           onChange={formik.handleChange} />
-          {formik.touched.password && formik.errors.password ? (
-                  <div className='text-danger'>{`Password is ${formik.errors.password}`}</div>
+          {formik.touched.mealOrigin && formik.errors.mealOrigin ? (
+                  <div className='text-danger'>{`The Country Cuisine is ${formik.errors.mealOrigin}`}</div>
                 ) : null
                 }
 
         </Form.Group>
+
+        <div className='imageUpload d-flex flex-column'>
+          <label htmlFor="url">Add Image</label>
+          <input 
+          id='url' 
+          name='url' 
+          type="file" 
+          onChange={(event)=> {
+            const fileToUpload = event.target.files 
+            formik.setFieldValue('url', fileToUpload)
+          }}
+          />
+          {formik.touched.url && formik.errors.url ? (
+            <div className='text-danger'>{`Url is ${formik.errors.url}`}</div> 
+          ) : null 
+          }
+        </div> 
+
+
+
         <Button variant="primary" type="submit">
           Create new recipe
         </Button>
@@ -167,4 +209,4 @@ const  AddRecipeForm = () => {
   );
 }
 
-export default AddRecipeForm;
+export default AddRecipeForm
