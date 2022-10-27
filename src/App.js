@@ -21,7 +21,7 @@ function App() {
             path="/about"
             element={
               <div>
-                This is my about page. Need to create a component for this!
+                This is our About Us page. Need to create a component for this
               </div>
             }
           />
