@@ -39,7 +39,7 @@ const Login = (props) => {
     }
   };
   return (
-    <div className="Login form">
+    <div className="Loginform">
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={Yup.object({
@@ -54,23 +54,26 @@ const Login = (props) => {
           loginUser(values);
         }}
       >
-        <Form className="Form d-flex flex-column m-5">
-          <h3> Log in </h3>
-          <div className="d-flex flex-column m-5 gap-3">
-            <Field
-              name="email"
-              type="email"
-              placeholder="Email"
-              className="form-control"
-            />
+        <Form className="Form d-flex justify-content-center m-5">
+          <div className="SigninForm d-flex flex-column m-5 gap-3">
+            <h3> Log in </h3>
+            <div className="mb-3">
+              <Field
+                name="email"
+                type="email"
+                placeholder="Email"
+                className="form-control"
+              />
+            </div>
             <ErrorMessage name="email" />
-            <Field
-              name="password"
-              type="password"
-              placeholder="Password"
-              className="form-control"
-            />
-
+            <div className="mb-3">
+              <Field
+                name="password"
+                type="password"
+                placeholder="Password"
+                className="form-control"
+              />
+            </div>
             <ErrorMessage name="password" />
             <button
               type="submit"
