@@ -61,13 +61,13 @@ const Container = () => {
   const resetCountryCuisine = () => {
     setCountryFilter([]);
   };
-
-
+  const mealTypeArray = ["Beef", "Breakfast", "Chicken", "Dessert",  "Miscellaneous", "Pork", "Seafood", "Side", "Starter", "Vegetarian"]
+  
   const displayMealType = (event) => {
     let mealTypeFilter = recipes.filter(
       (recipe) => recipe.strCategory === event.target.id
       );
-      console.log(mealTypeFilter);
+      console.log("meal type filter", mealTypeFilter);
       setMealTypeFilter(mealTypeFilter)
   }
   const resetMealType = () => {
@@ -80,10 +80,11 @@ const Container = () => {
         countriesCuisine={countriesCuisine}
         displayCountryCuisine={displayCountryCuisine}
         resetCountryCuisine={resetCountryCuisine}
+        mealTypeArray={mealTypeArray}
         displayMealType={displayMealType}
         resetMealType={resetMealType}
       />
-      <Recipes recipes={countryFilter.length > 0 ? countryFilter : recipes} />
+      <Recipes recipes={countryFilter.length > 0 ? countryFilter : recipes || mealTypeFilter.length > 0 ? mealTypeFilter : recipes} />
     </>
   );
 };

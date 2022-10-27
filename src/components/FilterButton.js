@@ -1,7 +1,7 @@
 import Dropdown from "react-bootstrap/Dropdown";
 
 const FilterButton = (props) => {
-  const mealType = ["Beef", "Breakfast", "Chicken", "Dessert",  "Miscellaneous", "Pork", "Seafood", "Side", "Starter", "Vegetarian"]
+  
 
   return (
     
@@ -36,7 +36,7 @@ const FilterButton = (props) => {
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-        {mealType.map((element) => (
+        {props.mealTypeArray.map((element) => (
             <Dropdown.Item
               className="dropdown-item"
               onClick={props.displayMealType}

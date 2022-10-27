@@ -12,6 +12,7 @@ const RecipesCard = (props) => {
   let mealTag = props.recipes.strTags;
   let mealOrigin = props.recipes.strArea;
   let instructions = props.recipes.strInstructions;
+  let mealType = props.recipes.strCategory
 
   let ingredients = [];
   let measurements = [];
