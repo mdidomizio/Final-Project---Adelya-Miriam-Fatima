@@ -3,8 +3,8 @@ import "./App.css";
 import Container from "./components/Container";
 import Favorites from "./components/Favorites";
 // import About from "./components/About";
-import Signup from "./components/Signup";
-import NewRecipe from "./components/NewRecipe";
+import Signup from "./components/Signup.js";
+// import NewRecipe from "./components/NewRecipe";
 import Login from "./components/Login";
 // import { useState } from "react";
 import Header from "./components/Header";
@@ -17,11 +17,19 @@ function App() {
         {/* Use the component */}
         <Header />
         <Routes>
+          <Route
+            path="/about"
+            element={
+              <div>
+                This is my about page. Need to create a component for this!
+              </div>
+            }
+          />
           <Route path="/" element={<Container />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/newrecipe" element={<NewRecipe />} />
+          {/* <Route path="/newrecipe" element={<NewRecipe />} /> */}
         </Routes>
       </div>
     </BrowserRouter>
