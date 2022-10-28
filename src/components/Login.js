@@ -10,7 +10,7 @@ const Login = (props) => {
 
   const loginUser = async (input) => {
     console.log(input);
-    let path = `${process.env.REACT_APP_WARDROBE_API}/users/login`;
+    let path = `${process.env.REACT_APP_RECIPES_API}/users/login`;
     try {
       let response = await fetch(path, {
         method: "POST",
@@ -34,8 +34,8 @@ const Login = (props) => {
         throw error;
       }
     } catch (error) {
-      console.log("There was an error when loging in user", error);
-      setError({ message: "There was an error when loging in" });
+      console.log("There was an error when logging in user", error);
+      setError({ message: "There was an error when logging in" });
     }
   };
   return (
