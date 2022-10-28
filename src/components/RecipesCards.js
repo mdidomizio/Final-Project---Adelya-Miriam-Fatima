@@ -19,7 +19,7 @@ const RecipesCard = (props) => {
   let measurements = [];
 
   const objectKeys = Object.keys(props.recipes);
-  console.log(objectKeys);
+  
   objectKeys.forEach((key) => {
     if (key.startsWith("strIngredient")) {
       ingredients.push(props.recipes[key]);
@@ -36,7 +36,7 @@ const RecipesCard = (props) => {
   for (let i = 0; i < ingredients.length; i++) {
     combinedIngredients.push([ingredients[i], measurements[i]]);
   }
-  console.log("combinedIngredients", combinedIngredients);
+ 
 
   return (
     <Card className="card m-2" style={{ width: "18rem" }}>
