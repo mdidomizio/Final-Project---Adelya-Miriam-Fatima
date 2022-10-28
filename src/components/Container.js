@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Recipes from "./Recipes.js";
 import FilterButton from "./FilterButton.js";
 import Favorites from "./Favorites.js";
-// import Error from "./Error";
+import Error from "./Error";
 
 const Container = () => {
   const [recipes, setRecipes] = useState([]);
