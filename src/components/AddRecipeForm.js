@@ -171,7 +171,9 @@ const AddRecipeForm = () => {
           {Object.keys(formik.initialValues).map((itemKey) => {
             if (
               itemKey === "id" ||
-              itemKey === "url" )
+              itemKey === "url" ||
+              itemKey === "mealType" ||
+              itemKey === "mealOrigin")
               {
               return null;
             }
@@ -193,7 +195,9 @@ const AddRecipeForm = () => {
             );
           })}
 
-          <div>
+          
+        <Form.Group className="mb-3">
+        <div>
           <Row>
             <Col>
               <Form.Control placeholder="Ingredient" />
@@ -205,6 +209,7 @@ const AddRecipeForm = () => {
           {formik.touched.ingredients1 && formik.errors.ingredients1 ? (
               <div className="text-danger">{`The first Ingredient is ${formik.errors.mealOrigin}`}</div>
             ) : null}
+      
 
             {formik.touched.measurement1 && formik.errors.measurement1 ? (
               <div className="text-danger">{`The quantity of the first ingredient is ${formik.errors.mealOrigin}`}</div>
@@ -254,6 +259,7 @@ const AddRecipeForm = () => {
               <div className="text-danger">{`The Meal Type is ${formik.errors.mealType}`}</div>
             ) : null}
           </div>
+        </Form.Group>
 
           {/* <Form.Group className="mb-3">
           <Form.Label> Meal Type</Form.Label>
