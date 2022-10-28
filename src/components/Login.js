@@ -10,7 +10,7 @@ const Login = (props) => {
 
   const loginUser = async (input) => {
     console.log(input);
-    let path = `${process.env.REACT_APP_WARDROBE_API}/users/login`;
+    let path = `${process.env.REACT_APP_RECIPES_API}/users/login`;
     try {
       let response = await fetch(path, {
         method: "POST",

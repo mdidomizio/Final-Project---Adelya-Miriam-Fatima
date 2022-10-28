@@ -9,7 +9,7 @@ const Container = () => {
 
   // const [deleteMessage, setDeleteMessage] = useState(false);
 
-  // const [error, setError] = useState(false);
+  const [error, setError] = useState(false);
 
   const fetchRecipes = async () => {
     try {
