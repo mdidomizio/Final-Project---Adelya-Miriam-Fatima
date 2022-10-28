@@ -34,8 +34,8 @@ const Login = (props) => {
         throw error;
       }
     } catch (error) {
-      console.log("There was an error when loging in user", error);
-      setError({ message: "There was an error when loging in" });
+      console.log("There was an error when logging in user", error);
+      setError({ message: "There was an error when logging in" });
     }
   };
   return (
