@@ -173,7 +173,8 @@ const AddRecipeForm = () => {
               itemKey === "id" ||
               itemKey === "url" ||
               itemKey === "mealType" ||
-              itemKey === "mealOrigin")
+              itemKey === "mealOrigin" ||
+              itemKey === "mealTag")
               {
               return null;
             }
@@ -217,7 +218,11 @@ const AddRecipeForm = () => {
           </div>
           
           <div>
-          <Form.Select aria-label="Default select example">
+          <Form.Select 
+          id="mealOrigin"
+          name="mealOrigin"
+          type="text"
+          aria-label="Default select example">
             <option>Select your Cuisine Country</option>
             <option value="1">American</option>
             <option value="2">British</option>
@@ -242,7 +247,11 @@ const AddRecipeForm = () => {
           </div>
 
           <div>
-          <Form.Select aria-label="Default select example">
+          <Form.Select 
+          id="mealType"
+          name="mealType"
+          type="text"
+          aria-label="Default select example">
             <option>Select your Meal Type</option>
             <option value="1">Beef</option>
             <option value="2">Breakfast</option>
@@ -259,6 +268,31 @@ const AddRecipeForm = () => {
               <div className="text-danger">{`The Meal Type is ${formik.errors.mealType}`}</div>
             ) : null}
           </div>
+
+          <div>
+          <Form.Select 
+          id="mealTag"
+          name="mealTag"
+          type="text"
+          aria-label="Default select example">
+            <option>Select your Meal Tag</option>
+            <option value="1">uno</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+            <option value="3">Four</option>
+            <option value="3">Five</option>
+            <option value="3">Six</option>
+            <option value="3">Seven</option>
+            <option value="3">Eight</option>
+            <option value="3">Nine</option>
+            <option value="3">Ten</option>            
+          </Form.Select>
+          {formik.touched.mealTag && formik.errors.mealTag ? (
+              <div className="text-danger">{`The Meal Type is ${formik.errors.mealTag}`}</div>
+            ) : null}
+          </div>
+
+
         </Form.Group>
 
           {/* <Form.Group className="mb-3">
