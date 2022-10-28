@@ -6,7 +6,7 @@ import Favorites from "./Favorites.js";
 
 const Container = () => {
   const [recipes, setRecipes] = useState([]);
-  const [favorite, setFavorite] = useState([]);
+
   // const [deleteMessage, setDeleteMessage] = useState(false);
 
   // const [error, setError] = useState(false);
@@ -84,7 +84,7 @@ const Container = () => {
   const resetMealType = () => {
     setMealTypeFilter([]);
   };
-
+  const [favorite, setFavorite] = useState([]);
   const addToFavorite = (event) => {
     let id = event.target.id;
     let clickedItem = recipes.find((recipe) => recipe.idMeal === id);
