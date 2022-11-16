@@ -3,7 +3,7 @@ import "./App.css";
 import Container from "./components/Container";
 import Favorites from "./components/Favorites";
 // import About from "./components/About";
-import AddRecipeForm from "./components/AddRecipeForm.js";
+import AddRecipeForm from "./components/AddRecipeForm";
 import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import { useState } from "react";
@@ -21,12 +21,14 @@ function App() {
             <Route path="/" element={<Container />} />
           ) : (
             <Route path="/" element={<Navigate to='/signup' replace />} />
-          )} */}
+          )} 
+          
+          */}
         
           <Route path="/" element={<Container />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
-          <Route path="/newItem" element={<AddRecipeForm />} />
+          <Route path="/addRecipe" element={<AddRecipeForm />} />
           <Route
             path="/about"
             element={
