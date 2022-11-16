@@ -10,9 +10,8 @@ const SignUp = () => {
 
   const registration = async (newUser) => {
     let userInfo = { ...newUser };
-
+    let path = `${process.env.REACT_APP_RECIPES_API}/users`;
     try {
-      let path = `${process.env.REACT_APP_WARDROBE_API}/users`;
       let response = await fetch(path, {
         method: "POST",
         headers: {
@@ -21,7 +20,7 @@ const SignUp = () => {
         body: JSON.stringify(userInfo),
       });
       console.log("response from fetch", response);
-      if (response.status === 200) {
+      if (response.status === 201) {
         setMessageSignup(response.statusText);
       } else {
         let error = new Error(`${response.statusText}: ${response.url}`);
@@ -30,7 +29,7 @@ const SignUp = () => {
       }
     } catch (error) {
       console.log("There was an error when updating data", error);
-      setError(error.message);
+      setError("There was an error when signing up");
     }
   };
 
