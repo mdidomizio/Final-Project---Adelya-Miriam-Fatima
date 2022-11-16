@@ -20,13 +20,13 @@ function App() {
           <Route path="*" element={<div> Page not found</div>} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
-          <Route path="/newItem" element={<AddRecipeForm />} />
+          <Route path="/addRecipe" element={<AddRecipeForm />} />
           <Route path="/favorites" element={<div> Under construction</div>} />
-          {/* {loggedIn ? (
+          //{/* {loggedIn ? (
             <Route path="/favorites" element={<div> Under construction</div>} />
           ) : (
             <Route path="/" element={<Navigate to="/signup" replace />} />
-          )} */}
+          )} */}//
           <Route
             path="/about"
             element={

@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-const AddRecipeForm = () => {
+const AddRecipeForm = (props) => {
   const [error, setError] = useState(false);
   const [messageAdded, setMessageAdded] = useState(false);
 
@@ -61,7 +61,7 @@ const AddRecipeForm = () => {
           "Vegetarian",
         ])
         .required(),
-      mealTag: yup.string().oneOf(["rian"]).required(),
+      // mealTag: yup.string().oneOf(["rian"]).required(),
       mealOrigin: yup
         .string()
         .oneOf([
@@ -84,25 +84,25 @@ const AddRecipeForm = () => {
         ])
         .required(),
       ingredients1: yup.string().max(50, "50 characters or less").required(),
-      ingredients2: yup.string().max(50, "50 characters or less").required(),
-      ingredients3: yup.string().max(50, "50 characters or less").required(),
-      ingredients4: yup.string().max(50, "50 characters or less").required(),
-      ingredients5: yup.string().max(50, "50 characters or less").required(),
-      ingredients6: yup.string().max(50, "50 characters or less").required(),
-      ingredients7: yup.string().max(50, "50 characters or less").required(),
-      ingredients8: yup.string().max(50, "50 characters or less").required(),
-      ingredients9: yup.string().max(50, "50 characters or less").required(),
-      ingredients10: yup.string().max(50, "50 characters or less").required(),
+      ingredients2: yup.string().max(50, "50 characters or less"),
+      ingredients3: yup.string().max(50, "50 characters or less"),
+      ingredients4: yup.string().max(50, "50 characters or less"),
+      ingredients5: yup.string().max(50, "50 characters or less"),
+      ingredients6: yup.string().max(50, "50 characters or less"),
+      ingredients7: yup.string().max(50, "50 characters or less"),
+      ingredients8: yup.string().max(50, "50 characters or less"),
+      ingredients9: yup.string().max(50, "50 characters or less"),
+      ingredients10: yup.string().max(50, "50 characters or less"),
       measurement1: yup.string().max(50, "50 characters or less").required(),
-      measurement2: yup.string().max(50, "50 characters or less").required(),
-      measurement3: yup.string().max(50, "50 characters or less").required(),
-      measurement4: yup.string().max(50, "50 characters or less").required(),
-      measurement5: yup.string().max(50, "50 characters or less").required(),
-      measurement6: yup.string().max(50, "50 characters or less").required(),
-      measurement7: yup.string().max(50, "50 characters or less").required(),
-      measurement8: yup.string().max(50, "50 characters or less").required(),
-      measurement9: yup.string().max(50, "50 characters or less").required(),
-      measurement10: yup.string().max(50, "50 characters or less").required(),
+      measurement2: yup.string().max(50, "50 characters or less"),
+      measurement3: yup.string().max(50, "50 characters or less"),
+      measurement4: yup.string().max(50, "50 characters or less"),
+      measurement5: yup.string().max(50, "50 characters or less"),
+      measurement6: yup.string().max(50, "50 characters or less"),
+      measurement7: yup.string().max(50, "50 characters or less"),
+      measurement8: yup.string().max(50, "50 characters or less"),
+      measurement9: yup.string().max(50, "50 characters or less"),
+      measurement10: yup.string().max(50, "50 characters or less"),
       instruction: yup.string().required(),
       url: yup.string().required(),
     }),
@@ -269,7 +269,7 @@ const AddRecipeForm = () => {
             ) : null}
           </div>
 
-          <div>
+          {/* <div>
           <Form.Select 
           id="mealTag"
           name="mealTag"
@@ -290,7 +290,7 @@ const AddRecipeForm = () => {
           {formik.touched.mealTag && formik.errors.mealTag ? (
               <div className="text-danger">{`The Meal Type is ${formik.errors.mealTag}`}</div>
             ) : null}
-          </div>
+          </div> */}
 
 
         </Form.Group>
