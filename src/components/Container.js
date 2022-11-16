@@ -109,7 +109,7 @@ const Container = () => {
         resetMealType={resetMealType}
       />
       <Recipes
-        recipes={countryFilter.length > 0 ? countryFilter : recipes || mealTypeFilter.length > 0 ? mealTypeFilter : recipes}
+        recipes={(countryFilter.length > 0 ? countryFilter : recipes) || (mealTypeFilter.length > 0 ? mealTypeFilter : recipes)}
         addToFavorite={addToFavorite}
       />
     </>
