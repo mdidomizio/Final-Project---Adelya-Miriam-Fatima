@@ -43,11 +43,11 @@ const RecipesCard = (props) => {
       <Card.Img variant="top" src={mealPic} />
       <Card.Body>
         <Card.Title>{mealName}</Card.Title>
-        <Card.Text>
-          <p className="tags fst-italic">
-            {mealTag} <br />
+        <Card.Text className="tags fst-italic">
+          
+            {mealTag} <br/>
             {mealOrigin}
-          </p>
+      
         </Card.Text>
         <Button
           onClick={(event) => {
@@ -74,9 +74,9 @@ const RecipesCard = (props) => {
             </div>
             <div>
               <ul className="ingredients">
-                {combinedIngredients.map(function (item) {
+                {combinedIngredients.map(function (item, index) {
                   return (
-                    <li key={item}>
+                    <li key={index}>
                       {item[0]}: {item[1]}
                     </li>
                   );

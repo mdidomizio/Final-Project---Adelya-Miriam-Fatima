@@ -4,7 +4,7 @@ import Container from "./components/Container";
 import Favorites from "./components/Favorites";
 // import About from "./components/About";
 import AddRecipeForm from "./components/AddRecipeForm.js";
-import SignUp from "./components/SignUp ";
+import SignUp from "./components/SignUp";
 import Login from "./components/Login";
 import { useState } from "react";
 import Header from "./components/Header.js";

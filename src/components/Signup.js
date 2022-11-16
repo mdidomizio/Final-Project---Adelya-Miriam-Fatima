@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import YupPassword from "yup-password";
 YupPassword(Yup);
 
-const Signup = () => {
+const SignUp = () => {
   const [error, setError] = useState(null);
 
   const registration = async (newUser) => {
@@ -112,4 +112,4 @@ const Signup = () => {
     </Formik>
   );
 };
-export default Signup;
+export default SignUp;

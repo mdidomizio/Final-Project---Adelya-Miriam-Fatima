@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.2.2",
     "bootstrap-icons": "^1.9.1",
+    "formik": "^2.2.9",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-bootstrap-icons": "^1.9.1",
@@ -15,6 +16,7 @@
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4",
+    "yup": "^0.32.11",
     "yup-password": "^0.2.2"
   },
   "scripts": {
