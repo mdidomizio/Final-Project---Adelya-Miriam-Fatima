@@ -14,19 +14,19 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        {/* Use the component */}
         <Header />
         <Routes>
-          {/* {loggedIn ? (
-            <Route path="/" element={<Container />} />
-          ) : (
-            <Route path="/" element={<Navigate to='/signup' replace />} />
-          )} */}
-
           <Route path="/" element={<Container />} />
+          <Route path="*" element={<div> Page not found</div>} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
           <Route path="/newItem" element={<AddRecipeForm />} />
+          <Route path="/favorites" element={<div> Under construction</div>} />
+          {/* {loggedIn ? (
+            <Route path="/favorites" element={<div> Under construction</div>} />
+          ) : (
+            <Route path="/" element={<Navigate to="/signup" replace />} />
+          )} */}
           <Route
             path="/about"
             element={
