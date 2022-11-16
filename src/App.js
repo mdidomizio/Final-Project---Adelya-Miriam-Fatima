@@ -4,25 +4,25 @@ import Container from "./components/Container";
 import Favorites from "./components/Favorites";
 // import About from "./components/About";
 import AddRecipeForm from "./components/AddRecipeForm.js";
-import SignUp from "./components/SignUp";
+import SignUp from "./components/Signup";
 import Login from "./components/Login";
 import { useState } from "react";
 import Header from "./components/Header.js";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(false);
   return (
     <BrowserRouter>
       <div className="App">
         {/* Use the component */}
         <Header />
         <Routes>
-        {/* {loggedIn ? (
+          {/* {loggedIn ? (
             <Route path="/" element={<Container />} />
           ) : (
             <Route path="/" element={<Navigate to='/signup' replace />} />
           )} */}
-        
+
           <Route path="/" element={<Container />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
