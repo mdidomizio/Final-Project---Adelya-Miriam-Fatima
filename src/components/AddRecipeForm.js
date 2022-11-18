@@ -32,6 +32,11 @@ const AddRecipeForm = (props) => {
       ingredients13: "",
       ingredients14: "",
       ingredients15: "",
+      ingredients16: "",
+      ingredients17: "",
+      ingredients18: "",
+      ingredients19: "",
+      ingredients20: "",
       measurement1: "",
       measurement2: "",
       measurement3: "",
@@ -47,6 +52,11 @@ const AddRecipeForm = (props) => {
       measurement13: "",
       measurement14: "",
       measurement15: "",
+      measurement16: "",
+      measurement17: "",
+      measurement18: "",
+      measurement19: "",
+      measurement20: "",
       instruction: "",
       url: "",
     },
@@ -216,7 +226,14 @@ const AddRecipeForm = (props) => {
             );
           })}
 
-          
+
+      <div>
+        <input
+        className="ingredient&quantity" 
+        type={text} 
+        id=
+      </div>  
+
         <Form.Group className="mb-3">
         <div>
           <Row>
@@ -369,7 +386,7 @@ const AddRecipeForm = (props) => {
         {messageAdded ? (
           <>
             <h2>Recipe created successfully, congratulation</h2>
-            <Link to="/"> Go back to main page</Link>
+            <Link to="/"> Go back to your favorites page</Link>
           </>
         ) : null}
       </div>
