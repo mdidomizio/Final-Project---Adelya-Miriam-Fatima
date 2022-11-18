@@ -7,6 +7,7 @@ import RecipesCard from "./RecipesCards";
 
 const FavoriteCards = (props) => {
   const [open, setOpen] = useState(false);
+
   return (
     <Card className="card m-2" style={{ width: "18rem" }}>
       <Card.Img variant="top" src={props.mealPic} />
