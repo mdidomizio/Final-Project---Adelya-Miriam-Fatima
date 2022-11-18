@@ -27,6 +27,16 @@ const AddRecipeForm = (props) => {
       ingredients8: "",
       ingredients9: "",
       ingredients10: "",
+      ingredients11: "",
+      ingredients12: "",
+      ingredients13: "",
+      ingredients14: "",
+      ingredients15: "",
+      ingredients16: "",
+      ingredients17: "",
+      ingredients18: "",
+      ingredients19: "",
+      ingredients20: "",
       measurement1: "",
       measurement2: "",
       measurement3: "",
@@ -37,6 +47,16 @@ const AddRecipeForm = (props) => {
       measurement8: "",
       measurement9: "",
       measurement10: "",
+      measurement11: "",
+      measurement12: "",
+      measurement13: "",
+      measurement14: "",
+      measurement15: "",
+      measurement16: "",
+      measurement17: "",
+      measurement18: "",
+      measurement19: "",
+      measurement20: "",
       instruction: "",
       url: "",
     },
@@ -93,6 +113,11 @@ const AddRecipeForm = (props) => {
       ingredients8: yup.string().max(50, "50 characters or less"),
       ingredients9: yup.string().max(50, "50 characters or less"),
       ingredients10: yup.string().max(50, "50 characters or less"),
+      ingredients11: yup.string().max(50, "50 characters or less"),
+      ingredients12: yup.string().max(50, "50 characters or less"),
+      ingredients13: yup.string().max(50, "50 characters or less"),
+      ingredients14: yup.string().max(50, "50 characters or less"),
+      ingredients15: yup.string().max(50, "50 characters or less"),
       measurement1: yup.string().max(50, "50 characters or less").required(),
       measurement2: yup.string().max(50, "50 characters or less"),
       measurement3: yup.string().max(50, "50 characters or less"),
@@ -103,6 +128,11 @@ const AddRecipeForm = (props) => {
       measurement8: yup.string().max(50, "50 characters or less"),
       measurement9: yup.string().max(50, "50 characters or less"),
       measurement10: yup.string().max(50, "50 characters or less"),
+      measurement11: yup.string().max(50, "50 characters or less"),
+      measurement12: yup.string().max(50, "50 characters or less"),
+      measurement13: yup.string().max(50, "50 characters or less"),
+      measurement14: yup.string().max(50, "50 characters or less"),
+      measurement15: yup.string().max(50, "50 characters or less"),
       instruction: yup.string().required(),
       url: yup.string().required(),
     }),
@@ -196,7 +226,14 @@ const AddRecipeForm = (props) => {
             );
           })}
 
-          
+
+      <div>
+        <input
+        className="ingredient&quantity" 
+        type={text} 
+        id=
+      </div>  
+
         <Form.Group className="mb-3">
         <div>
           <Row>
@@ -349,7 +386,7 @@ const AddRecipeForm = (props) => {
         {messageAdded ? (
           <>
             <h2>Recipe created successfully, congratulation</h2>
-            <Link to="/"> Go back to main page</Link>
+            <Link to="/"> Go back to your favorites page</Link>
           </>
         ) : null}
       </div>
