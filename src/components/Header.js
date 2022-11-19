@@ -23,12 +23,20 @@ const Header = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link active" aria-current="page" to="/newRecipe">
+            <Link
+              className="nav-link active"
+              aria-current="page"
+              to="/addRecipe"
+            >
               Add New Recipe
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link active" aria-current="page" to="/favorites">
+            <Link
+              className="nav-link active"
+              aria-current="page"
+              to="/favorites"
+            >
               Favorites
             </Link>
           </li>

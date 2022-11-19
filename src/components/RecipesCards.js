@@ -46,7 +46,7 @@ const RecipesCard = (props) => {
     // get access to token in local storage:
     let tokenFromLS = localStorage.getItem("token");
     let JWT_TOKEN = JSON.parse(tokenFromLS);
-    let path = `${process.env.REACT_APP_RECIPES_API}/favorites`;
+    let path = `${process.env.REACT_APP_RECIPES_API}/`;
     try {
       let response = await fetch(path, {
         method: "POST",

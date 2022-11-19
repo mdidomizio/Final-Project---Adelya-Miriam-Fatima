@@ -3,7 +3,6 @@ import Card from "react-bootstrap/Card";
 import React, { useState } from "react";
 import Collapse from "react-bootstrap/Collapse";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import RecipesCard from "./RecipesCards";
 
 const FavoriteCards = (props) => {
   const [open, setOpen] = useState(false);
@@ -22,7 +21,7 @@ const FavoriteCards = (props) => {
         <Button
           onClick={(event) => {
             console.log("button works");
-            props.addToFavorite(event);
+            props.removeFromFavorite(event);
           }}
           id={props.mealId}
           type="button"
