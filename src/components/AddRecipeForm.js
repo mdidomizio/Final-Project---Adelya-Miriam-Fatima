@@ -11,6 +11,22 @@ const AddRecipeForm = (props) => {
   const [error, setError] = useState(false);
   const [messageAdded, setMessageAdded] = useState(false);
 
+  const container = document.getElementById('input-cont');
+  var maxIngredientsAllowed = 20;
+  var ingredientCount = 1;
+  const addIngredient = () => {
+    ingredientCount++;
+    if(ingredientCount>20){
+    alert('you can add maximum 20 ingredients');
+    return;
+  }
+  let input = document.createElement('input');
+  input.placeholder = 'Enter your ingredient';
+  container.appendChild(input);
+  
+}
+
+
   const formik = useFormik({
     initialValues: {
       nameRecipe: "",
@@ -227,12 +243,7 @@ const AddRecipeForm = (props) => {
           })}
 
 
-      <div>
-        <input
-        className="ingredient&quantity" 
-        type={text} 
-        id=
-      </div>  
+      
 
         <Form.Group className="mb-3">
         <div>
@@ -243,7 +254,15 @@ const AddRecipeForm = (props) => {
             <Col>
               <Form.Control placeholder="Quantity" />
             </Col>
+            <Col>
+              <Button 
+              onClick={addIngredient}
+              >Add another ingredient</Button>
+            </Col>
           </Row>
+
+
+
           {formik.touched.ingredients1 && formik.errors.ingredients1 ? (
               <div className="text-danger">{`The first Ingredient is ${formik.errors.mealOrigin}`}</div>
             ) : null}
