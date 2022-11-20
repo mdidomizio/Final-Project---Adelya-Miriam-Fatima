@@ -11,7 +11,7 @@ const AddRecipeForm = (props) => {
   const [error, setError] = useState(false);
   const [messageAdded, setMessageAdded] = useState(false);
 
-  const container = document.getElementById('input-cont');
+  const ingredientContainer = document.getElementById('input-cont');
   var maxIngredientsAllowed = 20;
   var ingredientCount = 1;
   const addIngredient = () => {
@@ -22,7 +22,7 @@ const AddRecipeForm = (props) => {
   }
   let input = document.createElement('input');
   input.placeholder = 'Enter your ingredient';
-  container.appendChild(input);
+  ingredientContainer.appendChild(input);
   
 }
 
@@ -134,6 +134,11 @@ const AddRecipeForm = (props) => {
       ingredients13: yup.string().max(50, "50 characters or less"),
       ingredients14: yup.string().max(50, "50 characters or less"),
       ingredients15: yup.string().max(50, "50 characters or less"),
+      ingredients16: yup.string().max(50, "50 characters or less"),
+      ingredients17: yup.string().max(50, "50 characters or less"),
+      ingredients18: yup.string().max(50, "50 characters or less"),
+      ingredients19: yup.string().max(50, "50 characters or less"),
+      ingredients20: yup.string().max(50, "50 characters or less"),
       measurement1: yup.string().max(50, "50 characters or less").required(),
       measurement2: yup.string().max(50, "50 characters or less"),
       measurement3: yup.string().max(50, "50 characters or less"),
@@ -149,6 +154,11 @@ const AddRecipeForm = (props) => {
       measurement13: yup.string().max(50, "50 characters or less"),
       measurement14: yup.string().max(50, "50 characters or less"),
       measurement15: yup.string().max(50, "50 characters or less"),
+      measurement16: yup.string().max(50, "50 characters or less"),
+      measurement17: yup.string().max(50, "50 characters or less"),
+      measurement18: yup.string().max(50, "50 characters or less"),
+      measurement19: yup.string().max(50, "50 characters or less"),
+      measurement20: yup.string().max(50, "50 characters or less"),
       instruction: yup.string().required(),
       url: yup.string().required(),
     }),
@@ -214,66 +224,84 @@ const AddRecipeForm = (props) => {
           className="container-sm border border-solid p-5"
           onSubmit={formik.handleSubmit}
         >
-          {Object.keys(formik.initialValues).map((itemKey) => {
+          {/* {Object.keys(formik.initialValues).map((itemKey) => {
             if (
               itemKey === "id" ||
               itemKey === "url" ||
               itemKey === "mealType" ||
               itemKey === "mealOrigin" ||
-              itemKey === "mealTag")
+              itemKey === "mealTag" )
               {
               return null;
             }
-            return (
+            return ( */}
               <Form.Group className="mb-3">
-                <Form.Label>{itemKey}</Form.Label>
+                <Form.Label>Name of the Recipe</Form.Label>
                 <Form.Control
-                  id={itemKey}
-                  name={itemKey}
+                  id="nameRecipe"
+                  name="nameRecipe"
                   type="text"
-                  placeholder={`Edit the ${itemKey} of your new recipe`}
+                  placeholder={`Edit the name of your new recipe`}
                   onChange={formik.handleChange}
                 />
 
-                {formik.touched[itemKey] && formik.errors[itemKey] ? (
-                  <div className="text-danger">{`${itemKey} is ${formik.errors[itemKey]}`}</div>
+                {formik.touched.nameRecipe && formik.errors.nameRecipe ? (
+                  <div className="text-danger">{`The name of the recipe is ${formik.errors.nameRecipe}`}</div>
                 ) : null}
               </Form.Group>
-            );
-          })}
+            
 
 
       
 
-        <Form.Group className="mb-3">
-        <div>
+        <Form.Group className="ingredient row mt-5">
+        <div className="ingredientContainer">
+        <label htmlFor="url">Ingredients</label>
           <Row>
             <Col>
               <Form.Control placeholder="Ingredient" />
             </Col>
             <Col>
-              <Form.Control placeholder="Quantity" />
+              <Form.Control placeholder="Quantity (e.g 100g)" />
             </Col>
             <Col>
               <Button 
               onClick={addIngredient}
-              >Add another ingredient</Button>
+              > Next Ingredient</Button>
             </Col>
           </Row>
 
 
 
           {formik.touched.ingredients1 && formik.errors.ingredients1 ? (
-              <div className="text-danger">{`The first Ingredient is ${formik.errors.mealOrigin}`}</div>
+              <div className="text-danger">{`The first Ingredient is ${formik.errors.ingredients1}`}</div>
             ) : null}
       
 
             {formik.touched.measurement1 && formik.errors.measurement1 ? (
-              <div className="text-danger">{`The quantity of the first ingredient is ${formik.errors.mealOrigin}`}</div>
+              <div className="text-danger">{`The quantity of the first ingredient is ${formik.errors.measurement1}`}</div>
             ) : null}
           </div>
-          
+
           <div>
+          <Form.Group className="mb-3 row mt-5">
+                <Form.Label>Preparation</Form.Label>
+                <Form.Control
+                  id="instruction"
+                  name="instruction"
+                  type="textarea"
+                  placeholder={`Enter the instructions for preparing the recipe`}
+                  onChange={formik.handleChange}
+                />
+
+                {formik.touched.instruction && formik.errors.instruction ? (
+                  <div className="text-danger">{`The name of the recipe is ${formik.errors.instruction}`}</div>
+                ) : null}
+              </Form.Group>
+          </div>
+          
+          <div className="mealOrigin row mt-5">
+          <label>Cousine Country</label>
           <Form.Select 
           id="mealOrigin"
           name="mealOrigin"
@@ -302,7 +330,8 @@ const AddRecipeForm = (props) => {
             ) : null}
           </div>
 
-          <div>
+          <div className="mealType row mt-5">
+          <label>Meal Type</label>
           <Form.Select 
           id="mealType"
           name="mealType"
@@ -381,7 +410,7 @@ const AddRecipeForm = (props) => {
 
         </Form.Group> */}
 
-          <div className="imageUpload d-flex flex-column">
+          <div className="imageUpload d-flex flex-column row mt-5">
             <label htmlFor="url">Add Image</label>
             <input
               id="url"
