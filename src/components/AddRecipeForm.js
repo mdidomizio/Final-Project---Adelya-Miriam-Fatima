@@ -265,7 +265,7 @@ const AddRecipeForm = (props) => {
               <Form.Control placeholder="Quantity (e.g 100g)" />
             </Col>
             <Col>
-              <Button 
+              <Button variant="outline-primary"
               onClick={addIngredient}
               > Next Ingredient</Button>
             </Col>
@@ -286,11 +286,11 @@ const AddRecipeForm = (props) => {
           <div>
           <Form.Group className="mb-3 row mt-5">
                 <Form.Label>Preparation</Form.Label>
-                <Form.Control
+                <Form.Control as="textarea"
                   id="instruction"
                   name="instruction"
                   type="textarea"
-                  placeholder={`Enter the instructions for preparing the recipe`}
+                  placeholder={`Enter the preparation of the recipe`}
                   onChange={formik.handleChange}
                 />
 
