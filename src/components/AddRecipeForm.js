@@ -274,12 +274,12 @@ const AddRecipeForm = (props) => {
 
 
           {formik.touched.ingredients1 && formik.errors.ingredients1 ? (
-              <div className="text-danger">{`The first Ingredient is ${formik.errors.ingredients1}`}</div>
+              <div className="text-danger">{`${formik.errors.ingredients1}`}</div>
             ) : null}
       
 
             {formik.touched.measurement1 && formik.errors.measurement1 ? (
-              <div className="text-danger">{`The quantity of the first ingredient is ${formik.errors.measurement1}`}</div>
+              <div className="text-danger">{`${formik.errors.measurement1}`}</div>
             ) : null}
           </div>
 
@@ -295,7 +295,7 @@ const AddRecipeForm = (props) => {
                 />
 
                 {formik.touched.instruction && formik.errors.instruction ? (
-                  <div className="text-danger">{`The name of the recipe is ${formik.errors.instruction}`}</div>
+                  <div className="text-danger">{`${formik.errors.instruction}`}</div>
                 ) : null}
               </Form.Group>
           </div>
@@ -326,7 +326,7 @@ const AddRecipeForm = (props) => {
             <option value="3">Vietnamese</option>
           </Form.Select>
           {formik.touched.mealOrigin && formik.errors.mealOrigin ? (
-              <div className="text-danger">{`The Cuisine Country  is ${formik.errors.mealOrigin}`}</div>
+              <div className="text-danger">{`${formik.errors.mealOrigin}`}</div>
             ) : null}
           </div>
 
@@ -350,7 +350,7 @@ const AddRecipeForm = (props) => {
             <option value="3">Vegetarian</option>            
           </Form.Select>
           {formik.touched.mealType && formik.errors.mealType ? (
-              <div className="text-danger">{`The Meal Type is ${formik.errors.mealType}`}</div>
+              <div className="text-danger">{`${formik.errors.mealType}`}</div>
             ) : null}
           </div>
 
@@ -422,7 +422,7 @@ const AddRecipeForm = (props) => {
               }}
             />
             {formik.touched.url && formik.errors.url ? (
-              <div className="text-danger">{`Url is ${formik.errors.url}`}</div>
+              <div className="text-danger">{`${formik.errors.url}`}</div>
             ) : null}
           </div>
 
