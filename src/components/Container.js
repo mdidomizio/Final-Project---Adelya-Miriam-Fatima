@@ -82,7 +82,41 @@ const Container = () => {
     setMealTypeFilter([]);
   };
 
-  // send request to backend to save favorite recipes:
+  const [error, setError] = useState(null);
+  const [messageUpload, setMessageUpload] = useState(false);
+
+  const addToFavorite = async (IdAddedItem) => {
+    let itemsToPasstoFavorites = recipes.filter(
+      (item) => item.idMeal === IdAddedItem
+    );
+    console.log(itemsToPasstoFavorites);
+
+    // get access to token in local storage:
+    let tokenFromLS = localStorage.getItem("token");
+    let JWT_TOKEN = JSON.parse(tokenFromLS);
+    let path = `${process.env.REACT_APP_RECIPES_API}/`;
+    try {
+      let response = await fetch(path, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${JWT_TOKEN}`,
+        },
+        body: JSON.stringify(itemsToPasstoFavorites),
+      });
+      console.log("response from fetch", response);
+      if (response.status === 201) {
+        setMessageUpload(response.statusText);
+      } else {
+        let error = new Error(`${response.statusText}: ${response.url}`);
+        error.status = response.status;
+        throw error;
+      }
+    } catch (error) {
+      console.log("There was an error when updating data", error);
+      setError(error.message);
+    }
+  };
 
   return (
     <>
@@ -99,6 +133,7 @@ const Container = () => {
           (countryFilter.length > 0 ? countryFilter : recipes) ||
           (mealTypeFilter.length > 0 ? mealTypeFilter : recipes)
         }
+        addToFavorite={addToFavorite}
       />
     </>
   );
