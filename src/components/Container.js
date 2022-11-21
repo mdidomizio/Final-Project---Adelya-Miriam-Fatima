@@ -94,7 +94,7 @@ const Container = () => {
     // get access to token in local storage:
     let tokenFromLS = localStorage.getItem("token");
     let JWT_TOKEN = JSON.parse(tokenFromLS);
-    let path = `${process.env.REACT_APP_RECIPES_API}/`;
+    let path = `${process.env.REACT_APP_RECIPES_API}/favorites`;
     try {
       let response = await fetch(path, {
         method: "POST",
@@ -105,7 +105,7 @@ const Container = () => {
         body: JSON.stringify(itemsToPasstoFavorites),
       });
       console.log("response from fetch", response);
-      if (response.status === 201) {
+      if (response.status === 200) {
         setMessageUpload(response.statusText);
       } else {
         let error = new Error(`${response.statusText}: ${response.url}`);
