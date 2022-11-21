@@ -230,7 +230,8 @@ const AddRecipeForm = (props) => {
               itemKey === "url" ||
               itemKey === "mealType" ||
               itemKey === "mealOrigin" ||
-              itemKey === "mealTag" )
+              itemKey === "nameRecipe" ||
+              itemKey === "instruction" )
               {
               return null;
             }
@@ -257,12 +258,20 @@ const AddRecipeForm = (props) => {
         <Form.Group className="ingredient row mt-5">
         <div className="ingredientContainer">
         <label htmlFor="url">Ingredients</label>
-          <Row>
+          <Row className="first row mt-2">
             <Col>
-              <Form.Control placeholder="Ingredient" />
+              <Form.Control
+              id="ingredients1"
+              name="ingredients1"
+              type="text"
+               placeholder="Ingredient" />
             </Col>
             <Col>
-              <Form.Control placeholder="Quantity (e.g 100g)" />
+              <Form.Control 
+              id="measurement1"
+              name="measurement1"
+              type="text"
+              placeholder="Quantity (e.g 100g)" />
             </Col>
             <Col>
               <Button variant="outline-primary"
@@ -271,16 +280,108 @@ const AddRecipeForm = (props) => {
             </Col>
           </Row>
 
-
-
           {formik.touched.ingredients1 && formik.errors.ingredients1 ? (
               <div className="text-danger">{`${formik.errors.ingredients1}`}</div>
             ) : null}
       
-
             {formik.touched.measurement1 && formik.errors.measurement1 ? (
               <div className="text-danger">{`${formik.errors.measurement1}`}</div>
             ) : null}
+
+            <Row className="second row mt-2">
+            <Col>
+              <Form.Control 
+              id="ingredients2"
+              name="ingredients2"
+              type="text"
+               placeholder="Ingredient" />
+            </Col>
+            <Col>
+              <Form.Control 
+              id="measurement2"
+              name="measurement2"
+              type="text"
+              placeholder="Quantity (e.g 100g)" />
+            </Col>
+            <Col>
+              <Button variant="outline-primary"
+              onClick={addIngredient}
+              > Next Ingredient</Button>
+            </Col>
+          </Row>
+
+          {formik.touched.ingredients2 && formik.errors.ingredients2 ? (
+              <div className="text-danger">{`${formik.errors.ingredients2}`}</div>
+            ) : null}
+      
+
+            {formik.touched.measurement2 && formik.errors.measurement2 ? (
+              <div className="text-danger">{`${formik.errors.measurement2}`}</div>
+            ) : null}
+
+
+            <Row className="third row mt-2">
+            <Col>
+              <Form.Control 
+              id="ingredients3"
+              name="ingredients3"
+              type="text"
+               placeholder="Ingredient" />
+            </Col>
+            <Col>
+              <Form.Control 
+              id="measurement3"
+              name="measurement3"
+              type="text"
+              placeholder="Quantity (e.g 100g)" />
+            </Col>
+            <Col>
+              <Button variant="outline-primary"
+              onClick={addIngredient}
+              > Next Ingredient</Button>
+            </Col>
+          </Row>
+
+          {formik.touched.ingredients3 && formik.errors.ingredients3 ? (
+              <div className="text-danger">{`${formik.errors.ingredients3}`}</div>
+            ) : null}
+      
+
+            {formik.touched.measurement3 && formik.errors.measurement3 ? (
+              <div className="text-danger">{`${formik.errors.measurement3}`}</div>
+            ) : null}
+
+            <Row className="Fourth row mt-2">
+            <Col>
+              <Form.Control 
+              id="ingredients4"
+              name="ingredients4"
+              type="text"
+               placeholder="Ingredient" />
+            </Col>
+            <Col>
+              <Form.Control 
+              id="measurement4"
+              name="measurement4"
+              type="text"
+              placeholder="Quantity (e.g 100g)" />
+            </Col>
+            <Col>
+              <Button variant="outline-primary"
+              onClick={addIngredient}
+              > Next Ingredient</Button>
+            </Col>
+          </Row>
+
+          {formik.touched.ingredients4 && formik.errors.ingredients4 ? (
+              <div className="text-danger">{`${formik.errors.ingredients4}`}</div>
+            ) : null}
+      
+
+            {formik.touched.measurement4 && formik.errors.measurement4 ? (
+              <div className="text-danger">{`${formik.errors.measurement4}`}</div>
+            ) : null}
+
           </div>
 
           <div>
@@ -354,61 +455,12 @@ const AddRecipeForm = (props) => {
             ) : null}
           </div>
 
-          {/* <div>
-          <Form.Select 
-          id="mealTag"
-          name="mealTag"
-          type="text"
-          aria-label="Default select example">
-            <option>Select your Meal Tag</option>
-            <option value="1">uno</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-            <option value="3">Four</option>
-            <option value="3">Five</option>
-            <option value="3">Six</option>
-            <option value="3">Seven</option>
-            <option value="3">Eight</option>
-            <option value="3">Nine</option>
-            <option value="3">Ten</option>            
-          </Form.Select>
-          {formik.touched.mealTag && formik.errors.mealTag ? (
-              <div className="text-danger">{`The Meal Type is ${formik.errors.mealTag}`}</div>
-            ) : null}
-          </div> */}
+
 
 
         </Form.Group>
 
-          {/* <Form.Group className="mb-3">
-          <Form.Label> Meal Type</Form.Label>
-          <Form.Control 
-          id="mealType"
-          name="mealType"
-          type="text" 
-          placeholder="Select a meal type"
-          onChange={formik.handleChange} />
-          {formik.touched.mealType && formik.errors.mealType ? (
-                  <div className='text-danger'>{`The meal type is ${formik.errors.mealType}`}</div>
-                ) : null
-                }
 
-        </Form.Group>
-
-        <Form.Group className="mb-3">
-          <Form.Label>Country Cuisine</Form.Label>
-          <Form.Control 
-          id="mealOrigin"
-          name="mealOrigin"
-          type="text" 
-          placeholder="Select a Country Cousine" 
-          onChange={formik.handleChange} />
-          {formik.touched.mealOrigin && formik.errors.mealOrigin ? (
-                  <div className='text-danger'>{`The Country Cuisine is ${formik.errors.mealOrigin}`}</div>
-                ) : null
-                }
-
-        </Form.Group> */}
 
           <div className="imageUpload d-flex flex-column row mt-5">
             <label htmlFor="url">Add Image</label>
@@ -434,7 +486,7 @@ const AddRecipeForm = (props) => {
         {messageAdded ? (
           <>
             <h2>Recipe created successfully, congratulation</h2>
-            <Link to="/"> Go back to your favorites page</Link>
+            <Link to="/favorites"> Go back to your favorites page</Link>
           </>
         ) : null}
       </div>
