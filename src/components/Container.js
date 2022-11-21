@@ -86,10 +86,14 @@ const Container = () => {
   const [messageUpload, setMessageUpload] = useState(false);
 
   const addToFavorite = async (IdAddedItem) => {
-    let itemsToPasstoFavorites = recipes.filter(
+    let userId = localStorage.getItem("userId");
+    let userIdClean = userId.replaceAll('"', "");
+    console.log("userId: " + userIdClean);
+    let itemsToPasstoFavorite = recipes.filter(
       (item) => item.idMeal === IdAddedItem
-    );
-    console.log(itemsToPasstoFavorites);
+    )[0];
+    let itemWithId = { ...itemsToPasstoFavorite, userId: userIdClean };
+    console.log(itemWithId);
 
     // get access to token in local storage:
     let tokenFromLS = localStorage.getItem("token");
@@ -102,7 +106,7 @@ const Container = () => {
           "Content-type": "application/json",
           Authorization: `Bearer ${JWT_TOKEN}`,
         },
-        body: JSON.stringify(itemsToPasstoFavorites),
+        body: JSON.stringify(itemWithId),
       });
       console.log("response from fetch", response);
       if (response.status === 200) {

@@ -22,9 +22,13 @@ const Login = (props) => {
       if (response.status === 200) {
         console.log(response);
         let data = await response.json();
+        console.log("data: " + JSON.stringify(data));
         let token = data.token;
+        let userId = data.userId;
         // save to localStorage
         localStorage.setItem("token", JSON.stringify(token));
+        localStorage.setItem("userId", JSON.stringify(userId));
+        console.log("userId: " + userId);
         setMessage("You are logged in!");
         // change state of loggedIn
         props.setLoggedIn(true);
