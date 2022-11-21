@@ -7,9 +7,12 @@ import Col from "react-bootstrap/Col";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
+
+
 const AddRecipeForm = (props) => {
   const [error, setError] = useState(false);
   const [messageAdded, setMessageAdded] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const ingredientContainer = document.getElementById('input-cont');
   var maxIngredientsAllowed = 20;
@@ -380,6 +383,37 @@ const AddRecipeForm = (props) => {
 
             {formik.touched.measurement4 && formik.errors.measurement4 ? (
               <div className="text-danger">{`${formik.errors.measurement4}`}</div>
+            ) : null}
+
+            <Row className="Fifth row mt-2">
+            <Col>
+              <Form.Control 
+              id="ingredients5"
+              name="ingredients5"
+              type="text"
+               placeholder="Ingredient" />
+            </Col>
+            <Col>
+              <Form.Control 
+              id="measurement5"
+              name="measurement5"
+              type="text"
+              placeholder="Quantity (e.g 100g)" />
+            </Col>
+            <Col>
+              <Button variant="outline-primary"
+              onClick={addIngredient}
+              > Next Ingredient</Button>
+            </Col>
+          </Row>
+
+          {formik.touched.ingredients5 && formik.errors.ingredients5 ? (
+              <div className="text-danger">{`${formik.errors.ingredients5}`}</div>
+            ) : null}
+      
+
+            {formik.touched.measurement5 && formik.errors.measurement5 ? (
+              <div className="text-danger">{`${formik.errors.measurement5}`}</div>
             ) : null}
 
           </div>
