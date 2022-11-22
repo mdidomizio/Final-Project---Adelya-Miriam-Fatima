@@ -1,15 +1,11 @@
 import { useState, useEffect } from "react";
 import Recipes from "./Recipes.js";
 import FilterButton from "./FilterButton.js";
-import Favorites from "./Favorites.js";
-import Error from "./Error";
 
 const Container = () => {
   const [recipes, setRecipes] = useState([]);
 
   // const [deleteMessage, setDeleteMessage] = useState(false);
-
-  const [error, setError] = useState(false);
 
   const fetchRecipes = async () => {
     try {
@@ -28,6 +24,7 @@ const Container = () => {
     fetchRecipes();
   }, []);
 
+  // filters:
   const countriesCuisine = [
     "American",
     "British",
@@ -84,22 +81,11 @@ const Container = () => {
   const resetMealType = () => {
     setMealTypeFilter([]);
   };
-  const [favorite, setFavorite] = useState([]);
-  const addToFavorite = (event) => {
-    let id = event.target.id;
-    let clickedItem = recipes.find((recipe) => recipe.idMeal === id);
-    setFavorite([...favorite, clickedItem]);
-  };
-  const removeFromFavorite = (event) => {
-    let updatedFavorite = favorite.filter(
-      (item) => item.id !== event.target.id
-    );
-    setFavorite(updatedFavorite);
-  };
+
+  // send request to backend to save favorite recipes:
 
   return (
     <>
-      <Favorites favorite={favorite} removeFromFavorite={removeFromFavorite} />
       <FilterButton
         countriesCuisine={countriesCuisine}
         displayCountryCuisine={displayCountryCuisine}
@@ -109,8 +95,10 @@ const Container = () => {
         resetMealType={resetMealType}
       />
       <Recipes
-        recipes={(countryFilter.length > 0 ? countryFilter : recipes) || (mealTypeFilter.length > 0 ? mealTypeFilter : recipes)}
-        addToFavorite={addToFavorite}
+        recipes={
+          (countryFilter.length > 0 ? countryFilter : recipes) ||
+          (mealTypeFilter.length > 0 ? mealTypeFilter : recipes)
+        }
       />
     </>
   );

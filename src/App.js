@@ -21,12 +21,12 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
           <Route path="/addRecipe" element={<AddRecipeForm />} />
-          <Route path="/favorites" element={<div> Under construction</div>} />
-          //{/* {loggedIn ? (
+          <Route path="/favorites" element={<Favorites />} />
+          {/* {loggedIn ? (
             <Route path="/favorites" element={<div> Under construction</div>} />
           ) : (
             <Route path="/" element={<Navigate to="/signup" replace />} />
-          )} */}//
+          )} */}
           <Route
             path="/about"
             element={

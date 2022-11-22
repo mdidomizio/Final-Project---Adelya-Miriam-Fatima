@@ -193,7 +193,7 @@ const AddRecipeForm = (props) => {
     let JWT_TOKEN = JSON.parse(tokenFromLS);
 
     try {
-      let path = `${process.env.REACT_APP_RECIPES_API}/wardrobe`;
+      let path = `${process.env.REACT_APP_RECIPES_API}/recipes`;
       let response = await fetch(path, {
         method: "POST",
         headers: {
@@ -210,7 +210,7 @@ const AddRecipeForm = (props) => {
         throw error;
       }
     } catch (error) {
-      console.log("something went wrong creating the New Item", error);
+      console.log("something went wrong creating the New Recipe", error);
       setError(error.message);
     }
   };
@@ -431,7 +431,7 @@ const AddRecipeForm = (props) => {
             ) : null}
 
           </div>
-
+          
           <div>
           <Form.Group className="mb-3 row mt-5">
                 <Form.Label>Preparation</Form.Label>
@@ -455,7 +455,7 @@ const AddRecipeForm = (props) => {
             <Form.Select 
             id="mealOrigin"
             name="mealOrigin"
-            type="text"
+            type="select"
             onSelectCapture={formik.handleChange}
             aria-label="Default select example">
               <option>Select your Cuisine Country</option>
@@ -487,7 +487,7 @@ const AddRecipeForm = (props) => {
           <Form.Select 
           id="mealType"
           name="mealType"
-          type="text"
+          type="select"
           as="select"
           onSelectCapture={formik.handleChange}
           aria-label="Default select example">
@@ -508,11 +508,9 @@ const AddRecipeForm = (props) => {
             ) : null}
           </div>
 
-
-
+          
 
         </Form.Group>
-
 
 
           <div className="imageUpload d-flex flex-column row mt-5">
