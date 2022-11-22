@@ -448,10 +448,40 @@ const AddRecipeForm = (props) => {
                 ) : null}
               </Form.Group>
           </div>
-          
-         {/* <Field name="mealOrigin" as="select"> */}
-          <div className="mealOrigin row mt-5">
-            <label>Cousine Country</label>
+
+          <Form.Group className="mb-3">
+                <Form.Label>Cuisine Country</Form.Label>
+                <Form.Control
+                  id="mealOrigin"
+                  name="mealOrigin"
+                  type="text"
+                  placeholder={`Add a Cuisine Country`}
+                  onChange={formik.handleChange}
+                />
+
+              {formik.touched.mealOrigin && formik.errors.mealOrigin ? (
+                <div className="text-danger">{`${formik.errors.mealOrigin}`}</div>
+              ) : null}     
+              </Form.Group>
+
+
+              <Form.Group className="mb-3">
+                <Form.Label>Meal Type</Form.Label>
+                <Form.Control
+                  id="mealType"
+                  name="mealType"
+                  type="text"
+                  placeholder={`Add a Meal Type`}
+                  onChange={formik.handleChange}
+                />
+
+                {formik.touched.mealType && formik.errors.mealType ? (
+                <div className="text-danger">{`${formik.errors.mealType}`}</div>
+              ) : null}   
+              </Form.Group>
+         
+          {/* <div className="mealOrigin row mt-5">
+            <label>Cuisine Country</label>
             <Form.Select 
             id="mealOrigin"
             name="mealOrigin"
@@ -481,11 +511,11 @@ const AddRecipeForm = (props) => {
             {formik.touched.mealOrigin && formik.errors.mealOrigin ? (
                 <div className="text-danger">{`${formik.errors.mealOrigin}`}</div>
               ) : null}
-            </div>
-         {/* </Field> 
+            </div> */}
+        
 
-         <Field name="mealType" as="select"> */}
-            <div className="mealType row mt-5">
+         
+            {/* <div className="mealType row mt-5">
             <label>Meal Type</label>
             <Form.Select 
             id="mealType"
@@ -509,40 +539,8 @@ const AddRecipeForm = (props) => {
             {formik.touched.mealType && formik.errors.mealType ? (
                 <div className="text-danger">{`${formik.errors.mealType}`}</div>
               ) : null}
-            </div>
-          {/* <Field/> */}
-
-          {/* <div className="mealOrigin row mt-5">
-            <label>Cousine Country</label>
-            <Form.Select 
-            id="mealOrigin"
-            name="mealOrigin"
-            type="select"
-            onSelectCapture={formik.handleChange}
-            aria-label="Default select example">
-              <option>Select your Cuisine Country</option>
-              <option value="1">American</option>
-              <option value="2">British</option>
-              <option value="3">Canadian</option>
-              <option value="3">Chinese</option>
-              <option value="3">Croatian</option>
-              <option value="3">Dutch</option>
-              <option value="3">French</option>
-              <option value="3">Indian</option>
-              <option value="3">Irish</option>
-              <option value="3">Italian</option>
-              <option value="3">Jamaican</option>
-              <option value="3">Malaysian</option>
-              <option value="3">Mexican</option>
-              <option value="3">Polish</option>
-              <option value="3">Russian</option>
-              <option value="3">Vietnamese</option>
-            </Form.Select>
-            {formik.touched.mealOrigin && formik.errors.mealOrigin ? (
-                <div className="text-danger">{`${formik.errors.mealOrigin}`}</div>
-              ) : null}
             </div> */}
-
+        
         </Form.Group>
 
 
