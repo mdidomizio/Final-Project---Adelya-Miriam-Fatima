@@ -81,7 +81,6 @@ const AddRecipeForm = (props) => {
           "Vegetarian",
         ])
         .required(),
-      // mealTag: yup.string().oneOf(["rian"]).required(),
       mealOrigin: yup
         .string()
         .oneOf([
@@ -165,7 +164,7 @@ const AddRecipeForm = (props) => {
     let JWT_TOKEN = JSON.parse(tokenFromLS);
 
     try {
-      let path = `${process.env.REACT_APP_WARDROBE_API}/wardrobe`;
+      let path = `${process.env.REACT_APP_RECIPES_API}/recipes`;
       let response = await fetch(path, {
         method: "POST",
         headers: {
@@ -182,7 +181,7 @@ const AddRecipeForm = (props) => {
         throw error;
       }
     } catch (error) {
-      console.log("something went wrong creating the New Item", error);
+      console.log("something went wrong creating the New Recipe", error);
       setError(error.message);
     }
   };
@@ -209,7 +208,7 @@ const AddRecipeForm = (props) => {
               return null;
             }
             return (
-              <Form.Group className="mb-3">
+              <Form.Group className="mb-3" key={itemKey}>
                 <Form.Label>{itemKey}</Form.Label>
                 <Form.Control
                   id={itemKey}
@@ -227,18 +226,19 @@ const AddRecipeForm = (props) => {
           })}
 
 
-      <div>
+      {/* <div>
         <input
         className="ingredient&quantity" 
         type={text} 
-        id=
-      </div>  
+        id={text} 
+      </div>   */}
 
         <Form.Group className="mb-3">
         <div>
           <Row>
             <Col>
-              <Form.Control placeholder="Ingredient" />
+              <Form.Control 
+              placeholder="Ingredient" />
             </Col>
             <Col>
               <Form.Control placeholder="Quantity" />
@@ -254,6 +254,10 @@ const AddRecipeForm = (props) => {
             ) : null}
           </div>
           
+          
+          
+         
+
           <div>
           <Form.Select 
           id="mealOrigin"
@@ -279,8 +283,9 @@ const AddRecipeForm = (props) => {
             <option value="3">Vietnamese</option>
           </Form.Select>
           {formik.touched.mealOrigin && formik.errors.mealOrigin ? (
-              <div className="text-danger">{`The Cuisine Country  is ${formik.errors.mealOrigin}`}</div>
+              <div className="text-danger">{`${formik.errors.mealOrigin}`}</div>
             ) : null}
+
           </div>
 
           <div>
@@ -302,66 +307,13 @@ const AddRecipeForm = (props) => {
             <option value="3">Vegetarian</option>            
           </Form.Select>
           {formik.touched.mealType && formik.errors.mealType ? (
-              <div className="text-danger">{`The Meal Type is ${formik.errors.mealType}`}</div>
+              <div className="text-danger">{`${formik.errors.mealType}`}</div>
             ) : null}
           </div>
 
-          {/* <div>
-          <Form.Select 
-          id="mealTag"
-          name="mealTag"
-          type="text"
-          aria-label="Default select example">
-            <option>Select your Meal Tag</option>
-            <option value="1">uno</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-            <option value="3">Four</option>
-            <option value="3">Five</option>
-            <option value="3">Six</option>
-            <option value="3">Seven</option>
-            <option value="3">Eight</option>
-            <option value="3">Nine</option>
-            <option value="3">Ten</option>            
-          </Form.Select>
-          {formik.touched.mealTag && formik.errors.mealTag ? (
-              <div className="text-danger">{`The Meal Type is ${formik.errors.mealTag}`}</div>
-            ) : null}
-          </div> */}
-
-
         </Form.Group>
 
-          {/* <Form.Group className="mb-3">
-          <Form.Label> Meal Type</Form.Label>
-          <Form.Control 
-          id="mealType"
-          name="mealType"
-          type="text" 
-          placeholder="Select a meal type"
-          onChange={formik.handleChange} />
-          {formik.touched.mealType && formik.errors.mealType ? (
-                  <div className='text-danger'>{`The meal type is ${formik.errors.mealType}`}</div>
-                ) : null
-                }
-
-        </Form.Group>
-
-        <Form.Group className="mb-3">
-          <Form.Label>Country Cuisine</Form.Label>
-          <Form.Control 
-          id="mealOrigin"
-          name="mealOrigin"
-          type="text" 
-          placeholder="Select a Country Cousine" 
-          onChange={formik.handleChange} />
-          {formik.touched.mealOrigin && formik.errors.mealOrigin ? (
-                  <div className='text-danger'>{`The Country Cuisine is ${formik.errors.mealOrigin}`}</div>
-                ) : null
-                }
-
-        </Form.Group> */}
-
+          
           <div className="imageUpload d-flex flex-column">
             <label htmlFor="url">Add Image</label>
             <input
