@@ -23,7 +23,7 @@ function App() {
           <Route path="/addRecipe" element={<AddRecipeForm />} />
           <Route path="/favorites" element={<Favorites />} />
           {/* {loggedIn ? (
-            <Route path="/favorites" element={<div> Under construction</div>} />
+            <Route path="/favorites" element={<Favorites />} />
           ) : (
             <Route path="/" element={<Navigate to="/signup" replace />} />
           )} */}

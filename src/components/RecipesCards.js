@@ -37,39 +37,6 @@ const RecipesCard = (props) => {
     combinedIngredients.push([ingredients[i], measurements[i]]);
   }
 
-  const [error, setError] = useState(null);
-  const [messageUpload, setMessageUpload] = useState(false);
-
-  const addToFavorite = async (addedItem) => {
-    let updatedItemList = { ...addedItem };
-
-    // get access to token in local storage:
-    let tokenFromLS = localStorage.getItem("token");
-    let JWT_TOKEN = JSON.parse(tokenFromLS);
-    let path = `${process.env.REACT_APP_RECIPES_API}/favorites`;
-    try {
-      let response = await fetch(path, {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${JWT_TOKEN}`,
-        },
-        body: JSON.stringify(updatedItemList),
-      });
-      console.log("response from fetch", response);
-      if (response.status === 201) {
-        setMessageUpload(response.statusText);
-      } else {
-        let error = new Error(`${response.statusText}: ${response.url}`);
-        error.status = response.status;
-        throw error;
-      }
-    } catch (error) {
-      console.log("There was an error when updating data", error);
-      setError(error.message);
-    }
-  };
-
   return (
     <Card className="card m-4" style={{ width: "35rem" }}>
       <Card.Img variant="top" src={mealPic} />
@@ -82,7 +49,7 @@ const RecipesCard = (props) => {
         <Button
           onClick={(event) => {
             console.log("button works");
-            addToFavorite(event);
+            props.addToFavorite(event.target.id);
           }}
           id={mealId}
           type="button"
