@@ -34,32 +34,36 @@ const Favorites = (props) => {
     }
   };
 
+  const removeFromFavorite = async (event) => {
+    try {
+      let tokenJson = localStorage.getItem("token");
+      let JWT_TOKEN = JSON.parse(tokenJson);
+      let id = event.target.id;
+      let path = `${process.env.REACT_APP_RECIPES_API}/favorites/${id}`;
+      let responseDelete = await fetch(path, {
+        method: "DELETE",
+        mode: "cors",
+        headers: { Authorization: `Bearer ${JWT_TOKEN}` },
+      });
+      console.log(responseDelete);
+      if (responseDelete.status === 200) {
+        console.log("Item is deleted");
+
+        let restItemstoDisplay = favorites.filter((item) => item.mealId !== id);
+        setFavorites(restItemstoDisplay);
+      } else {
+        throw new Error(`Sorry, could not delete any data`);
+      }
+    } catch (error) {
+      console.log("Something went wrong deleting data", error.message);
+      setError(error.message);
+    }
+  };
+
   useEffect(() => {
     fetchFavorites();
+    removeFromFavorite();
   }, []);
-
-  // const removeFromFavorite = async (event) => {
-  //   try {
-  //     let id = event.target.id;
-  //     let path = `${process.env.REACT_APP_RECIPES_API}/favorites/${props.mealId}`; // ? How to refer to ID? DO we need to?
-  //     let responseDelete = await fetch(path, {
-  //       method: "DELETE",
-  //       mode: "cors",
-  //     });
-  //     console.log(responseDelete);
-  //     if (responseDelete.status === 200) {
-  //       console.log("Item is deleted");
-
-  //       let restItemstoDisplay = favorites.filter((item) => item.id !== id);
-  //       setFavorites(restItemstoDisplay);
-  //     } else {
-  //       throw new Error(`Sorry, could not delete any data`);
-  //     }
-  //   } catch (error) {
-  //     console.log("Something went wrong deleting data", error.message);
-  //     setError(error.message);
-  //   }
-  // };
 
   return (
     <div className="Favorites">
@@ -68,7 +72,11 @@ const Favorites = (props) => {
           favorites.map((element, index) => {
             return (
               <div>
-                <FavoriteCards key={index} item={element} />
+                <FavoriteCards
+                  key={index}
+                  item={element}
+                  removeFromFavorite={removeFromFavorite}
+                />
               </div>
             );
           })
