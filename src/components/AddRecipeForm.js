@@ -12,22 +12,22 @@ import * as yup from "yup";
 const AddRecipeForm = (props) => {
   const [error, setError] = useState(false);
   const [messageAdded, setMessageAdded] = useState(false);
-  const [open, setOpen] = useState(false);
+//   const [open, setOpen] = useState(false);
 
-  const ingredientContainer = document.getElementById('input-cont');
-  var maxIngredientsAllowed = 20;
-  var ingredientCount = 1;
-  const addIngredient = () => {
-    ingredientCount++;
-    if(ingredientCount>20){
-    alert('you can add maximum 20 ingredients');
-    return;
-  }
-  let input = document.createElement('input');
-  input.placeholder = 'Enter your ingredient';
-  ingredientContainer.appendChild(input);
+//   const ingredientContainer = document.getElementById('input-cont');
+//   var maxIngredientsAllowed = 20;
+//   var ingredientCount = 1;
+//   const addIngredient = () => {
+//     ingredientCount++;
+//     if(ingredientCount>20){
+//     alert('you can add maximum 20 ingredients');
+//     return;
+//   }
+//   let input = document.createElement('input');
+//   input.placeholder = 'Enter your ingredient';
+//   ingredientContainer.appendChild(input);
   
-}
+// }
 
 
   const formik = useFormik({
@@ -100,7 +100,6 @@ const AddRecipeForm = (props) => {
           "Vegetarian",
         ])
         .required(),
-      // mealTag: yup.string().oneOf(["rian"]).required(),
       mealOrigin: yup
         .string()
         .oneOf([
@@ -194,7 +193,7 @@ const AddRecipeForm = (props) => {
     let JWT_TOKEN = JSON.parse(tokenFromLS);
 
     try {
-      let path = `${process.env.REACT_APP_WARDROBE_API}/wardrobe`;
+      let path = `${process.env.REACT_APP_RECIPES_API}/wardrobe`;
       let response = await fetch(path, {
         method: "POST",
         headers: {
@@ -267,20 +266,23 @@ const AddRecipeForm = (props) => {
               id="ingredients1"
               name="ingredients1"
               type="text"
-               placeholder="Ingredient" />
+               placeholder="Ingredient"
+               onChange={formik.handleChange} />
             </Col>
             <Col>
               <Form.Control 
               id="measurement1"
               name="measurement1"
               type="text"
-              placeholder="Quantity (e.g 100g)" />
+              placeholder="Quantity (e.g 100g)" 
+              onChange={formik.handleChange}
+              />
             </Col>
-            <Col>
+            {/* <Col>
               <Button variant="outline-primary"
               onClick={addIngredient}
               > Next Ingredient</Button>
-            </Col>
+            </Col> */}
           </Row>
 
           {formik.touched.ingredients1 && formik.errors.ingredients1 ? (
@@ -297,20 +299,23 @@ const AddRecipeForm = (props) => {
               id="ingredients2"
               name="ingredients2"
               type="text"
-               placeholder="Ingredient" />
+               placeholder="Ingredient"
+               onChange={formik.handleChange} />
             </Col>
             <Col>
               <Form.Control 
               id="measurement2"
               name="measurement2"
               type="text"
-              placeholder="Quantity (e.g 100g)" />
+              placeholder="Quantity (e.g 100g)" 
+              onChange={formik.handleChange}
+              />
             </Col>
-            <Col>
+            {/* <Col>
               <Button variant="outline-primary"
               onClick={addIngredient}
               > Next Ingredient</Button>
-            </Col>
+            </Col> */}
           </Row>
 
           {formik.touched.ingredients2 && formik.errors.ingredients2 ? (
@@ -329,20 +334,22 @@ const AddRecipeForm = (props) => {
               id="ingredients3"
               name="ingredients3"
               type="text"
-               placeholder="Ingredient" />
+               placeholder="Ingredient"
+               onChange={formik.handleChange} />
             </Col>
             <Col>
               <Form.Control 
               id="measurement3"
               name="measurement3"
               type="text"
-              placeholder="Quantity (e.g 100g)" />
+              placeholder="Quantity (e.g 100g)"
+              onChange={formik.handleChange} />
             </Col>
-            <Col>
+            {/* <Col>
               <Button variant="outline-primary"
               onClick={addIngredient}
               > Next Ingredient</Button>
-            </Col>
+            </Col> */}
           </Row>
 
           {formik.touched.ingredients3 && formik.errors.ingredients3 ? (
@@ -360,20 +367,24 @@ const AddRecipeForm = (props) => {
               id="ingredients4"
               name="ingredients4"
               type="text"
-               placeholder="Ingredient" />
+               placeholder="Ingredient" 
+               onChange={formik.handleChange}
+               />
             </Col>
             <Col>
               <Form.Control 
               id="measurement4"
               name="measurement4"
               type="text"
-              placeholder="Quantity (e.g 100g)" />
+              placeholder="Quantity (e.g 100g)" 
+              onChange={formik.handleChange}
+              />
             </Col>
-            <Col>
+            {/* <Col>
               <Button variant="outline-primary"
               onClick={addIngredient}
               > Next Ingredient</Button>
-            </Col>
+            </Col> */}
           </Row>
 
           {formik.touched.ingredients4 && formik.errors.ingredients4 ? (
@@ -391,20 +402,23 @@ const AddRecipeForm = (props) => {
               id="ingredients5"
               name="ingredients5"
               type="text"
-               placeholder="Ingredient" />
+               placeholder="Ingredient" 
+               onChange={formik.handleChange}/>
             </Col>
             <Col>
               <Form.Control 
               id="measurement5"
               name="measurement5"
               type="text"
-              placeholder="Quantity (e.g 100g)" />
+              placeholder="Quantity (e.g 100g)" 
+              onChange={formik.handleChange}
+              />
             </Col>
-            <Col>
+            {/* <Col>
               <Button variant="outline-primary"
               onClick={addIngredient}
               > Next Ingredient</Button>
-            </Col>
+            </Col> */}
           </Row>
 
           {formik.touched.ingredients5 && formik.errors.ingredients5 ? (
@@ -441,6 +455,7 @@ const AddRecipeForm = (props) => {
           id="mealOrigin"
           name="mealOrigin"
           type="text"
+          onChange={formik.handleChange}
           aria-label="Default select example">
             <option>Select your Cuisine Country</option>
             <option value="1">American</option>
@@ -471,6 +486,7 @@ const AddRecipeForm = (props) => {
           id="mealType"
           name="mealType"
           type="text"
+          onChange={formik.handleChange}
           aria-label="Default select example">
             <option>Select your Meal Type</option>
             <option value="1">Beef</option>
