@@ -172,8 +172,8 @@ const AddRecipeForm = (props) => {
 
   const createRecipeEntry = async (item) => {
     // upload image to cloudinary:
-    let preset = "wardrobe_bootcamp";
-    let cloudName = "dajs1jldd";
+    let preset = process.env.REACT_APP_CLOUDINARY_PRESET
+    let cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME
     let cloudPath = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
     // create body to post:
     let dataForBody = new FormData();
