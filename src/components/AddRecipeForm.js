@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { useFormik } from "formik";
+import { useFormik, Field } from "formik";
 import * as yup from "yup";
 
 
@@ -449,36 +449,38 @@ const AddRecipeForm = (props) => {
               </Form.Group>
           </div>
           
+         {/* <Field name="mealOrigin" as="select"> */}
           <div className="mealOrigin row mt-5">
-          <label>Cousine Country</label>
-          <Form.Select 
-          id="mealOrigin"
-          name="mealOrigin"
-          type="text"
-          onChange={formik.handleChange}
-          aria-label="Default select example">
-            <option>Select your Cuisine Country</option>
-            <option value="1">American</option>
-            <option value="2">British</option>
-            <option value="3">Canadian</option>
-            <option value="3">Chinese</option>
-            <option value="3">Croatian</option>
-            <option value="3">Dutch</option>
-            <option value="3">French</option>
-            <option value="3">Indian</option>
-            <option value="3">Irish</option>
-            <option value="3">Italian</option>
-            <option value="3">Jamaican</option>
-            <option value="3">Malaysian</option>
-            <option value="3">Mexican</option>
-            <option value="3">Polish</option>
-            <option value="3">Russian</option>
-            <option value="3">Vietnamese</option>
-          </Form.Select>
-          {formik.touched.mealOrigin && formik.errors.mealOrigin ? (
-              <div className="text-danger">{`${formik.errors.mealOrigin}`}</div>
-            ) : null}
-          </div>
+            <label>Cousine Country</label>
+            <Form.Select 
+            id="mealOrigin"
+            name="mealOrigin"
+            type="text"
+            onSelectCapture={formik.handleChange}
+            aria-label="Default select example">
+              <option>Select your Cuisine Country</option>
+              <option value="1">American</option>
+              <option value="2">British</option>
+              <option value="3">Canadian</option>
+              <option value="3">Chinese</option>
+              <option value="3">Croatian</option>
+              <option value="3">Dutch</option>
+              <option value="3">French</option>
+              <option value="3">Indian</option>
+              <option value="3">Irish</option>
+              <option value="3">Italian</option>
+              <option value="3">Jamaican</option>
+              <option value="3">Malaysian</option>
+              <option value="3">Mexican</option>
+              <option value="3">Polish</option>
+              <option value="3">Russian</option>
+              <option value="3">Vietnamese</option>
+            </Form.Select>
+            {formik.touched.mealOrigin && formik.errors.mealOrigin ? (
+                <div className="text-danger">{`${formik.errors.mealOrigin}`}</div>
+              ) : null}
+            </div>
+         {/* </Field>  */}
 
           <div className="mealType row mt-5">
           <label>Meal Type</label>
@@ -486,7 +488,8 @@ const AddRecipeForm = (props) => {
           id="mealType"
           name="mealType"
           type="text"
-          onChange={formik.handleChange}
+          as="select"
+          onSelectCapture={formik.handleChange}
           aria-label="Default select example">
             <option>Select your Meal Type</option>
             <option value="1">Beef</option>
