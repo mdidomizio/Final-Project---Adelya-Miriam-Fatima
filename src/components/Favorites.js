@@ -42,7 +42,7 @@ const Favorites = (props) => {
       let path = `${process.env.REACT_APP_RECIPES_API}/favorites/${id}`;
       let responseDelete = await fetch(path, {
         method: "DELETE",
-        mode: "cors",
+        // mode: "cors",
         headers: { Authorization: `Bearer ${JWT_TOKEN}` },
       });
       console.log(responseDelete);
