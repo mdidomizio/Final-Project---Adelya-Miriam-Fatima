@@ -1,9 +1,11 @@
 import FavoriteCards from "./FavoriteCards";
+import AddedByUserCards from "./AddedByUserCards.js"
 import { useState, useEffect } from "react";
 
 const Favorites = (props) => {
   const [error, setError] = useState(null);
   const [favorites, setFavorites] = useState([]);
+  const [recipes, setRecipes] = useState([]);
 
   const fetchFavorites = async () => {
     try {
@@ -34,8 +36,38 @@ const Favorites = (props) => {
     }
   };
 
+  const fetchRecipes = async () => {
+    try {
+      let tokenJson = localStorage.getItem("token");
+      let JWT_TOKEN = JSON.parse(tokenJson);
+      let path = `${process.env.REACT_APP_RECIPES_API}/recipes`;
+      let response = await fetch(path, {
+        mode: "cors",
+        headers: { Authorization: `Bearer ${JWT_TOKEN}` },
+      });
+      if (response.status === 200) {
+        let fetchedData = await response.json();
+        // let dataToStore = fetchedData.data;
+        let dataToStore = fetchedData.data.map((item) => ({
+          ...item,
+        }));
+        console.log(dataToStore);
+        setRecipes(dataToStore);
+        console.log(recipes);
+      } else {
+        // deal with error
+        throw new Error(`Sorry, could not find any data`);
+        // throw new Error(`Could not find: ${response.url}`);
+      }
+    } catch (error) {
+      console.log("Something went wrong fetching data", error.message);
+      setError(error.message);
+    }
+  };
+
   useEffect(() => {
     fetchFavorites();
+    fetchRecipes();
   }, []);
 
   // const removeFromFavorite = async (event) => {
@@ -62,6 +94,7 @@ const Favorites = (props) => {
   // };
 
   return (
+    <>
     <div className="Favorites">
       <div className="d-flex flex-wrap justify-content-center">
         {favorites.length > 0 ? (
@@ -77,6 +110,23 @@ const Favorites = (props) => {
         )}
       </div>
     </div>
+
+    <div className="Recipes">
+      <div className="d-flex flex-wrap justify-content-center">
+        {recipes.length > 0 ? (
+          recipes.map((element, index) => {
+            return (
+              <div>
+                <AddedByUserCards key={index} item={element} />
+              </div>
+            );
+          })
+        ) : (
+          {/* <h3> Save your favorite recipes here! </h3> */}
+        )}
+      </div>
+    </div>
+    </>
   );
 };
 export default Favorites;
