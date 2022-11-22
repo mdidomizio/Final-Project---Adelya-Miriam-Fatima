@@ -62,7 +62,6 @@ const Favorites = (props) => {
 
   useEffect(() => {
     fetchFavorites();
-    removeFromFavorite();
   }, []);
 
   return (
