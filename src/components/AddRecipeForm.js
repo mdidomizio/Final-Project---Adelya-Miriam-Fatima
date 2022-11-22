@@ -456,6 +456,68 @@ const AddRecipeForm = (props) => {
             id="mealOrigin"
             name="mealOrigin"
             type="select"
+            onSelect={(e)=>{
+              console.log(e)
+            }}
+            aria-label="Default select example">
+              <option>Select your Cuisine Country</option>
+              <option value="American">American</option>
+              <option value="British">British</option>
+              <option value="Canadian">Canadian</option>
+              <option value="Chinese">Chinese</option>
+              <option value="Croatian">Croatian</option>
+              <option value="Dutch">Dutch</option>
+              <option value="French">French</option>
+              <option value="Indian">Indian</option>
+              <option value="Irish">Irish</option>
+              <option value="Italian">Italian</option>
+              <option value="Jamaican">Jamaican</option>
+              <option value="Malaysian">Malaysian</option>
+              <option value="Mexican">Mexican</option>
+              <option value="Polish">Polish</option>
+              <option value="Russian">Russian</option>
+              <option value="Vietnamese">Vietnamese</option>
+            </Form.Select>
+            {formik.touched.mealOrigin && formik.errors.mealOrigin ? (
+                <div className="text-danger">{`${formik.errors.mealOrigin}`}</div>
+              ) : null}
+            </div>
+         {/* </Field> 
+
+         <Field name="mealType" as="select"> */}
+            <div className="mealType row mt-5">
+            <label>Meal Type</label>
+            <Form.Select 
+            id="mealType"
+            name="mealType"
+            type="select"
+            as="select"
+            onSelect={formik.handleChange}
+            aria-label="Default select example">
+              <option>Select your Meal Type</option>
+              <option value="Beef">Beef</option>
+              <option value="Breakfast">Breakfast</option>
+              <option value="Chicken">Chicken</option>
+              <option value="Dessert">Dessert</option>
+              <option value="Miscellaneous">Miscellaneous</option>
+              <option value="Pork">Pork</option>
+              <option value="Seafood">Seafood</option>
+              <option value="Side">Side</option>
+              <option value="Starter">Starter</option>
+              <option value="Vegetarian">Vegetarian</option>            
+            </Form.Select>
+            {formik.touched.mealType && formik.errors.mealType ? (
+                <div className="text-danger">{`${formik.errors.mealType}`}</div>
+              ) : null}
+            </div>
+          {/* <Field/> */}
+
+          {/* <div className="mealOrigin row mt-5">
+            <label>Cousine Country</label>
+            <Form.Select 
+            id="mealOrigin"
+            name="mealOrigin"
+            type="select"
             onSelectCapture={formik.handleChange}
             aria-label="Default select example">
               <option>Select your Cuisine Country</option>
@@ -479,36 +541,7 @@ const AddRecipeForm = (props) => {
             {formik.touched.mealOrigin && formik.errors.mealOrigin ? (
                 <div className="text-danger">{`${formik.errors.mealOrigin}`}</div>
               ) : null}
-            </div>
-         {/* </Field>  */}
-
-          <div className="mealType row mt-5">
-          <label>Meal Type</label>
-          <Form.Select 
-          id="mealType"
-          name="mealType"
-          type="select"
-          as="select"
-          onSelectCapture={formik.handleChange}
-          aria-label="Default select example">
-            <option>Select your Meal Type</option>
-            <option value="1">Beef</option>
-            <option value="2">Breakfast</option>
-            <option value="3">Chicken</option>
-            <option value="3">Dessert</option>
-            <option value="3">Miscellaneous</option>
-            <option value="3">Pork</option>
-            <option value="3">Seafood</option>
-            <option value="3">Side</option>
-            <option value="3">Starter</option>
-            <option value="3">Vegetarian</option>            
-          </Form.Select>
-          {formik.touched.mealType && formik.errors.mealType ? (
-              <div className="text-danger">{`${formik.errors.mealType}`}</div>
-            ) : null}
-          </div>
-
-          
+            </div> */}
 
         </Form.Group>
 
