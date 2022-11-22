@@ -7,15 +7,44 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 const FavoriteCards = (props) => {
   const [open, setOpen] = useState(false);
 
+  let mealName = props.item.strmeal;
+  let mealPic = props.item.strmealthumb;
+  let mealTag = props.item.strtags;
+  let mealOrigin = props.item.strarea;
+  let instructions = props.item.strinstructions;
+  let mealId = props.item.idmeal;
+  let mealType = props.item.strcategory;
+
+  let ingredients = [];
+  let measurements = [];
+
+  const objectKeys = Object.keys(props.item);
+
+  objectKeys.forEach((key) => {
+    if (key.startsWith("strIngredient")) {
+      ingredients.push(props.item[key]);
+    } else if (key.startsWith("strMeasure")) {
+      measurements.push(props.item[key]);
+    }
+  });
+
+  ingredients = ingredients
+    .filter((ingredient) => ingredient !== "")
+    .filter((measurement) => measurement !== null);
+
+  let combinedIngredients = [];
+  for (let i = 0; i < ingredients.length; i++) {
+    combinedIngredients.push([ingredients[i], measurements[i]]);
+  }
   return (
     <Card className="card m-2" style={{ width: "18rem" }}>
-      <Card.Img variant="top" src={props.mealPic} />
+      <Card.Img variant="top" src={mealPic} />
       <Card.Body>
-        <Card.Title>{props.mealName}</Card.Title>
+        <Card.Title>{mealName}</Card.Title>
         <Card.Text>
           <p className="tags fst-italic">
-            {props.mealTag} <br />
-            {props.mealOrigin}
+            {mealTag} <br />
+            {mealOrigin}
           </p>
         </Card.Text>
         <Button
@@ -23,7 +52,7 @@ const FavoriteCards = (props) => {
             console.log("button works");
             props.removeFromFavorite(event);
           }}
-          id={props.mealId}
+          id={mealId}
           type="button"
           className="btn btn-danger position-absolute top-0 end-0 opacity-85"
         >
@@ -44,7 +73,7 @@ const FavoriteCards = (props) => {
             </div>
             <div>
               <ul className="ingredientsFavorite">
-                {props.combinedIngredients.map(function (item) {
+                {combinedIngredients.map(function (item) {
                   return (
                     <li key={item}>
                       {item[0]}: {item[1]}
@@ -56,7 +85,7 @@ const FavoriteCards = (props) => {
 
             <div>
               <h5>Preparations:</h5>
-              <p>{props.instructions}</p>
+              <p>{instructions}</p>
             </div>
           </div>
         </Collapse>

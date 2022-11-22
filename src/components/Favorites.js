@@ -16,13 +16,13 @@ const Favorites = (props) => {
       });
       if (response.status === 200) {
         let fetchedData = await response.json();
-        let dataToStore = fetchedData.map((item) => ({
+        // let dataToStore = fetchedData.data;
+        let dataToStore = fetchedData.data.map((item) => ({
           ...item,
-          url: item.url.startsWith("http")
-            ? item.url
-            : `http://localhost:9000${item.url}`,
         }));
+        console.log(dataToStore);
         setFavorites(dataToStore);
+        console.log(favorites);
       } else {
         // deal with error
         throw new Error(`Sorry, could not find any data`);
@@ -38,46 +38,43 @@ const Favorites = (props) => {
     fetchFavorites();
   }, []);
 
-  const removeFromFavorite = async (event) => {
-    try {
-      let id = event.target.id;
-      let path = `${process.env.REACT_APP_RECIPES_API}/favorites/${props.mealId}`; // ? How to refer to ID? DO we need to?
-      let responseDelete = await fetch(path, {
-        method: "DELETE",
-        mode: "cors",
-      });
-      console.log(responseDelete);
-      if (responseDelete.status === 200) {
-        console.log("Item is deleted");
+  // const removeFromFavorite = async (event) => {
+  //   try {
+  //     let id = event.target.id;
+  //     let path = `${process.env.REACT_APP_RECIPES_API}/favorites/${props.mealId}`; // ? How to refer to ID? DO we need to?
+  //     let responseDelete = await fetch(path, {
+  //       method: "DELETE",
+  //       mode: "cors",
+  //     });
+  //     console.log(responseDelete);
+  //     if (responseDelete.status === 200) {
+  //       console.log("Item is deleted");
 
-        let restItemstoDisplay = favorites.filter((item) => item.id !== id);
-        setFavorites(restItemstoDisplay);
-      } else {
-        throw new Error(`Sorry, could not delete any data`);
-      }
-    } catch (error) {
-      console.log("Something went wrong deleting data", error.message);
-      setError(error.message);
-    }
-  };
+  //       let restItemstoDisplay = favorites.filter((item) => item.id !== id);
+  //       setFavorites(restItemstoDisplay);
+  //     } else {
+  //       throw new Error(`Sorry, could not delete any data`);
+  //     }
+  //   } catch (error) {
+  //     console.log("Something went wrong deleting data", error.message);
+  //     setError(error.message);
+  //   }
+  // };
 
   return (
     <div className="Favorites">
-      {favorites.length > 0 ? (
-        <h3>My favorite recipes:</h3>
-      ) : (
-        <h3> Save your favorite recipes here! </h3>
-      )}
       <div className="d-flex flex-wrap justify-content-center">
-        {props.favorites.map((element, index) => {
-          return (
-            <FavoriteCards
-              key={index}
-              item={element}
-              removeFromFavorite={removeFromFavorite}
-            />
-          );
-        })}
+        {favorites.length > 0 ? (
+          favorites.map((element, index) => {
+            return (
+              <div>
+                <FavoriteCards key={index} item={element} />
+              </div>
+            );
+          })
+        ) : (
+          <h3> Save your favorite recipes here! </h3>
+        )}
       </div>
     </div>
   );

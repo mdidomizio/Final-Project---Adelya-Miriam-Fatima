@@ -86,13 +86,13 @@ const Container = () => {
   const [messageUpload, setMessageUpload] = useState(false);
 
   const addToFavorite = async (IdAddedItem) => {
-    let userId = localStorage.getItem("userId");
-    let userIdClean = userId.replaceAll('"', "");
+    let userid = localStorage.getItem("userId");
+    let userIdClean = userid.replaceAll('"', "");
     console.log("userId: " + userIdClean);
     let itemsToPasstoFavorite = recipes.filter(
       (item) => item.idMeal === IdAddedItem
     )[0];
-    let itemWithId = { ...itemsToPasstoFavorite, userId: userIdClean };
+    let itemWithId = { ...itemsToPasstoFavorite, userid: userIdClean };
     console.log(itemWithId);
 
     // get access to token in local storage:
