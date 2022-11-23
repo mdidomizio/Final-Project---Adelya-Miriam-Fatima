@@ -41,11 +41,11 @@ const FavoriteCards = (props) => {
       <Card.Img variant="top" src={mealPic} />
       <Card.Body>
         <Card.Title>{mealName}</Card.Title>
-        <Card.Text>
-          <p className="tags fst-italic">
+        <Card.Text className="tags fst-italic">
+          
             {mealTag} <br />
             {mealOrigin}
-          </p>
+          
         </Card.Text>
         <Button
           onClick={(event) => {

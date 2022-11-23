@@ -36,21 +36,33 @@ const AddedByUserCards = (props) => {
     for (let i = 0; i < ingredients.length; i++) {
       combinedIngredients.push([ingredients[i], measurements[i]]);
     }
+    console.log("combined ingredients", combinedIngredients)
     return (
       <Card className="card m-2" style={{ width: "18rem" }}>
         <Card.Img variant="top" src={url} />
         <Card.Body>
           <Card.Title>{nameRecipe}</Card.Title>
-          <Card.Text>
-            <p className="tags fst-italic">
+          <Card.Text className="tags fst-italic">
+            
               {mealType} <br />
               {mealOrigin}
-            </p>
+            
           </Card.Text>
           <Button
             onClick={(event) => {
               console.log("button works");
-              props.removeFromFavorite(event);
+              props.updateRecipe(event);
+            }}
+            id={mealId}
+            type="button"
+            className="btn btn-danger position-absolute top-0 end-0 opacity-85"
+          >
+            Modify your recipe
+          </Button>
+          <Button
+            onClick={(event) => {
+              console.log("button works");
+              props.deleteRecipeFromDb(event);
             }}
             id={mealId}
             type="button"
