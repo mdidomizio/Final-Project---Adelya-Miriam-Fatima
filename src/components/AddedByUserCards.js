@@ -7,13 +7,13 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 const AddedByUserCards = (props) => {
     const [open, setOpen] = useState(false);
   
-    let mealName = props.recipes.nameRecipe;
-    let mealPic = props.recipes.url;
+    let mealName = props.item.nameRecipe;
+    let mealPic = props.item.url;
     // let mealTag = props.item.strtags;
-    let mealOrigin = props.recipes.mealOrigin;
-    let instructions = props.recipes.instructions;
-    let mealId = props.recipes.id;
-    let mealType = props.recipes.mealType;
+    let mealOrigin = props.item.mealOrigin;
+    let instructions = props.item.instructions;
+    let mealId = props.item.id;
+    let mealType = props.item.mealType;
   
     let ingredients = [];
     let measurements = [];
