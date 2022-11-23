@@ -8,6 +8,7 @@ import SignUp from "./components/Signup";
 import Login from "./components/Login";
 import { useState } from "react";
 import Header from "./components/Header.js";
+import Logout from "./components/Logout";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -22,6 +23,10 @@ function App() {
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
           <Route path="/addRecipe" element={<AddRecipeForm />} />
           <Route path="/favorites" element={<Favorites />} />
+          <Route
+            path="/logout"
+            element={<Logout setLoggedIn={setLoggedIn} />}
+          />
           {/* {loggedIn ? (
             <Route path="/favorites" element={<Favorites />} />
           ) : (
