@@ -162,7 +162,10 @@ const RecipesInFavoritesContainer = (props) => {
                   recipes.map((element, index) => {
                     return (
                       <div>
-                        <AddedByUserCards key={index} item={element} />
+                        <AddedByUserCards key={index} item={element} 
+                          deleteRecipeFromDb={props.deleteRecipeFromDb}
+                          updateRecipe={props.updateRecipe}
+                        />
                       </div>
                     );
                   })

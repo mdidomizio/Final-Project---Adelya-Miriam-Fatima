@@ -73,8 +73,9 @@ const Favorites = (props) => {
               <div>
                 <FavoriteCards key={index} item={element} />
                 <RecipesInFavoritesContainer 
-                recipes={recipes}
-                // deleteRecipeFromDb={deleteRecipeFromDb}
+                recipes={props.recipes}
+                deleteRecipeFromDb={props.deleteRecipeFromDb}
+                updateRecipe={props.updateRecipe}
                  />
               </div>
             );

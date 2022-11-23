@@ -7,8 +7,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 const AddedByUserCards = (props) => {
     const [open, setOpen] = useState(false);
   
-    let mealName = props.item.nameRecipe;
-    let mealPic = props.item.url;
+    let nameRecipe = props.item.nameRecipe;
+    let url = props.item.url;
     // let mealTag = props.item.strtags;
     let mealOrigin = props.item.mealOrigin;
     let instructions = props.item.instructions;
@@ -38,9 +38,9 @@ const AddedByUserCards = (props) => {
     }
     return (
       <Card className="card m-2" style={{ width: "18rem" }}>
-        <Card.Img variant="top" src={mealPic} />
+        <Card.Img variant="top" src={url} />
         <Card.Body>
-          <Card.Title>{mealName}</Card.Title>
+          <Card.Title>{nameRecipe}</Card.Title>
           <Card.Text>
             <p className="tags fst-italic">
               {mealType} <br />
@@ -72,7 +72,7 @@ const AddedByUserCards = (props) => {
                 <h5>Ingredients:</h5>
               </div>
               <div>
-                <ul className="ingredientsFavorite">
+                <ul className="ingredientsUserFavorite">
                   {combinedIngredients.map(function (item) {
                     return (
                       <li key={item}>
