@@ -4,8 +4,10 @@ import FilterButton from "./FilterButton.js";
 
 const Container = () => {
   const [recipes, setRecipes] = useState([]);
-
-  // const [deleteMessage, setDeleteMessage] = useState(false);
+  const [countryFilter, setCountryFilter] = useState([]);
+  const [mealTypeFilter, setMealTypeFilter] = useState([]);
+  const [error, setError] = useState(null);
+  const [messageUpload, setMessageUpload] = useState(false);
 
   const fetchRecipes = async () => {
     try {
@@ -43,8 +45,6 @@ const Container = () => {
     "Russian",
     "Vietnamese",
   ];
-  const [countryFilter, setCountryFilter] = useState([]);
-  const [mealTypeFilter, setMealTypeFilter] = useState([]);
 
   const displayCountryCuisine = (event) => {
     let countryFilter = recipes.filter(
@@ -81,9 +81,6 @@ const Container = () => {
   const resetMealType = () => {
     setMealTypeFilter([]);
   };
-
-  const [error, setError] = useState(null);
-  const [messageUpload, setMessageUpload] = useState(false);
 
   const addToFavorite = async (IdAddedItem) => {
     let userid = localStorage.getItem("userId");

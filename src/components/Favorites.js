@@ -49,7 +49,8 @@ const Favorites = (props) => {
       if (responseDelete.status === 200) {
         console.log("Item is deleted");
 
-        let restItemstoDisplay = favorites.filter((item) => item.mealId !== id);
+        let restItemstoDisplay = favorites.filter((item) => item.mealid !== id);
+        console.log(restItemstoDisplay);
         setFavorites(restItemstoDisplay);
       } else {
         throw new Error(`Sorry, could not delete any data`);
