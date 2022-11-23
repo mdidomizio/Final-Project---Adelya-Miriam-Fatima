@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Recipes from "./Recipes.js";
 import FilterButton from "./FilterButton.js";
+import Searchbar from "./Searchbar.js";
 
 const Container = () => {
   const [recipes, setRecipes] = useState([]);
