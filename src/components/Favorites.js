@@ -1,5 +1,5 @@
 import FavoriteCards from "./FavoriteCards";
-import RecipesInFavoritesContainer from "./RecipesInFavoritesContainer.js"
+import RecipesInFavoritesContainer from "./RecipesInFavoriteContainer";
 import { useState, useEffect } from "react";
 
 const Favorites = (props) => {
@@ -72,10 +72,10 @@ const Favorites = (props) => {
             return (
               <div>
                 <FavoriteCards key={index} item={element} />
-                {/* <RecipesInFavoritesContainer 
+                <RecipesInFavoritesContainer 
                 recipes={recipes}
-                removeRecipesFromFavorite={removeRecipesFromFavorite}
-                 /> */}
+                deleteRecipeFromDb={deleteRecipeFromDb}
+                 />
               </div>
             );
           })

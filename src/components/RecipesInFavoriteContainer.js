@@ -1,5 +1,6 @@
 
 import AddedByUserCards from "./AddedByUserCards.js"
+const [deleteMessage, setDeleteMessage] = useState(false);
 import { useState, useEffect } from "react";
 
 const RecipesInFavoritesContainer = (props) => {
@@ -15,10 +16,12 @@ const RecipesInFavoritesContainer = (props) => {
             mode: "cors",
             headers: { Authorization: `Bearer ${JWT_TOKEN}` },
           });
+          console.log(response)
           if (response.status === 200) {
-            let fetchedData = await response.json();
+            let fetchedRecipesData = await response.json();
+            console.log(fetchedRecipesData);
             // let dataToStore = fetchedData.data;
-            let dataToStore = fetchedData.data.map((item) => ({
+            let dataToStore = fetchedRecipesData.data.map((item) => ({
               ...item,
             }));
             console.log(dataToStore);
@@ -26,7 +29,7 @@ const RecipesInFavoritesContainer = (props) => {
             console.log(recipes);
           } else {
             // deal with error
-            throw new Error(`Sorry, could not find any data`);
+            throw new Error(`Sorry, could not find any Recipe`);
             // throw new Error(`Could not find: ${response.url}`);
           }
         } catch (error) {
@@ -39,29 +42,36 @@ const RecipesInFavoritesContainer = (props) => {
         fetchRecipes();
       }, []);
 
-      //const removeRecipesFromFavorite = async (event) => {
-        //   try {
-        //     let id = event.target.id;
-        //     let path = `${process.env.REACT_APP_RECIPES_API}/favorites/${props.mealId}`; // ? How to refer to ID? DO we need to?
-        //     let responseDelete = await fetch(path, {
-        //       method: "DELETE",
-        //       mode: "cors",
-        //     });
-        //     console.log(responseDelete);
-        //     if (responseDelete.status === 200) {
-        //       console.log("Item is deleted");
-      
-        //       let restItemstoDisplay = favorites.filter((item) => item.id !== id);
-        //       setFavorites(restItemstoDisplay);
-        //     } else {
-        //       throw new Error(`Sorry, could not delete any data`);
-        //     }
-        //   } catch (error) {
-        //     console.log("Something went wrong deleting data", error.message);
-        //     setError(error.message);
-        //   }
-        // };
-
+      const deleteRecipeFromDb = async (event) => {
+        let id = event.target.id;
+        
+        // get access to token in local storage:
+        let tokenFromLS = localStorage.getItem('token')
+        let JWT_TOKEN = JSON.parse(tokenFromLS)  
+    
+        try {
+          let path = `${process.env.REACT_APP_RECIPES_API}/recipes/${id}`;
+          let response = await fetch(path, { 
+            method: "DELETE", 
+            headers: {'Authorization': `Bearer ${JWT_TOKEN}`},
+            mode: "cors" });
+          console.log(response);
+    
+          if (response.status === 204) {
+            console.log("Your Item has been successfully deleted");
+            setDeleteMessage(true);
+            let leftRecipesAfterDelete = recipes.filter((item) => {
+              return item.id !== event.target.id;
+            });
+            setRecipes(leftRecipesAfterDelete);
+          } else {
+            throw new Error(`could not delete: ${id}`);
+          }
+        } catch (error) {
+          console.log("something went wrong deleting Item", error.message);
+          setError(error.message);
+        }
+      };
 
         return (
             
