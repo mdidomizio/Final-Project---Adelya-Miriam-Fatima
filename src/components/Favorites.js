@@ -72,7 +72,10 @@ const Favorites = (props) => {
             return (
               <div>
                 <FavoriteCards key={index} item={element} />
-                <RecipesInFavoritesContainer />
+                {/* <RecipesInFavoritesContainer 
+                recipes={recipes}
+                removeRecipesFromFavorite={removeRecipesFromFavorite}
+                 /> */}
               </div>
             );
           })

@@ -6,7 +6,7 @@ const RecipesInFavoritesContainer = (props) => {
     const [error, setError] = useState(null);
     const [recipes, setRecipes] = useState([]);
     
-    const fetchRecipes = async () => {
+    const fetchRecipes = async (props) => {
         try {
           let tokenJson = localStorage.getItem("token");
           let JWT_TOKEN = JSON.parse(tokenJson);
