@@ -1,5 +1,7 @@
 import ApiRecipesContainer from "./ApiRecipesContainer";
 import RecipesInFavoritesContainer from "./RecipesInFavoriteContainer";
+import FavoriteCards from "./FavoriteCards";
+import AddedByUserCards from "./AddedByUserCards";
 import { useState, useEffect } from "react";
 
 const Favorites = (props) => {
@@ -193,7 +195,7 @@ const Favorites = (props) => {
     <>
     <div className="Favorites">
         <div className="d-flex flex-wrap justify-content-center">
-          <ApiRecipesContainer
+          <FavoriteCards
             // favorites={{((favorites.length > 0) && (recipes.length > 0))
             // ? 
             // (favorites && recipes) 
@@ -201,7 +203,7 @@ const Favorites = (props) => {
           />
         </div>
         <div className="d-flex flex-wrap justify-content-center"></div>
-          <RecipesInFavoritesContainer/>
+          <AddedByUserCards/>
         </div>
     
     </>
