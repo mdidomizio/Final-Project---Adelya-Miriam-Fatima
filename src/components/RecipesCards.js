@@ -1,8 +1,8 @@
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import React, { useState } from "react";
-import Collapse from "react-bootstrap/Collapse";
-import "bootstrap-icons/font/bootstrap-icons.css";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import React, { useState } from 'react';
+import Collapse from 'react-bootstrap/Collapse';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const RecipesCard = (props) => {
   const [open, setOpen] = useState(false);
@@ -21,15 +21,15 @@ const RecipesCard = (props) => {
   const objectKeys = Object.keys(props.recipes);
 
   objectKeys.forEach((key) => {
-    if (key.startsWith("strIngredient")) {
+    if (key.startsWith('strIngredient')) {
       ingredients.push(props.recipes[key]);
-    } else if (key.startsWith("strMeasure")) {
+    } else if (key.startsWith('strMeasure')) {
       measurements.push(props.recipes[key]);
     }
   });
 
   ingredients = ingredients
-    .filter((ingredient) => ingredient !== "")
+    .filter((ingredient) => ingredient !== '')
     .filter((measurement) => measurement !== null);
 
   let combinedIngredients = [];
@@ -38,7 +38,7 @@ const RecipesCard = (props) => {
   }
 
   return (
-    <Card className="card m-4" style={{ width: "35rem" }}>
+    <Card className="card m-4" style={{ width: '35rem' }}>
       <Card.Img variant="top" src={mealPic} />
       <Card.Body>
         <Card.Title>{mealName}</Card.Title>
@@ -48,7 +48,8 @@ const RecipesCard = (props) => {
         </Card.Text>
         <Button
           onClick={(event) => {
-            console.log("button works");
+            console.log('button works');
+            // alert('Item is saved to favorites');
             props.addToFavorite(event.target.id);
           }}
           id={mealId}
