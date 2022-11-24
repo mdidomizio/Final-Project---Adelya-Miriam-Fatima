@@ -7,45 +7,45 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 const AddedByUserCard = (props) => {
     const [open, setOpen] = useState(false);
   
-    let nameRecipe = props.item.nameRecipe;
-    let url = props.item.url;
-    // let mealTag = props.item.strtags;
-    let mealOrigin = props.item.mealOrigin;
-    let instructions = props.item.instructions;
-    let mealId = props.item.id;
-    let mealType = props.item.mealType;
+    let nameRecipeRecipe = props.item.namerecipe;
+    let urlRecipe = props.item.url;
+    let mealOriginRecipe = props.item.mealorigin;
+    let instructionsRecipe = props.item.instruction;
+    let mealIdRecipe= props.item.id;
+    let mealTypeRecipe = props.item.mealtype;
   
-    let ingredients = [];
-    let measurements = [];
+    let ingredientsRecipes = [];
+    let measurementsRecipes = [];
   
-    const objectKeys = Object.keys(props.item);
+    const objectKeysRecipe = Object.keys(props.item);
+    console.log(objectKeysRecipe)
   
-    objectKeys.forEach((key) => {
+    objectKeysRecipe.forEach((key) => {
       if (key.startsWith("ingredients")) {
-        ingredients.push(props.item[key]);
+        ingredientsRecipes.push(props.item[key]);
       } else if (key.startsWith("measurement")) {
-        measurements.push(props.item[key]);
+        measurementsRecipes.push(props.item[key]);
       }
     });
   
-    ingredients = ingredients
-      .filter((ingredient) => ingredient !== "")
-      .filter((measurement) => measurement !== null);
+    ingredientsRecipes = ingredientsRecipes
+      .filter((ingredientRecipe) => ingredientRecipe !== "")
+      .filter((measurementRecipe) => measurementRecipe !== null);
   
-    let combinedIngredients = [];
-    for (let i = 0; i < ingredients.length; i++) {
-      combinedIngredients.push([ingredients[i], measurements[i]]);
+    let combinedIngredientsRecipes = [];
+    for (let i = 0; i < ingredientsRecipes.length; i++) {
+      combinedIngredientsRecipes.push([ingredientsRecipes[i], measurementsRecipes[i]]);
     }
-    console.log("combined ingredients", combinedIngredients)
+    console.log("combined ingredients", combinedIngredientsRecipes)
     return (
       <Card className="card m-2" style={{ width: "18rem" }}>
-        <Card.Img variant="top" src={url} />
+        <Card.Img variant="top" src={urlRecipe} />
         <Card.Body>
-          <Card.Title>{nameRecipe}</Card.Title>
+          <Card.Title>{nameRecipeRecipe}</Card.Title>
           <Card.Text className="tags fst-italic">
             
-              {mealType} <br />
-              {mealOrigin}
+              {mealTypeRecipe} <br />
+              {mealOriginRecipe}
             
           </Card.Text>
           <Button
@@ -53,7 +53,7 @@ const AddedByUserCard = (props) => {
               console.log("button works");
               props.updateRecipe(event);
             }}
-            id={mealId}
+            id={mealIdRecipe}
             type="button"
             className="btn btn-danger position-absolute top-0 end-0 opacity-85"
           >
@@ -64,7 +64,7 @@ const AddedByUserCard = (props) => {
               console.log("button works");
               props.deleteRecipeFromDb(event);
             }}
-            id={mealId}
+            id={mealIdRecipe}
             type="button"
             className="btn btn-danger position-absolute top-0 end-0 opacity-85"
           >
@@ -85,7 +85,7 @@ const AddedByUserCard = (props) => {
               </div>
               <div>
                 <ul className="ingredientsUserFavorite">
-                  {combinedIngredients.map(function (item) {
+                  {combinedIngredientsRecipes.map(function (item) {
                     return (
                       <li key={item}>
                         {item[0]}: {item[1]}
@@ -97,7 +97,7 @@ const AddedByUserCard = (props) => {
   
               <div>
                 <h5>Preparations:</h5>
-                <p>{instructions}</p>
+                <p>{instructionsRecipe}</p>
               </div>
             </div>
           </Collapse>

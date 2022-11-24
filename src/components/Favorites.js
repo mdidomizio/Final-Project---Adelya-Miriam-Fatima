@@ -183,7 +183,7 @@ const Favorites = (props) => {
     }
   };
 console.log(recipes)
-console.log(recipes)
+console.log(favorites)
   return (
     <>
       <div className="Favorites">
@@ -200,43 +200,28 @@ console.log(recipes)
               );
             })
           ) : (
-            <h3> Save your favorite recipes here! </h3>
+            <h3> Add your own recipes here! </h3>
           )}
         </div>
 
-        {/* <div className="d-flex flex-wrap justify-content-center">
+        <div className="d-flex flex-wrap justify-content-center">
           {favorites.length > 0 ? (
             favorites.map((element, index) => {
               return (
                 <FavoriteCard
                   key={index}
                   item={element}
-                  deleteRecipeFromDb={deleteRecipeFromDb}
-                  updateRecipe={updateRecipe}
+                  
                 />
               );
             })
           ) : (
             <h3> Save your favorite recipes here! </h3>
           )}
-        </div> */}
-
-
-
-
-
-        {/* <div className="d-flex flex-wrap justify-content-center">
-          {favorites.length > 0 && recipes.length > 0 && (
-            <FavoriteCard favorites={favorites} />
-          )}
         </div>
-
-        <div className="d-flex flex-wrap justify-content-center">
-          {favorites.length > 0 && recipes.length > 0 && (
-            <AddedByUserCard recipes={recipes} />
-          )}
-        </div> */}
-      </div>
+         
+        </div> 
+      
     </>
   );
 };
