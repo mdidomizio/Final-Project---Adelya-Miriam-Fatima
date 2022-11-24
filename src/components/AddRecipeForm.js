@@ -16,9 +16,9 @@ const AddRecipeForm = (props) => {
 
   const formik = useFormik({
     initialValues: {
-      nameRecipe: "",
-      mealType: "",
-      mealOrigin: "",
+      namerecipe: "",
+      mealtype: "",
+      mealorigin: "",
       ingredients1: "",
       ingredients2: "",
       ingredients3: "",
@@ -64,11 +64,11 @@ const AddRecipeForm = (props) => {
     },
 
     validationSchema: yup.object().shape({
-      nameRecipe: yup
+      namerecipe: yup
         .string()
         .max(150, "150 characters or less")
         .required("Required"),
-      mealType: yup
+      mealtype: yup
         .string()
         .oneOf([
           "Beef",
@@ -83,7 +83,7 @@ const AddRecipeForm = (props) => {
           "Vegetarian",
         ])
         .required(),
-      mealOrigin: yup
+      mealorigin: yup
         .string()
         .oneOf([
           "American",
@@ -144,7 +144,7 @@ const AddRecipeForm = (props) => {
       // measurement18: yup.string().max(150, "150 characters or less"),
       // measurement19: yup.string().max(150, "150 characters or less"),
       // measurement20: yup.string().max(150, "150 characters or less"),
-      instruction: yup.string().required(),
+      instruction: yup.string().max(250000).required(),
       url: yup.string().required(),
     }),
     onSubmit: (values) => {
@@ -186,7 +186,7 @@ const AddRecipeForm = (props) => {
         body: JSON.stringify({ ...item, url: imageData.url }),
       });
       if (response.status === 201) {
-        //   TODO setMessageUpload(response.statusText)
+          setMessageAdded(true)
       } else {
         let error = new Error(`${response.statusText}: ${response.url}`);
         error.status = response.status;
@@ -224,15 +224,15 @@ const AddRecipeForm = (props) => {
               <Form.Group className="mb-3">
                 <Form.Label>Name of the Recipe</Form.Label>
                 <Form.Control
-                  id="nameRecipe"
-                  name="nameRecipe"
+                  id="namerecipe"
+                  name="namerecipe"
                   type="text"
                   placeholder={`Edit the name of your new recipe`}
                   onChange={formik.handleChange}
                 />
 
-                {formik.touched.nameRecipe && formik.errors.nameRecipe ? (
-                  <div className="text-danger">{`The name of the recipe is ${formik.errors.nameRecipe}`}</div>
+                {formik.touched.namerecipe && formik.errors.namerecipe ? (
+                  <div className="text-danger">{`The name of the recipe is ${formik.errors.namerecipe}`}</div>
                 ) : null}
               </Form.Group>
             
@@ -435,15 +435,15 @@ const AddRecipeForm = (props) => {
           <Form.Group className="mb-3">
                 <Form.Label>Cuisine Country</Form.Label>
                 <Form.Control
-                  id="mealOrigin"
-                  name="mealOrigin"
+                  id="mealorigin"
+                  name="mealorigin"
                   type="text"
                   placeholder={`Add a Cuisine Country`}
                   onChange={formik.handleChange}
                 />
 
-              {formik.touched.mealOrigin && formik.errors.mealOrigin ? (
-                <div className="text-danger">{`${formik.errors.mealOrigin}`}</div>
+              {formik.touched.mealorigin && formik.errors.mealorigin ? (
+                <div className="text-danger">{`${formik.errors.mealorigin}`}</div>
               ) : null}     
               </Form.Group>
 
@@ -451,15 +451,15 @@ const AddRecipeForm = (props) => {
               <Form.Group className="mb-3">
                 <Form.Label>Meal Type</Form.Label>
                 <Form.Control
-                  id="mealType"
-                  name="mealType"
+                  id="mealtype"
+                  name="mealtype"
                   type="text"
                   placeholder={`Add a Meal Type`}
                   onChange={formik.handleChange}
                 />
 
-                {formik.touched.mealType && formik.errors.mealType ? (
-                <div className="text-danger">{`${formik.errors.mealType}`}</div>
+                {formik.touched.mealtype && formik.errors.mealtype ? (
+                <div className="text-danger">{`${formik.errors.mealtype}`}</div>
               ) : null}   
               </Form.Group>
          
