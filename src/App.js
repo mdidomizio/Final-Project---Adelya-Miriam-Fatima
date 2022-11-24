@@ -25,7 +25,7 @@ function App() {
           )}
 
           {loggedIn ? (
-            <Route path="/addRecipe" element={<Favorites />} />
+            <Route path="/addRecipe" element={<AddRecipeForm />} />
           ) : (
             <Route path="/addRecipe" element={<Navigate to="/signup" replace />} />
           )}
