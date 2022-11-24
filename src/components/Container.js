@@ -109,7 +109,7 @@ const Container = (props) => {
       });
       console.log("response from fetch", response);
       if (response.status === 200) {
-        alert("Item  saved to favorites,");
+        alert("Item  saved to favorites!");
         setMessageUpload(response.statusText);
       } else {
         let error = new Error(`${response.statusText}: ${response.url}`);
