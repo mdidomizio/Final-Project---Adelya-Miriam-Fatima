@@ -2,14 +2,13 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import Container from "./components/Container";
 import Favorites from "./components/Favorites";
-// import About from "./components/About";
 import AddRecipeForm from "./components/AddRecipeForm.js";
 import SignUp from "./components/Signup";
 import Login from "./components/Login";
 import { useState } from "react";
 import Header from "./components/Header.js";
 import Logout from "./components/Logout";
-import AboutApp from "./components/AboutApp";
+import AboutApp from "./AboutApp";
 
 
 function App() {
@@ -19,6 +18,18 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
+          {loggedIn ? (
+            <Route path="/favorites" element={<Favorites />} />
+          ) : (
+            <Route path="/favorites" element={<Navigate to="/signup" replace />} />
+          )}
+
+          {loggedIn ? (
+            <Route path="/addRecipe" element={<Favorites />} />
+          ) : (
+            <Route path="/addRecipe" element={<Navigate to="/signup" replace />} />
+          )}
+
           <Route path="/" element={<Container />} />
           <Route path="*" element={<div> Page not found</div>} />
           <Route path="/signup" element={<SignUp />} />
@@ -30,11 +41,7 @@ function App() {
             path="/logout"
             element={<Logout setLoggedIn={setLoggedIn} />}
           />
-          {/* {loggedIn ? (
-            <Route path="/favorites" element={<Favorites />} />
-          ) : (
-            <Route path="/" element={<Navigate to="/signup" replace />} />
-          )} */}
+          
           <Route
             path="/about"
             element={

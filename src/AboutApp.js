@@ -7,20 +7,43 @@ const AboutApp = (props) => {
         </div>
         <div className="card-body p-3 ">
           <blockquote class="blockquote mb-100 width=5rem">
-          <ul>
-            <li><h6>Who builded the App?</h6></li>
-                <p className="fs-4 text-start"></p>
-            <li><h6>What is the project and why did we build it?</h6></li>
-                <p className="fs-4 text-start"></p>
-            <li><h6>What can the user do</h6></li>
-                <p className="fs-4 text-start"></p>
-            <li><h6>Which tools have we used?</h6></li>
-                <p className="fs-4 text-start"></p>
-            <li><h6>How have we worked and organized our work</h6></li>
-                <p className="fs-4 text-start"></p>
-            <li><h6>Our main learnings</h6></li>
-                <p className="fs-4 text-start"></p>
-          </ul>
+
+          <div>
+            <h4>Who builded the App?</h4>
+                <p className="fs-4 text-start">
+
+                </p>
+          </div>
+            
+            <div>
+                <h4>What is the project and why did we build it?</h4>
+                    <p className="fs-4 text-start">
+                        
+                    </p>
+            </div>
+            <div>
+                <h4>What can the user do</h4>
+                    <p className="fs-4 text-start"></p>
+
+            </div>
+            <div>
+                <h4>Which tools have we used?</h4>
+                 <p className="fs-4 text-start"></p>
+
+            </div>
+            
+            <div>
+                <h4>How have we worked and organized our work</h4>
+                    <p className="fs-4 text-start"></p>
+
+            </div>
+            <div>
+                <h4>Our main learnings</h4>
+                    <p className="fs-4 text-start"></p>
+
+            </div>
+            
+          
            
           </blockquote>
         </div>
