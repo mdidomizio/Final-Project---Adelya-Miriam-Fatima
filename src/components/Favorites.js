@@ -20,9 +20,8 @@ const Favorites = (props) => {
         let dataToStore = fetchedData.data.map((item) => ({
           ...item,
         }));
-        console.log(dataToStore);
+
         setFavorites(dataToStore);
-        console.log(favorites);
       } else {
         // deal with error
         throw new Error(`Sorry, could not find any data`);
@@ -49,7 +48,7 @@ const Favorites = (props) => {
       if (responseDelete.status === 200) {
         console.log("Item is deleted");
 
-        let restItemstoDisplay = favorites.filter((item) => item.mealid !== id);
+        let restItemstoDisplay = favorites.filter((item) => item.idmeal !== id);
         console.log(restItemstoDisplay);
         setFavorites(restItemstoDisplay);
       } else {

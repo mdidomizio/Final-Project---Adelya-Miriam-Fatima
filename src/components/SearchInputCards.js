@@ -24,7 +24,7 @@ const SearchInputCards = (props) => {
     if (key.startsWith("strIngredient")) {
       ingredients.push(props.item[key]);
     } else if (key.startsWith("strMeasure")) {
-      measurements.push(props.item[key]);
+      measurements.push(props.searchResult[key]);
     }
   });
 

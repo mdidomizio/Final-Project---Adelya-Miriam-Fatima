@@ -1,6 +1,7 @@
 import SearchInputCards from "./SearchInputCards";
 
 const SearchCards = (props) => {
+  console.log(props.searchResult);
   return (
     <div className="SearchOutput">
       <div className="d-flex flex-wrap justify-content-center">
