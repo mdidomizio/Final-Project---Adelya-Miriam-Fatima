@@ -21,7 +21,6 @@ function App() {
         <Header setSearchResult={setSearchResult} />
         <Routes>
           <Route path="/" element={<Container />} />
-          <Route path="*" element={<div> Page not found</div>} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
           <Route path="/addRecipe" element={<AddRecipeForm />} />
@@ -47,6 +46,7 @@ function App() {
               </div>
             }
           />
+          <Route path="*" element={<div> Page not found</div>} />
         </Routes>
       </div>
     </BrowserRouter>

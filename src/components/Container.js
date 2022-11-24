@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import Recipes from "./Recipes.js";
 import FilterButton from "./FilterButton.js";
-import Searchbar from "./Searchbar.js";
 
-const Container = () => {
-  const [recipes, setRecipes] = useState([]);
+const Container = (props) => {
   const [countryFilter, setCountryFilter] = useState([]);
   const [mealTypeFilter, setMealTypeFilter] = useState([]);
   const [error, setError] = useState(null);
   const [messageUpload, setMessageUpload] = useState(false);
+  const [recipes, setRecipes] = useState([]);
 
   const fetchRecipes = async () => {
     try {
@@ -18,7 +17,6 @@ const Container = () => {
       console.log(data);
 
       setRecipes(data.meals);
-      // console.log("my Recipes object", setRecipes);
     } catch (error) {
       console.log("there is an error", error);
     }

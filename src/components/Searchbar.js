@@ -1,33 +1,35 @@
-import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Searchbar = (props) => {
   const [searchInput, setSearchInput] = useState([]);
 
-  const searchItemsApi = async (searchValue) => {
-    setSearchInput(searchValue);
+  const searchItems = async () => {
+    // setSearchInput(searchValue);
     try {
       let path = `https://www.themealdb.com/api/json/v1/1/search.php?f=b`;
       let response = await fetch(path, { mode: "cors" });
-      let resultSearch = await response.json();
+      let data = await response.json();
+      console.log(data);
       if (searchInput !== "") {
-        const filteredData = resultSearch.meals.filter((item) => {
+        const filteredData = data.meals.filter((item) => {
           return Object.values(item)
             .join("")
             .toLowerCase()
             .includes(searchInput.toLowerCase());
         });
-        props.setSearchResult(filteredData);
         console.log(filteredData);
-      } else props.setSearchResult(resultSearch);
+        props.setSearchResult(filteredData);
+      }
     } catch (error) {
       console.log("there is an error", error);
     }
   };
 
-  const loader = async () => {
-    return <Navigate to="/search" />;
-  };
+  // const loader = () => {
+  //   return useNavigate("/search");
+  // };
 
   return (
     <nav className="navbar bg-light">
@@ -39,17 +41,16 @@ const Searchbar = (props) => {
             placeholder="Search meal by name"
             aria-label="Search"
             id="search-form"
-            // onChange={(e) => searchItemsApi(e.target.value)}
+            onChange={(e) => setSearchInput(e.target.value)}
           />
           <button
             onClick={(event) => {
-              console.log("button works");
-              searchItemsApi(event);
               event.preventDefault();
-              loader();
+              console.log("button works");
+              searchItems();
             }}
             className="btn btn-outline-success"
-            type="submit"
+            // type="submit"
           >
             Search
           </button>
