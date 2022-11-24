@@ -9,26 +9,20 @@ import Login from "./components/Login";
 import { useState } from "react";
 import Header from "./components/Header.js";
 import Logout from "./components/Logout";
-import SearchCards from "./components/SearchCards";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [searchResult, setSearchResult] = useState([]);
 
   return (
     <BrowserRouter>
       <div className="App">
-        <Header setSearchResult={setSearchResult} />
+        <Header />
         <Routes>
           <Route path="/" element={<Container />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
           <Route path="/addRecipe" element={<AddRecipeForm />} />
           <Route path="/favorites" element={<Favorites />} />
-          <Route
-            path="/search"
-            element={<SearchCards searchResult={searchResult} />}
-          />
           <Route
             path="/logout"
             element={<Logout setLoggedIn={setLoggedIn} />}

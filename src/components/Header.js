@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import Searchbar from "./Searchbar";
 
-const Header = (props) => {
+const Header = () => {
   return (
     <header className="header m-4">
       <h1>Recipes World</h1>
@@ -50,9 +49,6 @@ const Header = (props) => {
             <Link className="nav-link active" aria-current="page" to="/about">
               About us
             </Link>
-          </li>
-          <li>
-            <Searchbar setSearchResult={props.setSearchResult} />
           </li>
         </ul>
       </nav>
