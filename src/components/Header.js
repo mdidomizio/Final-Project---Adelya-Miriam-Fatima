@@ -47,7 +47,7 @@ const Header = () => {
           </li>
           <li className="nav-item">
             <Link className="nav-link active" aria-current="page" to="/about">
-              About us
+              About the app
             </Link>
           </li>
         </ul>

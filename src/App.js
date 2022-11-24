@@ -9,6 +9,8 @@ import Login from "./components/Login";
 import { useState } from "react";
 import Header from "./components/Header.js";
 import Logout from "./components/Logout";
+import AboutApp from "./components/AboutApp";
+
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -23,6 +25,7 @@ function App() {
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
           <Route path="/addRecipe" element={<AddRecipeForm />} />
           <Route path="/favorites" element={<Favorites />} />
+          <Route path="/about" element={<AboutApp />} />
           <Route
             path="/logout"
             element={<Logout setLoggedIn={setLoggedIn} />}
