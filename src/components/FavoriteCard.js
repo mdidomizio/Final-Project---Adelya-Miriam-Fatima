@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Collapse from "react-bootstrap/Collapse";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-const FavoriteCards = (props) => {
+const FavoriteCard = (props) => {
   const [open, setOpen] = useState(false);
 
   let mealName = props.item.strmeal;
@@ -41,11 +41,9 @@ const FavoriteCards = (props) => {
       <Card.Img variant="top" src={mealPic} />
       <Card.Body>
         <Card.Title>{mealName}</Card.Title>
-        <Card.Text>
-          <span className="tags fst-italic">
-            {mealTag} <br />
-            {mealOrigin}
-          </span>
+        <Card.Text className="tags fst-italic">
+          {mealTag} <br />
+          {mealOrigin}
         </Card.Text>
         <Button
           onClick={(event) => {
@@ -93,4 +91,4 @@ const FavoriteCards = (props) => {
     </Card>
   );
 };
-export default FavoriteCards;
+export default FavoriteCard;
