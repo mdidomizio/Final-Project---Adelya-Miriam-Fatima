@@ -1,5 +1,5 @@
 import FavoriteCards from "./FavoriteCards";
-import AddedByUserCards from "./AddedByUserCards.js"
+import AddedByUserCards from "./AddedByUserCards.js";
 import { useState, useEffect } from "react";
 
 const Favorites = (props) => {
@@ -61,6 +61,32 @@ const Favorites = (props) => {
       }
     } catch (error) {
       console.log("Something went wrong fetching data", error.message);
+    }
+  };
+
+  const removeFromFavorite = async (event) => {
+    try {
+      let tokenJson = localStorage.getItem("token");
+      let JWT_TOKEN = JSON.parse(tokenJson);
+      let id = event.target.id;
+      let path = `${process.env.REACT_APP_RECIPES_API}/favorites/${id}`;
+      let responseDelete = await fetch(path, {
+        method: "DELETE",
+        // mode: "cors",
+        headers: { Authorization: `Bearer ${JWT_TOKEN}` },
+      });
+      console.log(responseDelete);
+      if (responseDelete.status === 200) {
+        console.log("Item is deleted");
+
+        let restItemstoDisplay = favorites.filter((item) => item.idmeal !== id);
+        console.log(restItemstoDisplay);
+        setFavorites(restItemstoDisplay);
+      } else {
+        throw new Error(`Sorry, could not delete any data`);
+      }
+    } catch (error) {
+      console.log("Something went wrong deleting data", error.message);
       setError(error.message);
     }
   };
@@ -70,63 +96,45 @@ const Favorites = (props) => {
     fetchRecipes();
   }, []);
 
-  // const removeFromFavorite = async (event) => {
-  //   try {
-  //     let id = event.target.id;
-  //     let path = `${process.env.REACT_APP_RECIPES_API}/favorites/${props.mealId}`; // ? How to refer to ID? DO we need to?
-  //     let responseDelete = await fetch(path, {
-  //       method: "DELETE",
-  //       mode: "cors",
-  //     });
-  //     console.log(responseDelete);
-  //     if (responseDelete.status === 200) {
-  //       console.log("Item is deleted");
-
-  //       let restItemstoDisplay = favorites.filter((item) => item.id !== id);
-  //       setFavorites(restItemstoDisplay);
-  //     } else {
-  //       throw new Error(`Sorry, could not delete any data`);
-  //     }
-  //   } catch (error) {
-  //     console.log("Something went wrong deleting data", error.message);
-  //     setError(error.message);
-  //   }
-  // };
-
   return (
     <>
-    <div className="Favorites">
-      <div className="d-flex flex-wrap justify-content-center">
-        {favorites.length > 0 ? (
-          favorites.map((element, index) => {
-            return (
-              <div>
-                <FavoriteCards key={index} item={element} />
-              </div>
-            );
-          })
-        ) : (
-          <h3> Save your favorite recipes here! </h3>
-        )}
+      <div className="Favorites">
+        <div className="d-flex flex-wrap justify-content-center">
+          {favorites.length > 0 ? (
+            favorites.map((element, index) => {
+              return (
+                <div>
+                  <FavoriteCards
+                    key={index}
+                    item={element}
+                    removeFromFavorite={removeFromFavorite}
+                  />
+                </div>
+              );
+            })
+          ) : (
+            <h3> Save your favorite recipes here! </h3>
+          )}
+        </div>
       </div>
-    </div>
 
-    <div className="Recipes">
-      <div className="d-flex flex-wrap justify-content-center">
-        {recipes.length > 0 ? (
-          recipes.map((element, index) => {
-            return (
-              <div>
-                <AddedByUserCards key={index} item={element} />
-              </div>
-            );
-          })
-        ) : (
-          {/* <h3> Save your favorite recipes here! </h3> */}
-        )}
+      <div className="Recipes">
+        <div className="d-flex flex-wrap justify-content-center">
+          {recipes.length > 0
+            ? recipes.map((element, index) => {
+                return (
+                  <div>
+                    <AddedByUserCards key={index} item={element} />
+                  </div>
+                );
+              })
+            : {
+                /* <h3> Save your favorite recipes here! </h3> */
+              }}
+        </div>
       </div>
-    </div>
     </>
   );
 };
+
 export default Favorites;

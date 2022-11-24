@@ -42,10 +42,10 @@ const FavoriteCards = (props) => {
       <Card.Body>
         <Card.Title>{mealName}</Card.Title>
         <Card.Text>
-          <p className="tags fst-italic">
+          <span className="tags fst-italic">
             {mealTag} <br />
             {mealOrigin}
-          </p>
+          </span>
         </Card.Text>
         <Button
           onClick={(event) => {
@@ -85,7 +85,7 @@ const FavoriteCards = (props) => {
 
             <div>
               <h5>Preparations:</h5>
-              <p>{instructions}</p>
+              <span>{instructions}</span>
             </div>
           </div>
         </Collapse>

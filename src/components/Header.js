@@ -23,6 +23,11 @@ const Header = () => {
             </Link>
           </li>
           <li className="nav-item">
+            <Link to="/logout" className="nav-link">
+              Logout
+            </Link>
+          </li>
+          <li className="nav-item">
             <Link
               className="nav-link active"
               aria-current="page"

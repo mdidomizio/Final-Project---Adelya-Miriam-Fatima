@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { useFormik, Field } from "formik";
+import { useFormik } from "formik";
 import * as yup from "yup";
 
 
@@ -12,70 +12,53 @@ import * as yup from "yup";
 const AddRecipeForm = (props) => {
   const [error, setError] = useState(false);
   const [messageAdded, setMessageAdded] = useState(false);
-//   const [open, setOpen] = useState(false);
-
-//   const ingredientContainer = document.getElementById('input-cont');
-//   var maxIngredientsAllowed = 20;
-//   var ingredientCount = 1;
-//   const addIngredient = () => {
-//     ingredientCount++;
-//     if(ingredientCount>20){
-//     alert('you can add maximum 20 ingredients');
-//     return;
-//   }
-//   let input = document.createElement('input');
-//   input.placeholder = 'Enter your ingredient';
-//   ingredientContainer.appendChild(input);
-  
-// }
 
 
   const formik = useFormik({
     initialValues: {
       nameRecipe: "",
       mealType: "",
-      mealTag: "",
       mealOrigin: "",
       ingredients1: "",
       ingredients2: "",
       ingredients3: "",
       ingredients4: "",
       ingredients5: "",
-      ingredients6: "",
-      ingredients7: "",
-      ingredients8: "",
-      ingredients9: "",
-      ingredients10: "",
-      ingredients11: "",
-      ingredients12: "",
-      ingredients13: "",
-      ingredients14: "",
-      ingredients15: "",
-      ingredients16: "",
-      ingredients17: "",
-      ingredients18: "",
-      ingredients19: "",
-      ingredients20: "",
+      // ingredients6: "",
+      // ingredients7: "",
+      // ingredients8: "",
+      // ingredients9: "",
+      // ingredients10: "",
+      // ingredients11: "",
+      // ingredients12: "",
+      // ingredients13: "",
+      // ingredients14: "",
+      // ingredients15: "",
+      // ingredients16: "",
+      // ingredients17: "",
+      // ingredients18: "",
+      // ingredients19: "",
+      // ingredients20: "",
       measurement1: "",
       measurement2: "",
       measurement3: "",
       measurement4: "",
       measurement5: "",
-      measurement6: "",
-      measurement7: "",
-      measurement8: "",
-      measurement9: "",
-      measurement10: "",
-      measurement11: "",
-      measurement12: "",
-      measurement13: "",
-      measurement14: "",
-      measurement15: "",
-      measurement16: "",
-      measurement17: "",
-      measurement18: "",
-      measurement19: "",
-      measurement20: "",
+      // measurement6: "",
+      // measurement7: "",
+      // measurement8: "",
+      // measurement9: "",
+      // measurement10: "",
+      // measurement11: "",
+      // measurement12: "",
+      // measurement13: "",
+      // measurement14: "",
+      // measurement15: "",
+      // measurement16: "",
+      // measurement17: "",
+      // measurement18: "",
+      // measurement19: "",
+      // measurement20: "",
       instruction: "",
       url: "",
     },
@@ -83,7 +66,7 @@ const AddRecipeForm = (props) => {
     validationSchema: yup.object().shape({
       nameRecipe: yup
         .string()
-        .max(50, "50 characters or less")
+        .max(150, "150 characters or less")
         .required("Required"),
       mealType: yup
         .string()
@@ -121,46 +104,46 @@ const AddRecipeForm = (props) => {
           "Vietnamese",
         ])
         .required(),
-      ingredients1: yup.string().max(50, "50 characters or less").required(),
-      ingredients2: yup.string().max(50, "50 characters or less"),
-      ingredients3: yup.string().max(50, "50 characters or less"),
-      ingredients4: yup.string().max(50, "50 characters or less"),
-      ingredients5: yup.string().max(50, "50 characters or less"),
-      ingredients6: yup.string().max(50, "50 characters or less"),
-      ingredients7: yup.string().max(50, "50 characters or less"),
-      ingredients8: yup.string().max(50, "50 characters or less"),
-      ingredients9: yup.string().max(50, "50 characters or less"),
-      ingredients10: yup.string().max(50, "50 characters or less"),
-      ingredients11: yup.string().max(50, "50 characters or less"),
-      ingredients12: yup.string().max(50, "50 characters or less"),
-      ingredients13: yup.string().max(50, "50 characters or less"),
-      ingredients14: yup.string().max(50, "50 characters or less"),
-      ingredients15: yup.string().max(50, "50 characters or less"),
-      ingredients16: yup.string().max(50, "50 characters or less"),
-      ingredients17: yup.string().max(50, "50 characters or less"),
-      ingredients18: yup.string().max(50, "50 characters or less"),
-      ingredients19: yup.string().max(50, "50 characters or less"),
-      ingredients20: yup.string().max(50, "50 characters or less"),
-      measurement1: yup.string().max(50, "50 characters or less").required(),
-      measurement2: yup.string().max(50, "50 characters or less"),
-      measurement3: yup.string().max(50, "50 characters or less"),
-      measurement4: yup.string().max(50, "50 characters or less"),
-      measurement5: yup.string().max(50, "50 characters or less"),
-      measurement6: yup.string().max(50, "50 characters or less"),
-      measurement7: yup.string().max(50, "50 characters or less"),
-      measurement8: yup.string().max(50, "50 characters or less"),
-      measurement9: yup.string().max(50, "50 characters or less"),
-      measurement10: yup.string().max(50, "50 characters or less"),
-      measurement11: yup.string().max(50, "50 characters or less"),
-      measurement12: yup.string().max(50, "50 characters or less"),
-      measurement13: yup.string().max(50, "50 characters or less"),
-      measurement14: yup.string().max(50, "50 characters or less"),
-      measurement15: yup.string().max(50, "50 characters or less"),
-      measurement16: yup.string().max(50, "50 characters or less"),
-      measurement17: yup.string().max(50, "50 characters or less"),
-      measurement18: yup.string().max(50, "50 characters or less"),
-      measurement19: yup.string().max(50, "50 characters or less"),
-      measurement20: yup.string().max(50, "50 characters or less"),
+      ingredients1: yup.string().max(150, "150 characters or less").required(),
+      ingredients2: yup.string().max(150, "150 characters or less").optional().nullable(),
+      ingredients3: yup.string().max(150, "150 characters or less").optional().nullable(),
+      ingredients4: yup.string().max(150, "150 characters or less").optional().nullable(),
+      ingredients5: yup.string().max(150, "150 characters or less").optional().nullable(),
+      // ingredients6: yup.string().max(150, "150 characters or less"),
+      // ingredients7: yup.string().max(150, "150 characters or less"),
+      // ingredients8: yup.string().max(150, "150 characters or less"),
+      // ingredients9: yup.string().max(150, "150 characters or less"),
+      // ingredients10: yup.string().max(150, "150 characters or less"),
+      // ingredients11: yup.string().max(150, "150 characters or less"),
+      // ingredients12: yup.string().max(150, "150 characters or less"),
+      // ingredients13: yup.string().max(150, "150 characters or less"),
+      // ingredients14: yup.string().max(150, "150 characters or less"),
+      // ingredients15: yup.string().max(150, "150 characters or less"),
+      // ingredients16: yup.string().max(150, "150 characters or less"),
+      // ingredients17: yup.string().max(150, "150 characters or less"),
+      // ingredients18: yup.string().max(150, "150 characters or less"),
+      // ingredients19: yup.string().max(150, "150 characters or less"),
+      // ingredients20: yup.string().max(150, "150 characters or less"),
+      measurement1: yup.string().max(150, "150 characters or less").required(),
+      measurement2: yup.string().max(150, "150 characters or less").optional().nullable(),
+      measurement3: yup.string().max(150, "150 characters or less").optional().nullable(),
+      measurement4: yup.string().max(150, "150 characters or less").optional().nullable(),
+      measurement5: yup.string().max(150, "150 characters or less").optional().nullable(),
+      // measurement6: yup.string().max(150, "150 characters or less"),
+      // measurement7: yup.string().max(150, "150 characters or less"),
+      // measurement8: yup.string().max(150, "150 characters or less"),
+      // measurement9: yup.string().max(150, "150 characters or less"),
+      // measurement10: yup.string().max(150, "150 characters or less"),
+      // measurement11: yup.string().max(150, "150 characters or less"),
+      // measurement12: yup.string().max(150, "150 characters or less"),
+      // measurement13: yup.string().max(150, "150 characters or less"),
+      // measurement14: yup.string().max(150, "150 characters or less"),
+      // measurement15: yup.string().max(150, "150 characters or less"),
+      // measurement16: yup.string().max(150, "150 characters or less"),
+      // measurement17: yup.string().max(150, "150 characters or less"),
+      // measurement18: yup.string().max(150, "150 characters or less"),
+      // measurement19: yup.string().max(150, "150 characters or less"),
+      // measurement20: yup.string().max(150, "150 characters or less"),
       instruction: yup.string().required(),
       url: yup.string().required(),
     }),
@@ -448,10 +431,40 @@ const AddRecipeForm = (props) => {
                 ) : null}
               </Form.Group>
           </div>
-          
-         {/* <Field name="mealOrigin" as="select"> */}
-          <div className="mealOrigin row mt-5">
-            <label>Cousine Country</label>
+
+          <Form.Group className="mb-3">
+                <Form.Label>Cuisine Country</Form.Label>
+                <Form.Control
+                  id="mealOrigin"
+                  name="mealOrigin"
+                  type="text"
+                  placeholder={`Add a Cuisine Country`}
+                  onChange={formik.handleChange}
+                />
+
+              {formik.touched.mealOrigin && formik.errors.mealOrigin ? (
+                <div className="text-danger">{`${formik.errors.mealOrigin}`}</div>
+              ) : null}     
+              </Form.Group>
+
+
+              <Form.Group className="mb-3">
+                <Form.Label>Meal Type</Form.Label>
+                <Form.Control
+                  id="mealType"
+                  name="mealType"
+                  type="text"
+                  placeholder={`Add a Meal Type`}
+                  onChange={formik.handleChange}
+                />
+
+                {formik.touched.mealType && formik.errors.mealType ? (
+                <div className="text-danger">{`${formik.errors.mealType}`}</div>
+              ) : null}   
+              </Form.Group>
+         
+          {/* <div className="mealOrigin row mt-5">
+            <label>Cuisine Country</label>
             <Form.Select 
             id="mealOrigin"
             name="mealOrigin"
@@ -481,11 +494,11 @@ const AddRecipeForm = (props) => {
             {formik.touched.mealOrigin && formik.errors.mealOrigin ? (
                 <div className="text-danger">{`${formik.errors.mealOrigin}`}</div>
               ) : null}
-            </div>
-         {/* </Field> 
+            </div> */}
+        
 
-         <Field name="mealType" as="select"> */}
-            <div className="mealType row mt-5">
+         
+            {/* <div className="mealType row mt-5">
             <label>Meal Type</label>
             <Form.Select 
             id="mealType"
@@ -509,40 +522,8 @@ const AddRecipeForm = (props) => {
             {formik.touched.mealType && formik.errors.mealType ? (
                 <div className="text-danger">{`${formik.errors.mealType}`}</div>
               ) : null}
-            </div>
-          {/* <Field/> */}
-
-          {/* <div className="mealOrigin row mt-5">
-            <label>Cousine Country</label>
-            <Form.Select 
-            id="mealOrigin"
-            name="mealOrigin"
-            type="select"
-            onSelectCapture={formik.handleChange}
-            aria-label="Default select example">
-              <option>Select your Cuisine Country</option>
-              <option value="1">American</option>
-              <option value="2">British</option>
-              <option value="3">Canadian</option>
-              <option value="3">Chinese</option>
-              <option value="3">Croatian</option>
-              <option value="3">Dutch</option>
-              <option value="3">French</option>
-              <option value="3">Indian</option>
-              <option value="3">Irish</option>
-              <option value="3">Italian</option>
-              <option value="3">Jamaican</option>
-              <option value="3">Malaysian</option>
-              <option value="3">Mexican</option>
-              <option value="3">Polish</option>
-              <option value="3">Russian</option>
-              <option value="3">Vietnamese</option>
-            </Form.Select>
-            {formik.touched.mealOrigin && formik.errors.mealOrigin ? (
-                <div className="text-danger">{`${formik.errors.mealOrigin}`}</div>
-              ) : null}
             </div> */}
-
+        
         </Form.Group>
 
 
