@@ -1,6 +1,5 @@
-import SearchCards from "./SearchCards";
 import React, { useState } from "react";
-import { redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const Searchbar = (props) => {
   const [searchInput, setSearchInput] = useState([]);
@@ -11,7 +10,7 @@ const Searchbar = (props) => {
       let path = `https://www.themealdb.com/api/json/v1/1/search.php?f=b`;
       let response = await fetch(path, { mode: "cors" });
       let resultSearch = await response.json();
-      if (searchInput !== " ") {
+      if (searchInput !== "") {
         const filteredData = resultSearch.meals.filter((item) => {
           return Object.values(item)
             .join("")
@@ -27,7 +26,7 @@ const Searchbar = (props) => {
   };
 
   const loader = async () => {
-    return redirect("/search");
+    return <Navigate to="/search" />;
   };
 
   return (

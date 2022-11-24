@@ -50,9 +50,9 @@ const Header = (props) => {
             <Link className="nav-link active" aria-current="page" to="/about">
               About us
             </Link>
-            <li>
-              <Searchbar setSearchResult={props.setSearchResult} />
-            </li>
+          </li>
+          <li>
+            <Searchbar setSearchResult={props.setSearchResult} />
           </li>
         </ul>
       </nav>
