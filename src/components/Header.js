@@ -42,7 +42,7 @@ const Header = () => {
               aria-current="page"
               to="/favorites"
             >
-              Favorites
+              My recipes
             </Link>
           </li>
           <li className="nav-item">
