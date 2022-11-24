@@ -81,7 +81,7 @@ const Favorites = (props) => {
             );
           })
         ) : (
-          <h3> Save your favorite recipes here! </h3>
+          <h3> Save your favorite recipes here or create your own </h3>
         )}
       </div>
     </div>

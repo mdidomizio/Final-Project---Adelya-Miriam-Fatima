@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Searchbar from "./Searchbar";
 
-const Header = () => {
+const Header = (props) => {
   return (
     <header className="header m-4">
       <h1>Recipes World</h1>
@@ -51,7 +51,7 @@ const Header = () => {
               About us
             </Link>
             <li>
-              <Searchbar />
+              <Searchbar setSearchResult={props.setSearchResult} />
             </li>
           </li>
         </ul>

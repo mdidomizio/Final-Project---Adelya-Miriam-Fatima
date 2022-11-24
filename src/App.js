@@ -13,10 +13,12 @@ import SearchCards from "./components/SearchCards";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [searchResult, setSearchResult] = useState([]);
+
   return (
     <BrowserRouter>
       <div className="App">
-        <Header />
+        <Header setSearchResult={setSearchResult} />
         <Routes>
           <Route path="/" element={<Container />} />
           <Route path="*" element={<div> Page not found</div>} />
@@ -24,7 +26,10 @@ function App() {
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
           <Route path="/addRecipe" element={<AddRecipeForm />} />
           <Route path="/favorites" element={<Favorites />} />
-          <Route path="/search" element={<SearchCards />} />
+          <Route
+            path="/search"
+            element={<SearchCards searchResult={searchResult} />}
+          />
           <Route
             path="/logout"
             element={<Logout setLoggedIn={setLoggedIn} />}

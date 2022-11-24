@@ -3,37 +3,9 @@ import Card from "react-bootstrap/Card";
 import React, { useState } from "react";
 import Collapse from "react-bootstrap/Collapse";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { redirect } from "react-router-dom";
 
-const SearchCards = () => {
+const SearchCards = (props) => {
   const [open, setOpen] = useState(false);
-  const [searchInput, setSearchInput] = useState([]);
-  const [searchResult, setSearchResult] = useState([]);
-
-  const searchItemsApi = async (searchValue) => {
-    setSearchInput(searchValue);
-    try {
-      let path = `https://www.themealdb.com/api/json/v1/1/search.php?f=b`;
-      let response = await fetch(path, { mode: "cors" });
-      let resultSearch = await response.json();
-      if (searchInput !== " ") {
-        const filteredData = resultSearch.meals.filter((item) => {
-          return Object.values(item)
-            .join("")
-            .toLowerCase()
-            .includes(searchInput.toLowerCase());
-        });
-        setSearchResult(filteredData);
-        console.log(filteredData);
-      } else setSearchResult(resultSearch);
-    } catch (error) {
-      console.log("there is an error", error);
-    }
-  };
-
-  const loader = async () => {
-    return redirect("/search");
-  };
 
   let mealName = props.item.strmeal;
   let mealPic = props.item.strmealthumb;
