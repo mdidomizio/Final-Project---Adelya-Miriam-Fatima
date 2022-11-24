@@ -48,7 +48,7 @@ const AddedByUserCard = (props) => {
               {mealOriginRecipe}
             
           </Card.Text>
-          <Button
+          {/* <Button
             onClick={(event) => {
               console.log("button works");
               props.updateRecipe(event);
@@ -58,7 +58,7 @@ const AddedByUserCard = (props) => {
             className="btn btn-primary mt-2 mx-1"
           >
             Edit your recipe
-          </Button>
+          </Button> */}
 
           {/* <button className="btn btn-primary mt-2 mx-1"  onClick={handleShow}>
             Edit Recipe
