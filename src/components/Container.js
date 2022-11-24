@@ -158,7 +158,7 @@ const Container = (props) => {
                   console.log("button works");
                   searchItems();
                 }}
-                className="btn btn-primary"
+                className="btn btn--primary"
                 type="submit"
               >
                 Search
