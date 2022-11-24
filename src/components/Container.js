@@ -109,12 +109,12 @@ const Container = (props) => {
       });
       console.log("response from fetch", response);
       if (response.status === 200) {
-        alert("Item  saved to favorites!");
+        alert("Item  saved to my recipes!");
         setMessageUpload(response.statusText);
       } else {
         let error = new Error(`${response.statusText}: ${response.url}`);
         error.status = response.status;
-        alert("Item could not be saved to favorites, login required!");
+        alert("Item could not be saved to my recipes, login required!");
         throw error;
       }
     } catch (error) {
