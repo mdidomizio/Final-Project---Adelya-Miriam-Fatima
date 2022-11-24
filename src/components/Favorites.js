@@ -23,7 +23,7 @@ const Favorites = (props) => {
         let dataToStore = fetchedData.data.map((item) => ({
           ...item,
         }));
-        console.log(dataToStore);
+
         setFavorites(dataToStore);
       } else {
         // deal with error

@@ -1,12 +1,16 @@
-import { useState, useEffect } from 'react';
-import Recipes from './Recipes.js';
-import FilterButton from './FilterButton.js';
+import { useState, useEffect } from "react";
+import Recipes from "./Recipes.js";
+import FilterButton from "./FilterButton.js";
+import { Button } from "react-bootstrap";
 
-const Container = () => {
-  const [recipes, setRecipes] = useState([]);
+const Container = (props) => {
   const [countryFilter, setCountryFilter] = useState([]);
   const [mealTypeFilter, setMealTypeFilter] = useState([]);
-  // const [deleteMessage, setDeleteMessage] = useState(false);
+  const [error, setError] = useState(null);
+  const [messageUpload, setMessageUpload] = useState(false);
+  const [recipes, setRecipes] = useState([]);
+  const [searchInput, setSearchInput] = useState([]);
+  const [searchResult, setSearchResult] = useState([]);
 
   const fetchRecipes = async () => {
     try {
@@ -16,7 +20,6 @@ const Container = () => {
       console.log(data);
 
       setRecipes(data.meals);
-      // console.log("my Recipes object", setRecipes);
     } catch (error) {
       console.log('there is an error', error);
     }
@@ -81,9 +84,6 @@ const Container = () => {
     setMealTypeFilter([]);
   };
 
-  const [error, setError] = useState(null);
-  const [messageUpload, setMessageUpload] = useState(false);
-
   const addToFavorite = async (IdAddedItem) => {
     let userid = localStorage.getItem('userId');
     let userIdClean = userid.replaceAll('"', '');
@@ -123,8 +123,50 @@ const Container = () => {
     }
   };
 
+  const searchItems = () => {
+    if (searchInput !== "") {
+      const filteredData = recipes.filter((recipe) => {
+        return Object.values(recipe)
+          .join("")
+          .toLowerCase()
+          .includes(searchInput.toLowerCase());
+      });
+      console.log(filteredData);
+      setSearchResult(filteredData);
+    } else {
+      setSearchResult(recipes);
+    }
+  };
+
   return (
     <>
+      <div>
+        <nav className="navbar bg-light">
+          <div className="container-fluid">
+            <form className="d-flex" role="search">
+              <input
+                className="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+                id="search-form"
+                onChange={(e) => setSearchInput(e.target.value)}
+              />
+              <Button
+                onClick={(event) => {
+                  event.preventDefault();
+                  console.log("button works");
+                  searchItems();
+                }}
+                className="btn btn-outline-primary"
+                type="submit"
+              >
+                Search
+              </Button>
+            </form>
+          </div>
+        </nav>
+      </div>
       <FilterButton
         countriesCuisine={countriesCuisine}
         displayCountryCuisine={displayCountryCuisine}
@@ -135,9 +177,12 @@ const Container = () => {
       />
       <Recipes
         recipes={
-          (countryFilter.length > 0 ? countryFilter : recipes) &&
-          mealTypeFilter.length > 0
+          searchResult.length > 0
+            ? searchResult
+            : mealTypeFilter.length > 0
             ? mealTypeFilter
+            : countryFilter.length > 0
+            ? countryFilter
             : recipes
         }
         addToFavorite={addToFavorite}

@@ -12,13 +12,13 @@ import Logout from "./components/Logout";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+
   return (
     <BrowserRouter>
       <div className="App">
         <Header />
         <Routes>
           <Route path="/" element={<Container />} />
-          <Route path="*" element={<div> Page not found</div>} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
           <Route path="/addRecipe" element={<AddRecipeForm />} />
@@ -40,6 +40,7 @@ function App() {
               </div>
             }
           />
+          <Route path="*" element={<div> Page not found</div>} />
         </Routes>
       </div>
     </BrowserRouter>
