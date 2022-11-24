@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Collapse from "react-bootstrap/Collapse";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-const FavoriteCards = (props) => {
+const FavoriteCard = (props) => {
   const [open, setOpen] = useState(false);
 
   let mealName = props.item.strmeal;
@@ -93,4 +93,4 @@ const FavoriteCards = (props) => {
     </Card>
   );
 };
-export default FavoriteCards;
+export default FavoriteCard;

@@ -1,5 +1,5 @@
 
-import AddedByUserCards from "./AddedByUserCards.js"
+import AddedByUserCard   from "./AddedByUserCard.js"
 import { useState, useEffect } from "react";
 
 const RecipesInFavoritesContainer = (props) => {
@@ -156,7 +156,7 @@ const RecipesInFavoritesContainer = (props) => {
 
         return (
             
-          <AddedByUserCards key={props.index} item={props.element} 
+          <AddedByUserCard key={props.index} item={props.element} 
                           deleteRecipeFromDb={props.deleteRecipeFromDb}
                           updateRecipe={props.updateRecipe}
                         />
@@ -166,7 +166,7 @@ const RecipesInFavoritesContainer = (props) => {
                 //   props.recipes.map((element, index) => {
                 //     return (
                     
-                //         <AddedByUserCards key={index} item={element} 
+                //         <AddedByUserCard key={index} item={element} 
                 //           deleteRecipeFromDb={props.deleteRecipeFromDb}
                 //           updateRecipe={props.updateRecipe}
                 //         />

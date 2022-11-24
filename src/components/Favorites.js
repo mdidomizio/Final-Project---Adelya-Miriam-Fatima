@@ -1,7 +1,7 @@
 import ApiRecipesContainer from "./ApiRecipesContainer";
 import RecipesInFavoritesContainer from "./RecipesInFavoriteContainer";
-import FavoriteCards from "./FavoriteCards";
-import AddedByUserCards from "./AddedByUserCards";
+import FavoriteCard from "./FavoriteCard";
+import AddedByUserCard from "./AddedByUserCard";
 import { useState, useEffect } from "react";
 
 const Favorites = (props) => {
@@ -47,7 +47,7 @@ const Favorites = (props) => {
         mode: "cors",
         headers: { Authorization: `Bearer ${JWT_TOKEN}` },
       });
-      console.log("fetched data", response)
+      console.log("fetched data", response);
       if (response.status === 200) {
         let fetchedRecipesData = await response.json();
         console.log(fetchedRecipesData);
@@ -57,7 +57,6 @@ const Favorites = (props) => {
         }));
         console.log("data to store in recipes", dataToStore);
         setRecipes(dataToStore);
-        
       } else {
         // deal with error
         throw new Error(`Sorry, could not find any Recipe`);
@@ -69,7 +68,6 @@ const Favorites = (props) => {
     }
   };
 
-  
   useEffect(() => {
     fetchFavorites();
     fetchRecipes();
@@ -77,17 +75,18 @@ const Favorites = (props) => {
 
   const deleteRecipeFromDb = async (event) => {
     let id = event.target.id;
-    
+
     // get access to token in local storage:
-    let tokenFromLS = localStorage.getItem('token')
-    let JWT_TOKEN = JSON.parse(tokenFromLS)  
+    let tokenFromLS = localStorage.getItem("token");
+    let JWT_TOKEN = JSON.parse(tokenFromLS);
 
     try {
       let path = `${process.env.REACT_APP_RECIPES_API}/recipes/${id}`;
-      let response = await fetch(path, { 
-        method: "DELETE", 
-        headers: {'Authorization': `Bearer ${JWT_TOKEN}`},
-        mode: "cors" });
+      let response = await fetch(path, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${JWT_TOKEN}` },
+        mode: "cors",
+      });
       console.log(response);
 
       if (response.status === 204) {
@@ -107,107 +106,138 @@ const Favorites = (props) => {
   };
 
   const uploadImageToCloudinary = async (item) => {
-    console.log('uplaod image start');
-    // setup 
-    let preset = process.env.REACT_APP_CLOUDINARY_PRESET
-    let cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME
-    let cloudPath = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`
-    // create body to post: 
-    let dataForBody = new FormData()
-    dataForBody.append('file', item.url[0])
-    dataForBody.append('upload_preset', preset)
-    dataForBody.append('cloud_name', cloudName)
-  
+    console.log("uplaod image start");
+    // setup
+    let preset = process.env.REACT_APP_CLOUDINARY_PRESET;
+    let cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
+    let cloudPath = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
+    // create body to post:
+    let dataForBody = new FormData();
+    dataForBody.append("file", item.url[0]);
+    dataForBody.append("upload_preset", preset);
+    dataForBody.append("cloud_name", cloudName);
+
     // fetch Post image to cloudinary
     try {
       let responseFromCloud = await fetch(cloudPath, {
-        method: 'POST',
-        body: dataForBody
-      })
-      let imageData = await responseFromCloud.json()
-      console.log('post to cloud', imageData);
-      return imageData
-  
+        method: "POST",
+        body: dataForBody,
+      });
+      let imageData = await responseFromCloud.json();
+      console.log("post to cloud", imageData);
+      return imageData;
     } catch (error) {
       console.log(error);
-      setError(error.message)
+      setError(error.message);
     }
-  }
-  
-  
-    const updateRecipe = async (updatedItem, id, uploadImage) => {
-      let imageUrl = ''
-      console.log("container updated recipe", updatedItem, uploadImage);
-      // upload image to cloudinary: ONLY if the is a changed image
-      if(uploadImage) {
-      let resultFromImageUpload = await uploadImageToCloudinary(updatedItem)
-        imageUrl = resultFromImageUpload.url
-      } else {
-        imageUrl = updatedItem.url
-      }
-  
-  
-      // change the state
-        // add new values and url to state of the item
-      
-      let updatedRecipes = recipes.map((item) => {
-        return item.id === id ? { ...item, ...updatedItem , url: imageUrl } : item;
-      });
-  
-      setRecipes(updatedRecipes);
-      // find the item to update in state using the id
-      let updatedItemInState = updatedRecipes.find((item) => item.id === id);
-      // update to db:
-      
-      // get access to token in local storage:
-      let tokenFromLS = localStorage.getItem('token')
-      let JWT_TOKEN = JSON.parse(tokenFromLS)  
-  
-      try {
-        let path = `${process.env.REACT_APP_WARDROBE_API}/recipes/${updatedItemInState.id}`;
-        let response = await fetch(path, {
-          method: "PUT",
-          headers: { 
-            "Content-type": "application/json",
-            'Authorization': `Bearer ${JWT_TOKEN}`
+  };
+
+  const updateRecipe = async (updatedItem, id, uploadImage) => {
+    let imageUrl = "";
+    console.log("container updated recipe", updatedItem, uploadImage);
+    // upload image to cloudinary: ONLY if the is a changed image
+    if (uploadImage) {
+      let resultFromImageUpload = await uploadImageToCloudinary(updatedItem);
+      imageUrl = resultFromImageUpload.url;
+    } else {
+      imageUrl = updatedItem.url;
+    }
+
+    // change the state
+    // add new values and url to state of the item
+
+    let updatedRecipes = recipes.map((item) => {
+      return item.id === id ? { ...item, ...updatedItem, url: imageUrl } : item;
+    });
+
+    setRecipes(updatedRecipes);
+    // find the item to update in state using the id
+    let updatedItemInState = updatedRecipes.find((item) => item.id === id);
+    // update to db:
+
+    // get access to token in local storage:
+    let tokenFromLS = localStorage.getItem("token");
+    let JWT_TOKEN = JSON.parse(tokenFromLS);
+
+    try {
+      let path = `${process.env.REACT_APP_WARDROBE_API}/recipes/${updatedItemInState.id}`;
+      let response = await fetch(path, {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${JWT_TOKEN}`,
         },
-          body: JSON.stringify(updatedItemInState),
-        });
-  
-        if (response.status === 201) {
-          alert("Your Item has been successfully updated");
-        
-        } else {
-          let error = new Error(`${response.statusText}: ${response.url}`);
-          error.status = response.status;
-          throw error;
-        }
-      } catch (error) {
-        console.log("something went wrong updating the Recipe", error.message);
-        setError(error.message);
+        body: JSON.stringify(updatedItemInState),
+      });
+
+      if (response.status === 201) {
+        alert("Your Item has been successfully updated");
+      } else {
+        let error = new Error(`${response.statusText}: ${response.url}`);
+        error.status = response.status;
+        throw error;
       }
-    };
-
-
-  
-
+    } catch (error) {
+      console.log("something went wrong updating the Recipe", error.message);
+      setError(error.message);
+    }
+  };
+console.log(recipes)
+console.log(recipes)
   return (
     <>
-    <div className="Favorites">
+      <div className="Favorites">
         <div className="d-flex flex-wrap justify-content-center">
-          <FavoriteCards
-            // favorites={{((favorites.length > 0) && (recipes.length > 0))
-            // ? 
-            // (favorites && recipes) 
-            // : <h3> Save your favorite recipes here! </h3>} 
-          />
+          {recipes.length > 0 ? (
+            recipes.map((element, index) => {
+              return (
+                <AddedByUserCard
+                  key={index}
+                  item={element}
+                  deleteRecipeFromDb={deleteRecipeFromDb}
+                  updateRecipe={updateRecipe}
+                />
+              );
+            })
+          ) : (
+            <h3> Save your favorite recipes here! </h3>
+          )}
         </div>
-        <div className="d-flex flex-wrap justify-content-center"></div>
-          <AddedByUserCards/>
-        </div>
-    
-    </>
 
+        {/* <div className="d-flex flex-wrap justify-content-center">
+          {favorites.length > 0 ? (
+            favorites.map((element, index) => {
+              return (
+                <FavoriteCard
+                  key={index}
+                  item={element}
+                  deleteRecipeFromDb={deleteRecipeFromDb}
+                  updateRecipe={updateRecipe}
+                />
+              );
+            })
+          ) : (
+            <h3> Save your favorite recipes here! </h3>
+          )}
+        </div> */}
+
+
+
+
+
+        {/* <div className="d-flex flex-wrap justify-content-center">
+          {favorites.length > 0 && recipes.length > 0 && (
+            <FavoriteCard favorites={favorites} />
+          )}
+        </div>
+
+        <div className="d-flex flex-wrap justify-content-center">
+          {favorites.length > 0 && recipes.length > 0 && (
+            <AddedByUserCard recipes={recipes} />
+          )}
+        </div> */}
+      </div>
+    </>
   );
 };
 

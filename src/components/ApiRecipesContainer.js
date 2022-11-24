@@ -1,4 +1,4 @@
-import FavoriteCards from "./FavoriteCards";
+import FavoriteCard from "./FavoriteCard";
 
 const ApiRecipesContainer = (props) => {
     return (
@@ -12,7 +12,7 @@ const ApiRecipesContainer = (props) => {
                   
                   <div key={index}> 
                  
-                    <FavoriteCards item={element} />
+                    <FavoriteCard item={element} />
                     
                   </div>
     

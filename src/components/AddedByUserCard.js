@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Collapse from "react-bootstrap/Collapse";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-const AddedByUserCards = (props) => {
+const AddedByUserCard = (props) => {
     const [open, setOpen] = useState(false);
   
     let nameRecipe = props.item.nameRecipe;
@@ -105,5 +105,5 @@ const AddedByUserCards = (props) => {
       </Card>
     );
   };
-  export default AddedByUserCards;
+  export default AddedByUserCard;
   
