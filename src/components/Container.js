@@ -44,8 +44,6 @@ const Container = () => {
     'Russian',
     'Vietnamese',
   ];
-  // const [countryFilter, setCountryFilter] = useState([]);
-  // const [mealTypeFilter, setMealTypeFilter] = useState([]);
 
   const displayCountryCuisine = (event) => {
     let countryFilter = recipes.filter(
@@ -111,10 +109,12 @@ const Container = () => {
       });
       console.log('response from fetch', response);
       if (response.status === 200) {
+        alert('Item  saved to favorites,');
         setMessageUpload(response.statusText);
       } else {
         let error = new Error(`${response.statusText}: ${response.url}`);
         error.status = response.status;
+        alert('Item could not be saved to favorites, login required!');
         throw error;
       }
     } catch (error) {
@@ -135,10 +135,7 @@ const Container = () => {
       />
       <Recipes
         recipes={
-          // [...countryFilter, ...mealTypeFilter].length > 0
-          //   ? [...countryFilter, ...mealTypeFilter]
-          //   : recipes
-          (countryFilter.length > 0 ? countryFilter : recipes) ||
+          (countryFilter.length > 0 ? countryFilter : recipes) &&
           mealTypeFilter.length > 0
             ? mealTypeFilter
             : recipes
