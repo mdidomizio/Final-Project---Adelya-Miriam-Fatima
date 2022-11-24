@@ -84,7 +84,7 @@ const AddedByUserCard = (props) => {
                 <h5>Ingredients:</h5>
               </div>
               <div>
-                <ul className="ingredientsUserFavorite">
+                <ul className="ingredientsRecipe">
                   {combinedIngredientsRecipes.map(function (item) {
                     return (
                       <li key={item}>
