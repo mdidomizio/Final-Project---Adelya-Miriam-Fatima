@@ -48,17 +48,34 @@ const AddedByUserCard = (props) => {
               {mealOriginRecipe}
             
           </Card.Text>
-          <Button
+          {/* <Button
             onClick={(event) => {
               console.log("button works");
               props.updateRecipe(event);
             }}
             id={mealIdRecipe}
             type="button"
-            className="btn btn-danger position-absolute top-0 end-0 opacity-85"
+            className="btn btn-primary mt-2 mx-1"
           >
-            Modify your recipe
-          </Button>
+            Edit your recipe
+          </Button> */}
+
+          {/* <button className="btn btn-primary mt-2 mx-1"  onClick={handleShow}>
+            Edit Recipe
+            </button> */}
+
+      {/* <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit your Recipe!</Modal.Title>
+        </Modal.Header>
+        
+        <UpdateForm item={props.item} handleClose={handleClose} updateRecipe={props.updateRecipe}/>
+         
+      </Modal>  */}
+
+
+
+
           <Button
             onClick={(event) => {
               console.log("button works");
