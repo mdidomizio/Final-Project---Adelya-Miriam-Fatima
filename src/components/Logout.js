@@ -21,7 +21,7 @@ const Logout = (props) => {
       {messageLoggedout ? (
           <>
             <p>You are now logged out</p>
-            <Link to="/"> Go back to the Home Page</Link>
+            <Link to="/"> Go back to Home</Link>
           </>
         ) : null}
 
