@@ -54,6 +54,7 @@ const RecipesCard = (props) => {
           }}
           id={mealId}
           type="button"
+          style={{ backgroundColor: '#94340c', color: '#FFF' }}
           className="btn btn-danger position-absolute top-0 end-0 opacity-85"
         >
           <i className="bi bi-bookmark-heart-fill"></i> Save to favorites
@@ -62,6 +63,7 @@ const RecipesCard = (props) => {
           onClick={() => setOpen(!open)}
           aria-controls="example-collapse-text"
           aria-expanded={open}
+          style={{ backgroundColor: '#94340c', color: '#FFF' }}
         >
           See More
         </Button>
