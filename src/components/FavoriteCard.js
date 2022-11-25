@@ -67,6 +67,7 @@ const FavoriteCard = (props) => {
           onClick={() => setOpen(!open)}
           aria-controls="example-collapse-text"
           aria-expanded={open}
+          className="btn btn-light"
           style={{ backgroundColor: '#94340c', color: '#FFF' }}
         >
           See More

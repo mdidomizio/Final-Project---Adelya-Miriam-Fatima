@@ -159,7 +159,8 @@ const Container = (props) => {
                   searchItems();
                 }}
                 style={{ backgroundColor: '#94340c', color: '#FFF' }}
-                className="btn"
+                className="btn btn-light"
+                btn-ligh
                 type="submit"
               >
                 Search

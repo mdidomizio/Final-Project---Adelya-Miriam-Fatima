@@ -7,7 +7,7 @@ const FilterButton = (props) => {
         <Dropdown.Toggle
           variant="primary"
           id="dropdown-basic"
-          className="btn m2"
+          className="btn m2 btn-light"
           style={{ backgroundColor: '#94340c', color: '#FFF' }}
         >
           Country cuisine
@@ -36,7 +36,7 @@ const FilterButton = (props) => {
         <Dropdown.Toggle
           variant="primary"
           id="dropdown-basic"
-          className="btn m2"
+          className="btn m2 btn-light"
           style={{ backgroundColor: '#94340c', color: '#FFF' }}
         >
           Meal type

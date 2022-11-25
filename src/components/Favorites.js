@@ -246,7 +246,7 @@ const Favorites = (props) => {
                   console.log('button works');
                   searchItemsFav();
                 }}
-                className="btn"
+                className="btn btn-light"
                 type="submit"
                 style={{ backgroundColor: '#94340c', color: '#FFF' }}
               >

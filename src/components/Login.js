@@ -82,7 +82,7 @@ const Login = (props) => {
             <ErrorMessage name="password" />
             <button
               type="submit"
-              style={{ backgroundColor: '#94340c', color: 'white' }}
+              style={{ backgroundColor: '#94340c', color: '#FFF' }}
               className="btn shadow-lg rounded"
             >
               Submit
