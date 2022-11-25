@@ -1,12 +1,15 @@
 import FavoriteCard from "./FavoriteCard";
 import AddedByUserCard from "./AddedByUserCard";
 import { useState, useEffect } from "react";
+import { Button } from "react-bootstrap";
 
 const Favorites = (props) => {
   const [error, setError] = useState(null);
   const [favorites, setFavorites] = useState([]);
   const [recipes, setRecipes] = useState([]);
   const [deleteMessage, setDeleteMessage] = useState(false);
+  const [searchInput, setSearchInput] = useState([]);
+  const [searchResultFav, setSearchResultFav] = useState([]);
 
   const fetchFavorites = async () => {
     try {
@@ -208,8 +211,50 @@ const Favorites = (props) => {
   };
   console.log(recipes);
   console.log(favorites);
+
+  const searchItemsFav = () => {
+    if (searchInput !== "") {
+      const filteredData = favorites.filter((recipe) => {
+        return Object.values(recipe)
+          .join("")
+          .toLowerCase()
+          .includes(searchInput.toLowerCase());
+      });
+      console.log(filteredData);
+      setSearchResultFav(filteredData);
+    } else {
+      setSearchResultFav(favorites);
+    }
+  };
   return (
     <>
+      <div className="d-flex flex-row-reverse bd-highlight">
+        <nav className="navbar bg-light">
+          <div className="container-fluid">
+            <form className="d-flex" role="search">
+              <input
+                className="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+                id="search-form"
+                onChange={(e) => setSearchInput(e.target.value)}
+              />
+              <Button
+                onClick={(event) => {
+                  event.preventDefault();
+                  console.log("button works");
+                  searchItemsFav();
+                }}
+                className="btn btn--primary"
+                type="submit"
+              >
+                Search
+              </Button>
+            </form>
+          </div>
+        </nav>
+      </div>
       <div className="Favorites">
         <div className="d-flex flex-wrap justify-content-center">
           {recipes.length > 0 ? (
@@ -229,7 +274,9 @@ const Favorites = (props) => {
         </div>
 
         <div className="d-flex flex-wrap justify-content-center">
-          {favorites.length > 0 ? (
+          {searchResultFav.length > 0 ? (
+            searchItemsFav
+          ) : favorites.length > 0 ? (
             favorites.map((element, index) => {
               return (
                 <FavoriteCard

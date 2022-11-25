@@ -1,5 +1,6 @@
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import YupPassword from "yup-password";
 YupPassword(Yup);
@@ -88,7 +89,12 @@ const Login = (props) => {
           </div>
         </Form>
       </Formik>
-      {message ? <div>{message}</div> : null}
+      {message ? (
+        <div>
+          <p>You are logged in!</p>
+          <Link to="/favorites"> Go to My Recipes page</Link>
+        </div>
+      ) : null}
       {error ? <div>{error.message}</div> : null}
     </div>
   );
