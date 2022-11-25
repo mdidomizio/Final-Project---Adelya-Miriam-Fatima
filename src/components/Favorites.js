@@ -23,7 +23,7 @@ const Favorites = (props) => {
         let dataToStore = fetchedData.data.map((item) => ({
           ...item,
         }));
-        console.log(dataToStore);
+
         setFavorites(dataToStore);
       } else {
         // deal with error
@@ -231,7 +231,13 @@ const Favorites = (props) => {
         <div className="d-flex flex-wrap justify-content-center">
           {favorites.length > 0 ? (
             favorites.map((element, index) => {
-              return <FavoriteCard key={index} item={element} />;
+              return (
+                <FavoriteCard
+                  key={index}
+                  item={element}
+                  removeFromFavorite={removeFromFavorite}
+                />
+              );
             })
           ) : (
             <h3> Save your favorite recipes here! </h3>

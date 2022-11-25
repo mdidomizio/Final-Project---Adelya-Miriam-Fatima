@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <header className="header m-4">
-      <h1>Recipes World</h1>
+      <h1 className="display-1">Recipes World </h1>
 
       <nav className="nav justify-content-center">
         <ul className="nav justify-content-center">

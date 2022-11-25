@@ -1,13 +1,14 @@
 import Dropdown from "react-bootstrap/Dropdown";
 
 const FilterButton = (props) => {
-  
-
   return (
-    
-    <div className="dropdown d-flex justify-content-center align-items-center m-2">
+    <div className="d-flex justify-content-center gap-3">
       <Dropdown>
-        <Dropdown.Toggle variant="success" id="dropdown-basic" className="btn m2">
+        <Dropdown.Toggle
+          variant="primary"
+          id="dropdown-basic"
+          className="btn m2"
+        >
           Country cuisine
         </Dropdown.Toggle>
         <Dropdown.Menu>
@@ -31,12 +32,16 @@ const FilterButton = (props) => {
         </Dropdown.Menu>
       </Dropdown>
       <Dropdown>
-        <Dropdown.Toggle variant="success" id="dropdown-basic" className="btn m2">
+        <Dropdown.Toggle
+          variant="primary"
+          id="dropdown-basic"
+          className="btn m2"
+        >
           Meal type
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-        {props.mealTypeArray.map((element) => (
+          {props.mealTypeArray.map((element) => (
             <Dropdown.Item
               className="dropdown-item"
               onClick={props.displayMealType}

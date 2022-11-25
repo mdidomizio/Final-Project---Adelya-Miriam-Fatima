@@ -13,6 +13,7 @@ import AboutApp from "./AboutApp";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -31,7 +32,6 @@ function App() {
           )}
 
           <Route path="/" element={<Container />} />
-          <Route path="*" element={<div> Page not found</div>} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
           <Route path="/addRecipe" element={<AddRecipeForm />} />
@@ -50,6 +50,7 @@ function App() {
               </div>
             }
           />
+          <Route path="*" element={<div> Page not found</div>} />
         </Routes>
       </div>
     </BrowserRouter>

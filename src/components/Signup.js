@@ -21,7 +21,7 @@ const SignUp = () => {
       });
       console.log("response from fetch", response);
       if (response.status === 201) {
-        setMessageSignup(response.statusText);
+        setMessageSignup("User is created");
       } else {
         let error = new Error(`${response.statusText}: ${response.url}`);
         error.status = response.status;
