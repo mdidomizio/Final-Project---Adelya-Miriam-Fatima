@@ -40,7 +40,7 @@ const FavoriteCard = (props) => {
 
   console.log("combined ingredient fav", combinedIngredientsFavorite)
   return (
-    <Card className="card m-2" style={{ width: "18rem" }}>
+    <Card className="card m-4" style={{ width: "35rem" }}>
       <Card.Img variant="top" src={mealPic} />
       <Card.Body>
         <Card.Title>{mealName}</Card.Title>

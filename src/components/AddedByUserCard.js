@@ -38,7 +38,7 @@ const AddedByUserCard = (props) => {
     }
     console.log("combined ingredients", combinedIngredientsRecipes)
     return (
-      <Card className="card m-2" style={{ width: "18rem" }}>
+      <Card className="card m-4" style={{ width: "35rem" }}>
         <Card.Img variant="top" src={urlRecipe} />
         <Card.Body>
           <Card.Title>{nameRecipeRecipe}</Card.Title>
