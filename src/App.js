@@ -10,25 +10,30 @@ import Header from "./components/Header.js";
 import Logout from "./components/Logout";
 import AboutApp from "./AboutApp";
 
-
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   return (
     <BrowserRouter>
       <div className="App">
-        <Header />
+        <Header loggedIn={loggedIn} />
         <Routes>
           {loggedIn ? (
             <Route path="/favorites" element={<Favorites />} />
           ) : (
-            <Route path="/favorites" element={<Navigate to="/signup" replace />} />
+            <Route
+              path="/favorites"
+              element={<Navigate to="/signup" replace />}
+            />
           )}
 
           {loggedIn ? (
             <Route path="/addRecipe" element={<AddRecipeForm />} />
           ) : (
-            <Route path="/addRecipe" element={<Navigate to="/signup" replace />} />
+            <Route
+              path="/addRecipe"
+              element={<Navigate to="/signup" replace />}
+            />
           )}
 
           <Route path="/" element={<Container />} />
@@ -41,7 +46,7 @@ function App() {
             path="/logout"
             element={<Logout setLoggedIn={setLoggedIn} />}
           />
-          
+
           <Route
             path="/about"
             element={

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
   return (
     <header className="header m-4">
       <h1 className="display-1">Recipes World </h1>
@@ -12,21 +12,34 @@ const Header = () => {
               Home
             </Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link active" aria-current="page" to="/signup">
-              Sign Up
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link active" aria-current="page" to="/login">
-              Login
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/logout" className="nav-link">
-              Logout
-            </Link>
-          </li>
+          {props.loggedIn ? (
+            <li className="nav-item">
+              <Link to="/logout" className="nav-link">
+                Logout
+              </Link>
+            </li>
+          ) : (
+            <div className="d-flex">
+              <li className="nav-item">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/signup"
+                >
+                  Sign Up
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/login"
+                >
+                  Login
+                </Link>
+              </li>
+            </div>
+          )}
           <li className="nav-item">
             <Link
               className="nav-link active"
