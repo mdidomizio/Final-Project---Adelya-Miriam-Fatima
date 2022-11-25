@@ -15,29 +15,32 @@ const FavoriteCard = (props) => {
   let mealId = props.item.idmeal;
   let mealType = props.item.strcategory;
 
-  let ingredients = [];
-  let measurements = [];
 
-  const objectKeys = Object.keys(props.item);
+  let ingredientsFavorite = [];
+  let measurementsFavorite = [];
 
-  objectKeys.forEach((key) => {
-    if (key.startsWith("strIngredient")) {
-      ingredients.push(props.item[key]);
-    } else if (key.startsWith("strMeasure")) {
-      measurements.push(props.item[key]);
+  const objectKeysFavorite = Object.keys(props.item);
+
+  objectKeysFavorite.forEach((key) => {
+    if (key.startsWith("stringredient")) {
+      ingredientsFavorite.push(props.item[key]);
+    } else if (key.startsWith("strmeasure")) {
+      measurementsFavorite.push(props.item[key]);
     }
   });
 
-  ingredients = ingredients
-    .filter((ingredient) => ingredient !== "")
-    .filter((measurement) => measurement !== null);
+  ingredientsFavorite = ingredientsFavorite
+    .filter((ingredientFavorite) => ingredientFavorite !== "")
+    .filter((measurementFavorite) => measurementFavorite !== null);
 
-  let combinedIngredients = [];
-  for (let i = 0; i < ingredients.length; i++) {
-    combinedIngredients.push([ingredients[i], measurements[i]]);
+  let combinedIngredientsFavorite = [];
+  for (let i = 0; i < ingredientsFavorite.length; i++) {
+    combinedIngredientsFavorite.push([ingredientsFavorite[i], measurementsFavorite[i]]);
   }
+
+  console.log("combined ingredient fav", combinedIngredientsFavorite)
   return (
-    <Card className="card m-2" style={{ width: "18rem" }}>
+    <Card className="card m-4" style={{ width: "35rem" }}>
       <Card.Img variant="top" src={mealPic} />
       <Card.Body>
         <Card.Title>{mealName}</Card.Title>
@@ -71,7 +74,7 @@ const FavoriteCard = (props) => {
             </div>
             <div>
               <ul className="ingredientsFavorite">
-                {combinedIngredients.map(function (item) {
+                {combinedIngredientsFavorite.map(function (item) {
                   return (
                     <li key={item}>
                       {item[0]}: {item[1]}
