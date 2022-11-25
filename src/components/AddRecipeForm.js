@@ -550,8 +550,8 @@ const AddRecipeForm = (props) => {
         {error ? <div>{error.message}</div> : null}
         {messageAdded ? (
           <>
-            <h2>Recipe created successfully, congratulation</h2>
-            <Link to="/favorites"> Go back to your favorites page</Link>
+            <p>Recipe created successfully, congratulation</p>
+            <Link to="/favorites"> Go back to My Recipes page</Link>
           </>
         ) : null}
       </div>
