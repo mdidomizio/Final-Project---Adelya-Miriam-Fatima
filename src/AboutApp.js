@@ -5,7 +5,7 @@ const AboutApp = (props) => {
         <h2>Digital Recipes Book</h2>
       </div>
       <div className="card-body p-3 ">
-        <blockquote class="blockquote mb-100 width=5rem">
+        <blockquote className="blockquote mb-100 width=5rem">
           <section>
             <h4>Who built the App?</h4>
             <p className="fs-4 text-start">
@@ -21,7 +21,7 @@ const AboutApp = (props) => {
           </div>
           <div>
             <h4>What can the user do</h4>
-            <p className="fs-4 text-start">
+            <div className="fs-4 text-start">
               <ul>
                 <li>Sign up, Log in, Log out</li>
                 <li>Browse the recipes database</li>
@@ -31,11 +31,11 @@ const AboutApp = (props) => {
                 <li>Create and upload your own recipes</li>
                 <li>Delete recipes</li>
               </ul>
-            </p>
+            </div>
           </div>
           <div>
             <h4>Which tools have we used?</h4>
-            <p className="fs-4 text-start">
+            <div className="fs-4 text-start">
               <ul>
                 <li>Frontend: React</li>
                 <li>Backend: Express</li>
@@ -44,23 +44,23 @@ const AboutApp = (props) => {
                 <li>Validation Frontend: Formik, Yup</li>
                 <li>Validation Backend: Express Validator</li>
               </ul>
-            </p>
+            </div>
           </div>
 
           <div>
             <h4>How have we worked and organized our work</h4>
-            <p className="fs-4 text-start">
+            <div className="fs-4 text-start">
               <ul>
                 <li>Pair programming</li>
                 <li>Agile approach</li>
                 <li>Daily stand-ups</li>
                 <li>Group code review and resolving merge conflicts</li>
               </ul>
-            </p>
+            </div>
           </div>
           <div>
             <h4>Our main learnings</h4>
-            <p className="fs-4 text-start">
+            <div className="fs-4 text-start">
               <ul>
                 <li>Collaboration and team work</li>
                 <li>Planning and time management</li>
@@ -69,7 +69,7 @@ const AboutApp = (props) => {
                 </li>
                 <li>Debugging skills and confidence in self-research</li>
               </ul>
-            </p>
+            </div>
           </div>
         </blockquote>
       </div>
