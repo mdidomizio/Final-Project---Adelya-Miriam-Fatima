@@ -140,7 +140,7 @@ const Container = (props) => {
 
   return (
     <>
-      <div className="d-flex flex-row-reverse bd-highlight">
+      <div className="d-flex flex-row-reverse">
         <nav className="navbar bg-light">
           <div className="container-fluid">
             <form className="d-flex" role="search">
