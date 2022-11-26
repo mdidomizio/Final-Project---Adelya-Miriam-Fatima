@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import * as Yup from "yup";
 
 const FastEditor = (props) => { 
-    let itemsForInputs = Object.keys(props.item)
+    //let itemsForInputs = Object.keys(props.item)
     const formik = useFormik({
         initialValues: {
           namerecipe: props.item.namerecipe,

@@ -10,6 +10,7 @@ const Favorites = (props) => {
   const [deleteMessage, setDeleteMessage] = useState(false);
   const [searchInput, setSearchInput] = useState([]);
   const [searchResultFav, setSearchResultFav] = useState([]);
+  
 
   const fetchFavorites = async () => {
     try {

@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import Collapse from "react-bootstrap/Collapse";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
+
 const FavoriteCard = (props) => {
   const [open, setOpen] = useState(false);
+  
 
   let mealName = props.item.strmeal;
   let mealPic = props.item.strmealthumb;
@@ -48,6 +50,8 @@ const FavoriteCard = (props) => {
           {mealTag} <br />
           {mealOrigin}
         </Card.Text>
+
+
         <Button
           onClick={(event) => {
             console.log("button works");

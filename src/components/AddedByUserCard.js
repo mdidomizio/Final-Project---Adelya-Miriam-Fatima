@@ -9,8 +9,8 @@ import FastEditor from "./FastEditor";
 const AddedByUserCard = (props) => {
     const [open, setOpen] = useState(false);
     const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
   
     let nameRecipeRecipe = props.item.namerecipe;
     let urlRecipe = props.item.url;
@@ -55,7 +55,7 @@ const AddedByUserCard = (props) => {
           </Card.Text>
           
 
-          <button className="btn btn-primary mt-2 mx-1"  
+          <button className="btn btn-primary mt-2 mx-1 "  
           onClick={handleShow}>
             Edit Recipe
             </button>
@@ -70,10 +70,6 @@ const AddedByUserCard = (props) => {
       </Modal> 
 
     
-
-
-
-
           <Button
             onClick={(event) => {
               console.log("button works");
@@ -87,6 +83,7 @@ const AddedByUserCard = (props) => {
             Remove
           </Button>
           <Button
+            className="btn btn-primary mt-2 mx-1"
             onClick={() => setOpen(!open)}
             aria-controls="example-collapse-text"
             aria-expanded={open}
