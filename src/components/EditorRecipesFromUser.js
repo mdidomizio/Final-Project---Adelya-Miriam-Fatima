@@ -1,4 +1,4 @@
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, FormikProps, Field, Form, ErrorMessage } from 'formik';
 import { useState } from 'react';
  import * as Yup from 'yup';
  
@@ -15,9 +15,9 @@ return(
     <div className="Sign up form">
   <Formik
        initialValues={{ 
-        nameRecipe:'' , 
-        mealType:'', 
-        mealOrigin:'',
+        namerecipe:'' , 
+        mealtype:'', 
+        mealorigin:'',
         ingredients1:'',
         ingredients2:'',
         ingredients3:'',
@@ -30,11 +30,21 @@ return(
         measurement5:'',
         instruction:'',
         url:''}}
+
+    validate= {(values)=>{
+      let errors = {};
+        if (!values.namerecipe)
+        errors.namerecipe = "The recipe name is required";
+
+        return errors;
+
+    }}
+
        validationSchema={Yup.object({
-        nameRecipe: Yup.string()
+        namerecipe: Yup.string()
            .max(150, 'Must be 150 characters or less')
            .required('Required'),
-        mealType: Yup.string()
+        mealtype: Yup.string()
             .oneOf([
             "Beef",
             "Breakfast",
@@ -48,7 +58,7 @@ return(
             "Vegetarian",
             ])
             .required('Required'),
-        mealOrigin: Yup.string()
+        mealorigin: Yup.string()
             .oneOf([
             "American",
             "British",
@@ -82,18 +92,18 @@ return(
         instruction: Yup.string().required(),
         url: Yup.string().required(),
        })}
-       onSubmit={(values) => {
+       onSubmit={(this.handelSubmit) => {
         console.log('values in onsubmit', values);
       // check url:
-        let changedUrl = false
-        if (values.url !== props.item.url) {
-            changedUrl = true
-        }
-      props.updateRecipe(values, props.item.id, changedUrl)
-      props.handleClose()
+      //   let changedUrl = false
+      //   if (values.url !== props.item.url) {
+      //       changedUrl = true
+      //   }
+      // props.updateRecipe(values, props.item.id, changedUrl)
+      // props.handleClose()
 
 
-        //   pufunction(values)
+        //   pull function(values)
        }}
      >
        <Form className='d-flex flex-column m-5'>
