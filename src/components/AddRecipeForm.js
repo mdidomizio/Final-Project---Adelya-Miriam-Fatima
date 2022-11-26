@@ -7,6 +7,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import CustomSelect from "../CustomSelect";
+
 
 
 const options= [
@@ -32,9 +34,18 @@ const options= [
 const AddRecipeForm = (props) => {
   const [error, setError] = useState(false);
   const [messageAdded, setMessageAdded] = useState(false);
-  // const [mealtype, setMealtype] = useState("")
-  // const [mealorigin, setMealorigin] = useState("")
+  
+  
+  
 
+  const validate = values => {
+    const errors = {}
+    if (!values.mealorigin){
+      errors.mealorigin='Required'
+
+    }
+    return errors
+  }
   
 
   const formik = useFormik({
@@ -172,7 +183,8 @@ const AddRecipeForm = (props) => {
     }),
     onSubmit: (values) => {
       console.log("clg from submit post", values);
-      createRecipeEntry(values);
+      createRecipeEntry(values)
+      console.log(createRecipeEntry);
     },
   });
 
@@ -495,11 +507,22 @@ const AddRecipeForm = (props) => {
             <label>Cuisine Country</label>
               <CustomSelect
                 options={options}
+                value={formik.values.mealorigin}
+                onChange={
+                value=>formik.setFieldValue('mealorigin', value.value)
+                }
+                />
+
+              {formik.touched.mealorigin && formik.errors.mealorigin ? (
+                <div className="text-danger">{`${formik.errors.mealorigin}`}</div>
+              ) : null} 
+              </div>
 
 
 
 
-            <Form.Select 
+
+            {/* <Form.Select 
             id="mealorigin"
             name="mealorigin"
             type="select"
@@ -525,8 +548,8 @@ const AddRecipeForm = (props) => {
             </Form.Select>
             {formik.touched.mealorigin && formik.errors.mealorigin ? (
                 <div className="text-danger">{`${formik.errors.mealorigin}`}</div>
-              ) : null}
-            </div>
+              ) : null} */}
+            
         
 
          
