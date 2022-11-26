@@ -3,9 +3,14 @@ import Card from "react-bootstrap/Card";
 import React, { useState } from "react";
 import Collapse from "react-bootstrap/Collapse";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import Modal from 'react-bootstrap/Modal';
+import FastEditor from "./FastEditor";
 
 const AddedByUserCard = (props) => {
     const [open, setOpen] = useState(false);
+    const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   
     let nameRecipeRecipe = props.item.namerecipe;
     let urlRecipe = props.item.url;
@@ -48,30 +53,21 @@ const AddedByUserCard = (props) => {
               {mealOriginRecipe}
             
           </Card.Text>
-          {/* <Button
-            onClick={(event) => {
-              console.log("button works");
-              props.updateRecipe(event);
-            }}
-            id={mealIdRecipe}
-            type="button"
-            className="btn btn-primary mt-2 mx-1"
-          >
-            Edit your recipe
-          </Button> */}
+          
 
-          {/* <button className="btn btn-primary mt-2 mx-1"  onClick={handleShow}>
+          <button className="btn btn-primary mt-2 mx-1"  
+          onClick={handleShow}>
             Edit Recipe
-            </button> */}
+            </button>
 
-      {/* <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Edit your Recipe!</Modal.Title>
         </Modal.Header>
         
-        <UpdateForm item={props.item} handleClose={handleClose} updateRecipe={props.updateRecipe}/>
+        <FastEditor item={props.item} handleClose={handleClose} updateRecipe={props.updateRecipe}/>
          
-      </Modal>  */}
+      </Modal> 
 
     
 
