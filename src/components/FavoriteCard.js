@@ -4,10 +4,8 @@ import React, { useState } from "react";
 import Collapse from "react-bootstrap/Collapse";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-
 const FavoriteCard = (props) => {
   const [open, setOpen] = useState(false);
-  
 
   let mealName = props.item.strmeal;
   let mealPic = props.item.strmealthumb;
@@ -16,7 +14,6 @@ const FavoriteCard = (props) => {
   let instructions = props.item.strinstructions;
   let mealId = props.item.idmeal;
   let mealType = props.item.strcategory;
-
 
   let ingredientsFavorite = [];
   let measurementsFavorite = [];
@@ -37,10 +34,13 @@ const FavoriteCard = (props) => {
 
   let combinedIngredientsFavorite = [];
   for (let i = 0; i < ingredientsFavorite.length; i++) {
-    combinedIngredientsFavorite.push([ingredientsFavorite[i], measurementsFavorite[i]]);
+    combinedIngredientsFavorite.push([
+      ingredientsFavorite[i],
+      measurementsFavorite[i],
+    ]);
   }
 
-  console.log("combined ingredient fav", combinedIngredientsFavorite)
+  console.log("combined ingredient fav", combinedIngredientsFavorite);
   return (
     <Card className="card m-4" style={{ width: "35rem" }}>
       <Card.Img variant="top" src={mealPic} />
@@ -50,7 +50,6 @@ const FavoriteCard = (props) => {
           {mealTag} <br />
           {mealOrigin}
         </Card.Text>
-
 
         <Button
           onClick={(event) => {
@@ -69,7 +68,7 @@ const FavoriteCard = (props) => {
           aria-controls="example-collapse-text"
           aria-expanded={open}
         >
-          See More
+          {open ? <div>See less</div> : <div> See More </div>}
         </Button>
         <Collapse in={open}>
           <div id="example-collapse-text">
