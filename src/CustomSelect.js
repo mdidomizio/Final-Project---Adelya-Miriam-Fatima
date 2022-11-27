@@ -12,7 +12,7 @@ const CustomSelect = ({ onChange, options, value}) => {
             <div>
                 <Select
                     value={defaultValue(options,value)}
-                    onChange={value=>onChange(value)}
+                    onChange={value = () => {onChange(value)}}
                     options={options}
                     />
 

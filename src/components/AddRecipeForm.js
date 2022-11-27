@@ -508,8 +508,8 @@ const AddRecipeForm = (props) => {
               <CustomSelect
                 options={options}
                 value={formik.values.mealorigin}
-                onChange={
-                value=>formik.setFieldValue('mealorigin', value.value)
+                onSelect={
+                  value => {formik.setFieldValue('mealorigin', value.value)}
                 }
                 />
 
