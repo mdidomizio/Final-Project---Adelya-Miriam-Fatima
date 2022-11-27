@@ -57,7 +57,7 @@ const AddedByUserCard = (props) => {
 
         <button 
         className="btn btn-primary mt-2 mx-1"  
-        style={{ color: '#94340c', backgroundColor: '#FFF' }}
+        style={{ color: '#94340c', backgroundColor: '#FFF', border: '1px solid  rgb(148, 52, 12)' }}
         onClick={handleShow}>
           Edit Recipe
         </button>

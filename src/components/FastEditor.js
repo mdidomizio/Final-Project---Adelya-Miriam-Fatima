@@ -371,7 +371,7 @@ const FastEditor = (props) => {
           >
             Cancel
           </Button>
-          <Button variant="primary" type="submit" style={{ backgroundColor: '#94340c', color: '#FFF' }}>
+          <Button variant="primary" type="submit" style={{ backgroundColor: '#94340c', color: '#FFF', border: '1px solid  rgb(148, 52, 12)' }}>
             Update Recipe
           </Button>
         </Modal.Footer>
