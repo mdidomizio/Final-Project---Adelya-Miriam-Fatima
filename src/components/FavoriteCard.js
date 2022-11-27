@@ -50,6 +50,7 @@ const FavoriteCard = (props) => {
           {mealTag} <br />
           {mealOrigin}
         </Card.Text>
+
         <Button
           onClick={(event) => {
             console.log('button works');
@@ -70,7 +71,7 @@ const FavoriteCard = (props) => {
           className="btn btn-light"
           style={{ backgroundColor: '#94340c', color: '#FFF' }}
         >
-          See More
+          {open ? <div>See less</div> : <div> See More </div>}
         </Button>
         <Collapse in={open}>
           <div id="example-collapse-text">

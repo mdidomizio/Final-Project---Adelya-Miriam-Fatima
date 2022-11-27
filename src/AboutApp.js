@@ -1,11 +1,11 @@
 const AboutApp = (props) => {
   return (
-    <div className="card">
+    <div className="card d-flex flex-wrap justify-content-center">
       <div className="card-header">
         <h3 className="h2">Digital Recipes Book</h3>
       </div>
-      <div className="card-body p-3 ">
-        <blockquote className="blockquote mb-100 width=5rem">
+      <div className="card-body p-3 d-flex flex-wrap justify-content-center">
+        <blockquote class="blockquote mb-100 width=5rem">
           <section>
             <h3
               className="h3 input-group-text p-3"

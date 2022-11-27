@@ -1,11 +1,16 @@
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import React, { useState } from 'react';
-import Collapse from 'react-bootstrap/Collapse';
-import 'bootstrap-icons/font/bootstrap-icons.css';
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import React, { useState } from "react";
+import Collapse from "react-bootstrap/Collapse";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import Modal from "react-bootstrap/Modal";
+import FastEditor from "./FastEditor";
 
 const AddedByUserCard = (props) => {
   const [open, setOpen] = useState(false);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   let nameRecipeRecipe = props.item.namerecipe;
   let urlRecipe = props.item.url;
@@ -21,15 +26,15 @@ const AddedByUserCard = (props) => {
   console.log(objectKeysRecipe);
 
   objectKeysRecipe.forEach((key) => {
-    if (key.startsWith('ingredients')) {
+    if (key.startsWith("ingredients")) {
       ingredientsRecipes.push(props.item[key]);
-    } else if (key.startsWith('measurement')) {
+    } else if (key.startsWith("measurement")) {
       measurementsRecipes.push(props.item[key]);
     }
   });
 
   ingredientsRecipes = ingredientsRecipes
-    .filter((ingredientRecipe) => ingredientRecipe !== '')
+    .filter((ingredientRecipe) => ingredientRecipe !== "")
     .filter((measurementRecipe) => measurementRecipe !== null);
 
   let combinedIngredientsRecipes = [];
@@ -39,9 +44,9 @@ const AddedByUserCard = (props) => {
       measurementsRecipes[i],
     ]);
   }
-  console.log('combined ingredients', combinedIngredientsRecipes);
+  console.log("combined ingredients", combinedIngredientsRecipes);
   return (
-    <Card className="card m-4" style={{ width: '35rem' }}>
+    <Card className="card m-4" style={{ width: "35rem" }}>
       <Card.Img variant="top" src={urlRecipe} />
       <Card.Body>
         <Card.Title>{nameRecipeRecipe}</Card.Title>
@@ -49,34 +54,26 @@ const AddedByUserCard = (props) => {
           {mealTypeRecipe} <br />
           {mealOriginRecipe}
         </Card.Text>
-        {/* <Button
-            onClick={(event) => {
-              console.log("button works");
-              props.updateRecipe(event);
-            }}
-            id={mealIdRecipe}
-            type="button"
-            className="btn btn-primary mt-2 mx-1"
-          >
-            Edit your recipe
-          </Button> */}
 
-        {/* <button className="btn btn-primary mt-2 mx-1"  onClick={handleShow}>
-            Edit Recipe
-            </button> */}
+        <button className="btn btn-primary mt-2 mx-1 " onClick={handleShow}>
+          Edit Recipe
+        </button>
 
-        {/* <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Edit your Recipe!</Modal.Title>
-        </Modal.Header>
-        
-        <UpdateForm item={props.item} handleClose={handleClose} updateRecipe={props.updateRecipe}/>
-         
-      </Modal>  */}
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Edit your Recipe!</Modal.Title>
+          </Modal.Header>
+
+          <FastEditor
+            item={props.item}
+            handleClose={handleClose}
+            updateRecipe={props.updateRecipe}
+          />
+        </Modal>
 
         <Button
           onClick={(event) => {
-            console.log('button works');
+            console.log("button works");
             props.deleteRecipeFromDb(event);
           }}
           id={mealIdRecipe}
@@ -88,12 +85,14 @@ const AddedByUserCard = (props) => {
           Remove
         </Button>
         <Button
+          className="btn btn-primary mt-2 mx-1"
           onClick={() => setOpen(!open)}
           aria-controls="example-collapse-text"
           aria-expanded={open}
           style={{ backgroundColor: '#94340c', color: '#FFF' }}
+         
         >
-          See More
+          {open ? <div>See less</div> : <div> See More </div>}
         </Button>
         <Collapse in={open}>
           <div id="example-collapse-text">
