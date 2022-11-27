@@ -10,7 +10,6 @@ const Favorites = (props) => {
   const [deleteMessage, setDeleteMessage] = useState(false);
   const [searchInput, setSearchInput] = useState([]);
   const [searchResultFav, setSearchResultFav] = useState([]);
-  
 
   const fetchFavorites = async () => {
     try {
@@ -229,33 +228,6 @@ const Favorites = (props) => {
   };
   return (
     <>
-      <div className="d-flex flex-row-reverse bd-highlight">
-        <nav className="navbar bg-light">
-          <div className="container-fluid">
-            <form className="d-flex" role="search">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-                id="search-form"
-                onChange={(e) => setSearchInput(e.target.value)}
-              />
-              <Button
-                onClick={(event) => {
-                  event.preventDefault();
-                  console.log("button works");
-                  searchItemsFav();
-                }}
-                className="btn btn--primary"
-                type="submit"
-              >
-                Search
-              </Button>
-            </form>
-          </div>
-        </nav>
-      </div>
       <div className="Favorites">
         <div className="d-flex flex-wrap justify-content-center">
           {recipes.length > 0 ? (
