@@ -55,13 +55,16 @@ const AddedByUserCard = (props) => {
           {mealOriginRecipe}
         </Card.Text>
 
-        <button className="btn btn-primary mt-2 mx-1 " onClick={handleShow}>
+        <button 
+        className="btn btn-primary mt-2 mx-1"  
+        style={{ color: '#94340c', backgroundColor: '#FFF' }}
+        onClick={handleShow}>
           Edit Recipe
         </button>
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Edit your Recipe!</Modal.Title>
+            <Modal.Title className="tags fst-italic">Edit your Recipe!</Modal.Title>
           </Modal.Header>
 
           <FastEditor
