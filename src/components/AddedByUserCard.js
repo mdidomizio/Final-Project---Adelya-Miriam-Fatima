@@ -50,18 +50,21 @@ const AddedByUserCard = (props) => {
       <Card.Img variant="top" src={urlRecipe} />
       <Card.Body>
         <Card.Title>{nameRecipeRecipe}</Card.Title>
-        <Card.Text className="tags fst-italic">
+        <Card.Text>
           {mealTypeRecipe} <br />
           {mealOriginRecipe}
         </Card.Text>
 
-        <button className="btn btn-primary mt-2 mx-1 " onClick={handleShow}>
+        <button 
+        className="btn btn-primary mt-2 mx-1"  
+        style={{ color: '#94340c', backgroundColor: '#FFF', border: '1px solid  rgb(148, 52, 12)' }}
+        onClick={handleShow}>
           Edit Recipe
         </button>
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Edit your Recipe!</Modal.Title>
+            <Modal.Title className="titleModal">Edit your Recipe!</Modal.Title>
           </Modal.Header>
 
           <FastEditor
@@ -78,6 +81,7 @@ const AddedByUserCard = (props) => {
           }}
           id={mealIdRecipe}
           type="button"
+          style={{ backgroundColor: '#94340c', color: '#FFF' }}
           className="btn btn-danger position-absolute top-0 end-0 opacity-85"
         >
           <i className="bi bi-trash"></i>
@@ -88,6 +92,8 @@ const AddedByUserCard = (props) => {
           onClick={() => setOpen(!open)}
           aria-controls="example-collapse-text"
           aria-expanded={open}
+          style={{ backgroundColor: '#94340c', color: '#FFF' }}
+         
         >
           {open ? <div>See less</div> : <div> See More </div>}
         </Button>

@@ -1,4 +1,4 @@
-import RecipesCards from "./RecipesCards";
+import RecipesCards from './RecipesCards';
 
 const Recipes = (props) => {
   return (

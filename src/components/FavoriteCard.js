@@ -1,8 +1,8 @@
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import React, { useState } from "react";
-import Collapse from "react-bootstrap/Collapse";
-import "bootstrap-icons/font/bootstrap-icons.css";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import React, { useState } from 'react';
+import Collapse from 'react-bootstrap/Collapse';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const FavoriteCard = (props) => {
   const [open, setOpen] = useState(false);
@@ -21,15 +21,15 @@ const FavoriteCard = (props) => {
   const objectKeysFavorite = Object.keys(props.item);
 
   objectKeysFavorite.forEach((key) => {
-    if (key.startsWith("stringredient")) {
+    if (key.startsWith('stringredient')) {
       ingredientsFavorite.push(props.item[key]);
-    } else if (key.startsWith("strmeasure")) {
+    } else if (key.startsWith('strmeasure')) {
       measurementsFavorite.push(props.item[key]);
     }
   });
 
   ingredientsFavorite = ingredientsFavorite
-    .filter((ingredientFavorite) => ingredientFavorite !== "")
+    .filter((ingredientFavorite) => ingredientFavorite !== '')
     .filter((measurementFavorite) => measurementFavorite !== null);
 
   let combinedIngredientsFavorite = [];
@@ -40,9 +40,9 @@ const FavoriteCard = (props) => {
     ]);
   }
 
-  console.log("combined ingredient fav", combinedIngredientsFavorite);
+  console.log('combined ingredient fav', combinedIngredientsFavorite);
   return (
-    <Card className="card m-4" style={{ width: "35rem" }}>
+    <Card className="card m-4" style={{ width: '35rem' }}>
       <Card.Img variant="top" src={mealPic} />
       <Card.Body>
         <Card.Title>{mealName}</Card.Title>
@@ -53,11 +53,12 @@ const FavoriteCard = (props) => {
 
         <Button
           onClick={(event) => {
-            console.log("button works");
+            console.log('button works');
             props.removeFromFavorite(event);
           }}
           id={mealId}
           type="button"
+          style={{ backgroundColor: '#94340c', color: '#FFF' }}
           className="btn btn-danger position-absolute top-0 end-0 opacity-85"
         >
           <i className="bi bi-trash"></i>
@@ -67,6 +68,8 @@ const FavoriteCard = (props) => {
           onClick={() => setOpen(!open)}
           aria-controls="example-collapse-text"
           aria-expanded={open}
+          className="btn btn-light"
+          style={{ backgroundColor: '#94340c', color: '#FFF' }}
         >
           {open ? <div>See less</div> : <div> See More </div>}
         </Button>

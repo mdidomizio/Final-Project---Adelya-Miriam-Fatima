@@ -1,7 +1,7 @@
-import FavoriteCard from "./FavoriteCard";
-import AddedByUserCard from "./AddedByUserCard";
-import { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
+import FavoriteCard from './FavoriteCard';
+import AddedByUserCard from './AddedByUserCard';
+import { useState, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
 
 const Favorites = (props) => {
   const [error, setError] = useState(null);
@@ -13,11 +13,11 @@ const Favorites = (props) => {
 
   const fetchFavorites = async () => {
     try {
-      let tokenJson = localStorage.getItem("token");
+      let tokenJson = localStorage.getItem('token');
       let JWT_TOKEN = JSON.parse(tokenJson);
       let path = `${process.env.REACT_APP_RECIPES_API}/favorites`;
       let response = await fetch(path, {
-        mode: "cors",
+        mode: 'cors',
         headers: { Authorization: `Bearer ${JWT_TOKEN}` },
       });
       if (response.status === 200) {
@@ -34,21 +34,21 @@ const Favorites = (props) => {
         // throw new Error(`Could not find: ${response.url}`);
       }
     } catch (error) {
-      console.log("Something went wrong fetching data", error.message);
+      console.log('Something went wrong fetching data', error.message);
       setError(error.message);
     }
   };
 
   const fetchRecipes = async (props) => {
     try {
-      let tokenJson = localStorage.getItem("token");
+      let tokenJson = localStorage.getItem('token');
       let JWT_TOKEN = JSON.parse(tokenJson);
       let path = `${process.env.REACT_APP_RECIPES_API}/recipes`;
       let response = await fetch(path, {
-        mode: "cors",
+        mode: 'cors',
         headers: { Authorization: `Bearer ${JWT_TOKEN}` },
       });
-      console.log("fetched data", response);
+      console.log('fetched data', response);
       if (response.status === 200) {
         let fetchedRecipesData = await response.json();
         console.log(fetchedRecipesData);
@@ -56,7 +56,7 @@ const Favorites = (props) => {
         let dataToStore = fetchedRecipesData.data.map((item) => ({
           ...item,
         }));
-        console.log("data to store in recipes", dataToStore);
+        console.log('data to store in recipes', dataToStore);
         setRecipes(dataToStore);
       } else {
         // deal with error
@@ -64,24 +64,24 @@ const Favorites = (props) => {
         // throw new Error(`Could not find: ${response.url}`);
       }
     } catch (error) {
-      console.log("Something went wrong fetching data", error.message);
+      console.log('Something went wrong fetching data', error.message);
     }
   };
 
   const removeFromFavorite = async (event) => {
     try {
-      let tokenJson = localStorage.getItem("token");
+      let tokenJson = localStorage.getItem('token');
       let JWT_TOKEN = JSON.parse(tokenJson);
       let id = event.target.id;
       let path = `${process.env.REACT_APP_RECIPES_API}/favorites/${id}`;
       let responseDelete = await fetch(path, {
-        method: "DELETE",
+        method: 'DELETE',
         // mode: "cors",
         headers: { Authorization: `Bearer ${JWT_TOKEN}` },
       });
       console.log(responseDelete);
       if (responseDelete.status === 200) {
-        console.log("Item is deleted");
+        console.log('Item is deleted');
 
         let restItemstoDisplay = favorites.filter((item) => item.idmeal !== id);
         console.log(restItemstoDisplay);
@@ -90,7 +90,7 @@ const Favorites = (props) => {
         throw new Error(`Sorry, could not delete any data`);
       }
     } catch (error) {
-      console.log("Something went wrong deleting data", error.message);
+      console.log('Something went wrong deleting data', error.message);
       setError(error.message);
     }
   };
@@ -104,20 +104,20 @@ const Favorites = (props) => {
     let id = event.target.id;
 
     // get access to token in local storage:
-    let tokenFromLS = localStorage.getItem("token");
+    let tokenFromLS = localStorage.getItem('token');
     let JWT_TOKEN = JSON.parse(tokenFromLS);
 
     try {
       let path = `${process.env.REACT_APP_RECIPES_API}/recipes/${id}`;
       let response = await fetch(path, {
-        method: "DELETE",
+        method: 'DELETE',
         headers: { Authorization: `Bearer ${JWT_TOKEN}` },
-        mode: "cors",
+        mode: 'cors',
       });
       console.log(response);
 
       if (response.status === 204) {
-        console.log("Your Item has been successfully deleted");
+        console.log('Your Item has been successfully deleted');
         setDeleteMessage(true);
         let leftRecipesAfterDelete = recipes.filter((item) => {
           return item.id !== event.target.id;
@@ -127,31 +127,31 @@ const Favorites = (props) => {
         throw new Error(`could not delete: ${id}`);
       }
     } catch (error) {
-      console.log("something went wrong deleting Item", error.message);
+      console.log('something went wrong deleting Item', error.message);
       setError(error.message);
     }
   };
 
   const uploadImageToCloudinary = async (item) => {
-    console.log("uplaod image start");
+    console.log('uplaod image start');
     // setup
     let preset = process.env.REACT_APP_CLOUDINARY_PRESET;
     let cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
     let cloudPath = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
     // create body to post:
     let dataForBody = new FormData();
-    dataForBody.append("file", item.url[0]);
-    dataForBody.append("upload_preset", preset);
-    dataForBody.append("cloud_name", cloudName);
+    dataForBody.append('file', item.url[0]);
+    dataForBody.append('upload_preset', preset);
+    dataForBody.append('cloud_name', cloudName);
 
     // fetch Post image to cloudinary
     try {
       let responseFromCloud = await fetch(cloudPath, {
-        method: "POST",
+        method: 'POST',
         body: dataForBody,
       });
       let imageData = await responseFromCloud.json();
-      console.log("post to cloud", imageData);
+      console.log('post to cloud', imageData);
       return imageData;
     } catch (error) {
       console.log(error);
@@ -160,8 +160,8 @@ const Favorites = (props) => {
   };
 
   const updateRecipe = async (updatedItem, id, uploadImage) => {
-    let imageUrl = "";
-    console.log("container updated recipe", updatedItem, uploadImage);
+    let imageUrl = '';
+    console.log('container updated recipe', updatedItem, uploadImage);
     // upload image to cloudinary: ONLY if the is a changed image
     if (uploadImage) {
       let resultFromImageUpload = await uploadImageToCloudinary(updatedItem);
@@ -183,29 +183,29 @@ const Favorites = (props) => {
     // update to db:
 
     // get access to token in local storage:
-    let tokenFromLS = localStorage.getItem("token");
+    let tokenFromLS = localStorage.getItem('token');
     let JWT_TOKEN = JSON.parse(tokenFromLS);
 
     try {
       let path = `${process.env.REACT_APP_WARDROBE_API}/recipes/${updatedItemInState.id}`;
       let response = await fetch(path, {
-        method: "PUT",
+        method: 'PUT',
         headers: {
-          "Content-type": "application/json",
+          'Content-type': 'application/json',
           Authorization: `Bearer ${JWT_TOKEN}`,
         },
         body: JSON.stringify(updatedItemInState),
       });
 
       if (response.status === 201) {
-        alert("Your Item has been successfully updated");
+        alert('Your Item has been successfully updated');
       } else {
         let error = new Error(`${response.statusText}: ${response.url}`);
         error.status = response.status;
         throw error;
       }
     } catch (error) {
-      console.log("something went wrong updating the Recipe", error.message);
+      console.log('something went wrong updating the Recipe', error.message);
       setError(error.message);
     }
   };
@@ -213,10 +213,10 @@ const Favorites = (props) => {
   console.log(favorites);
 
   const searchItemsFav = () => {
-    if (searchInput !== "") {
+    if (searchInput !== '') {
       const filteredData = favorites.filter((recipe) => {
         return Object.values(recipe)
-          .join("")
+          .join('')
           .toLowerCase()
           .includes(searchInput.toLowerCase());
       });
@@ -228,6 +228,7 @@ const Favorites = (props) => {
   };
   return (
     <>
+
       <div className="Favorites">
         <div className="d-flex flex-wrap justify-content-center">
           {recipes.length > 0 ? (

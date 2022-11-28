@@ -116,10 +116,10 @@ const FastEditor = (props) => {
   return (
     <div className="UpdateForm">
       <form className="d-flex flex-column" onSubmit={formik.handleSubmit}>
-        <Modal.Body>
+        <Modal.Body className="tags fst-italic">
           {/* Instead of writing the input by hand for each field, we can loop over each property and build inputs in the map */}
           <Form.Group className="mb-3">
-            <Form.Label>Name of the Recipe</Form.Label>
+            <Form.Label className="tags fst-italic">Name of the Recipe</Form.Label>
             <Form.Control
               id="namerecipe"
               name="namerecipe"
@@ -362,6 +362,7 @@ const FastEditor = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Button
+          style={{ color: '#94340c', backgroundColor: '#FFF' }}
             variant="secondary"
             type="button"
             onClick={() => {
@@ -370,7 +371,7 @@ const FastEditor = (props) => {
           >
             Cancel
           </Button>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" style={{ backgroundColor: '#94340c', color: '#FFF', border: '1px solid  rgb(148, 52, 12)' }}>
             Update Recipe
           </Button>
         </Modal.Footer>

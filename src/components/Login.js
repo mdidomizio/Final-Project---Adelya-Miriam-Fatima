@@ -1,8 +1,8 @@
-import { Formik, Field, Form, ErrorMessage } from "formik";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import * as Yup from "yup";
-import YupPassword from "yup-password";
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import * as Yup from 'yup';
+import YupPassword from 'yup-password';
 YupPassword(Yup);
 
 const Login = (props) => {
@@ -14,23 +14,23 @@ const Login = (props) => {
     let path = `${process.env.REACT_APP_RECIPES_API}/users/login`;
     try {
       let response = await fetch(path, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-type": "application/json",
+          'Content-type': 'application/json',
         },
         body: JSON.stringify(input),
       });
       if (response.status === 200) {
         console.log(response);
         let data = await response.json();
-        console.log("data: " + JSON.stringify(data));
+        console.log('data: ' + JSON.stringify(data));
         let token = data.token;
         let userId = data.userId;
         // save to localStorage
-        localStorage.setItem("token", JSON.stringify(token));
-        localStorage.setItem("userId", JSON.stringify(userId));
-        console.log("userId: " + userId);
-        setMessage("You are logged in!");
+        localStorage.setItem('token', JSON.stringify(token));
+        localStorage.setItem('userId', JSON.stringify(userId));
+        console.log('userId: ' + userId);
+        setMessage('You are logged in!');
         // change state of loggedIn
         props.setLoggedIn(true);
       } else {
@@ -39,23 +39,23 @@ const Login = (props) => {
         throw error;
       }
     } catch (error) {
-      console.log("There was an error when logging in user", error);
-      setError({ message: "There was an error when logging in" });
+      console.log('There was an error when logging in user', error);
+      setError({ message: 'There was an error when logging in' });
     }
   };
   return (
     <div className="Loginform">
       <Formik
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ email: '', password: '' }}
         validationSchema={Yup.object({
-          email: Yup.string().email().required("Required field"),
+          email: Yup.string().email().required('Required field'),
           password: Yup.string()
             .password()
-            .max(72, "Must be 15 characters or less")
-            .required("Required"),
+            .max(72, 'Must be 15 characters or less')
+            .required('Required'),
         })}
         onSubmit={(values) => {
-          console.log("in on sumbit", values);
+          console.log('in on sumbit', values);
           loginUser(values);
         }}
       >
@@ -82,7 +82,8 @@ const Login = (props) => {
             <ErrorMessage name="password" />
             <button
               type="submit"
-              className="btn btn-primary btn-sm shadow-lg rounded"
+              style={{ backgroundColor: '#94340c', color: '#FFF' }}
+              className="btn shadow-lg rounded"
             >
               Submit
             </button>
@@ -92,7 +93,10 @@ const Login = (props) => {
       {message ? (
         <div>
           <p>You are logged in!</p>
-          <Link to="/favorites"> Go to My Recipes page</Link>
+          <Link className="btn btn-outline-secondary" to="/favorites">
+            {' '}
+            Go to My Recipes page
+          </Link>
         </div>
       ) : null}
       {error ? <div>{error.message}</div> : null}

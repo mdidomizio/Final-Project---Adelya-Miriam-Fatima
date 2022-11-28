@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Logout = (props) => {
   const [messageLoggedout, setMessageLoggedout] = useState(false);
@@ -9,22 +9,25 @@ const Logout = (props) => {
       <p>Click here to log out:</p>
       <button
         type="submit"
-        className="btn btn-primary"
+        className="btn"
+        style={{ backgroundColor: '#94340c', color: '#FFF' }}
         onClick={() => {
-          localStorage.removeItem("token");
+          localStorage.removeItem('token');
           props.setLoggedIn(false);
-          setMessageLoggedout(true)
+          setMessageLoggedout(true);
         }}
       >
         Logout
       </button>
       {messageLoggedout ? (
-          <>
-            <p>You are now logged out</p>
-            <Link to="/"> Go back to Home</Link>
-          </>
-        ) : null}
-
+        <>
+          <p>You are now logged out</p>
+          <Link className="btn btn-outline-secondary" to="/">
+            {' '}
+            Go back to Home
+          </Link>
+        </>
+      ) : null}
     </div>
   );
 };

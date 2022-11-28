@@ -1,4 +1,4 @@
-import Dropdown from "react-bootstrap/Dropdown";
+import Dropdown from 'react-bootstrap/Dropdown';
 
 const FilterButton = (props) => {
   return (
@@ -7,7 +7,8 @@ const FilterButton = (props) => {
         <Dropdown.Toggle
           variant="primary"
           id="dropdown-basic"
-          className="btn m2"
+          className="btn m2 btn-light"
+          style={{ backgroundColor: '#94340c', color: '#FFF' }}
         >
           Country cuisine
         </Dropdown.Toggle>
@@ -35,7 +36,8 @@ const FilterButton = (props) => {
         <Dropdown.Toggle
           variant="primary"
           id="dropdown-basic"
-          className="btn m2"
+          className="btn m2 btn-light"
+          style={{ backgroundColor: '#94340c', color: '#FFF' }}
         >
           Meal type
         </Dropdown.Toggle>

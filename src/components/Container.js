@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import Recipes from "./Recipes.js";
-import FilterButton from "./FilterButton.js";
-import { Button } from "react-bootstrap";
+import { useState, useEffect } from 'react';
+import Recipes from './Recipes.js';
+import FilterButton from './FilterButton.js';
+import { Button } from 'react-bootstrap';
 
 const Container = (props) => {
   const [countryFilter, setCountryFilter] = useState([]);
@@ -15,13 +15,13 @@ const Container = (props) => {
   const fetchRecipes = async () => {
     try {
       let path = `https://www.themealdb.com/api/json/v1/1/search.php?f=b`;
-      let response = await fetch(path, { mode: "cors" });
+      let response = await fetch(path, { mode: 'cors' });
       let data = await response.json();
       console.log(data);
 
       setRecipes(data.meals);
     } catch (error) {
-      console.log("there is an error", error);
+      console.log('there is an error', error);
     }
   };
   useEffect(() => {
@@ -30,22 +30,22 @@ const Container = (props) => {
 
   // filters:
   const countriesCuisine = [
-    "American",
-    "British",
-    "Canadian",
-    "Chinese",
-    "Croatian",
-    "Dutch",
-    "French",
-    "Indian",
-    "Irish",
-    "Italian",
-    "Jamaican",
-    "Malaysian",
-    "Mexican",
-    "Polish",
-    "Russian",
-    "Vietnamese",
+    'American',
+    'British',
+    'Canadian',
+    'Chinese',
+    'Croatian',
+    'Dutch',
+    'French',
+    'Indian',
+    'Irish',
+    'Italian',
+    'Jamaican',
+    'Malaysian',
+    'Mexican',
+    'Polish',
+    'Russian',
+    'Vietnamese',
   ];
 
   const displayCountryCuisine = (event) => {
@@ -61,23 +61,23 @@ const Container = (props) => {
     setCountryFilter([]);
   };
   const mealTypeArray = [
-    "Beef",
-    "Breakfast",
-    "Chicken",
-    "Dessert",
-    "Miscellaneous",
-    "Pork",
-    "Seafood",
-    "Side",
-    "Starter",
-    "Vegetarian",
+    'Beef',
+    'Breakfast',
+    'Chicken',
+    'Dessert',
+    'Miscellaneous',
+    'Pork',
+    'Seafood',
+    'Side',
+    'Starter',
+    'Vegetarian',
   ];
 
   const displayMealType = (event) => {
     let mealTypeFilter = recipes.filter(
       (recipe) => recipe.strCategory === event.target.id
     );
-    console.log("meal type filter", mealTypeFilter);
+    console.log('meal type filter', mealTypeFilter);
     setMealTypeFilter(mealTypeFilter);
   };
   const resetMealType = () => {
@@ -85,9 +85,9 @@ const Container = (props) => {
   };
 
   const addToFavorite = async (IdAddedItem) => {
-    let userid = localStorage.getItem("userId");
-    let userIdClean = userid.replaceAll('"', "");
-    console.log("userId: " + userIdClean);
+    let userid = localStorage.getItem('userId');
+    let userIdClean = userid.replaceAll('"', '');
+    console.log('userId: ' + userIdClean);
     let itemsToPasstoFavorite = recipes.filter(
       (item) => item.idMeal === IdAddedItem
     )[0];
@@ -95,39 +95,39 @@ const Container = (props) => {
     console.log(itemWithId);
 
     // get access to token in local storage:
-    let tokenFromLS = localStorage.getItem("token");
+    let tokenFromLS = localStorage.getItem('token');
     let JWT_TOKEN = JSON.parse(tokenFromLS);
     let path = `${process.env.REACT_APP_RECIPES_API}/favorites`;
     try {
       let response = await fetch(path, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-type": "application/json",
+          'Content-type': 'application/json',
           Authorization: `Bearer ${JWT_TOKEN}`,
         },
         body: JSON.stringify(itemWithId),
       });
-      console.log("response from fetch", response);
+      console.log('response from fetch', response);
       if (response.status === 200) {
-        alert("Item  saved to my recipes!");
+        alert('Item  saved to my recipes!');
         setMessageUpload(response.statusText);
       } else {
         let error = new Error(`${response.statusText}: ${response.url}`);
         error.status = response.status;
-        alert("Item could not be saved to my recipes, login required!");
+        alert('Item could not be saved to my recipes, login required!');
         throw error;
       }
     } catch (error) {
-      console.log("There was an error when updating data", error);
+      console.log('There was an error when updating data', error);
       setError(error.message);
     }
   };
 
   const searchItems = () => {
-    if (searchInput !== "") {
+    if (searchInput !== '') {
       const filteredData = recipes.filter((recipe) => {
         return Object.values(recipe)
-          .join("")
+          .join('')
           .toLowerCase()
           .includes(searchInput.toLowerCase());
       });
@@ -155,10 +155,12 @@ const Container = (props) => {
               <Button
                 onClick={(event) => {
                   event.preventDefault();
-                  console.log("button works");
+                  console.log('button works');
                   searchItems();
                 }}
-                className="btn btn--primary"
+                style={{ backgroundColor: '#94340c', color: '#FFF' }}
+                className="btn btn-light"
+                btn-ligh
                 type="submit"
               >
                 Search

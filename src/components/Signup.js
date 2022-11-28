@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
-import { Link } from "react-router-dom";
-import YupPassword from "yup-password";
+import { useState } from 'react';
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
+import YupPassword from 'yup-password';
 YupPassword(Yup);
 
 const SignUp = () => {
@@ -14,42 +14,42 @@ const SignUp = () => {
     let path = `${process.env.REACT_APP_RECIPES_API}/users`;
     try {
       let response = await fetch(path, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-type": "application/json",
+          'Content-type': 'application/json',
         },
         body: JSON.stringify(userInfo),
       });
-      console.log("response from fetch", response);
+      console.log('response from fetch', response);
       if (response.status === 201) {
-        setMessageSignup("User is created");
+        setMessageSignup('User is created');
       } else {
         let error = new Error(`${response.statusText}: ${response.url}`);
         error.status = response.status;
         throw error;
       }
     } catch (error) {
-      console.log("There was an error when updating data", error);
-      setError("There was an error when signing up");
+      console.log('There was an error when updating data', error);
+      setError('There was an error when signing up');
     }
   };
 
   const EditingCard = Yup.object().shape({
     username: Yup.string()
-      .min(2, "Too Short!")
-      .max(20, "Too Long!")
-      .required("Required field"),
-    email: Yup.string().email().required("Required field"),
-    password: Yup.string().password().required("Required field"),
+      .min(2, 'Too Short!')
+      .max(20, 'Too Long!')
+      .required('Required field'),
+    email: Yup.string().email().required('Required field'),
+    password: Yup.string().password().required('Required field'),
   });
 
   return (
     <div>
       <Formik
         initialValues={{
-          username: "",
-          email: "",
-          password: "",
+          username: '',
+          email: '',
+          password: '',
         }}
         validationSchema={EditingCard}
         onSubmit={(values) => {
@@ -105,7 +105,11 @@ const SignUp = () => {
                   <div className="text-danger">{errors.password}</div>
                 )}
               </div>
-              <button type="submit" className="btn btn-primary">
+              <button
+                type="submit"
+                className="btn"
+                style={{ backgroundColor: '#94340c', color: '#FFF' }}
+              >
                 Register
               </button>
             </div>
@@ -115,7 +119,10 @@ const SignUp = () => {
       {messageSignup ? (
         <div>
           <p>You are signed up! </p>
-          <Link to="/login"> Go to login page</Link>
+          <Link className="btn btn-outline-secondary" to="/login">
+            {' '}
+            Go to login page
+          </Link>
         </div>
       ) : null}
       {error ? <div>{error}</div> : null}

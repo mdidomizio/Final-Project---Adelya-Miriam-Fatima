@@ -1,14 +1,14 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import "./App.css";
-import Container from "./components/Container";
-import Favorites from "./components/Favorites";
-import AddRecipeForm from "./components/AddRecipeForm.js";
-import SignUp from "./components/Signup";
-import Login from "./components/Login";
-import { useState } from "react";
-import Header from "./components/Header.js";
-import Logout from "./components/Logout";
-import AboutApp from "./AboutApp";
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import './App.css';
+import Container from './components/Container';
+import Favorites from './components/Favorites';
+import AddRecipeForm from './components/AddRecipeForm.js';
+import SignUp from './components/Signup';
+import Login from './components/Login';
+import { useState } from 'react';
+import Header from './components/Header.js';
+import Logout from './components/Logout';
+import AboutApp from './AboutApp';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
