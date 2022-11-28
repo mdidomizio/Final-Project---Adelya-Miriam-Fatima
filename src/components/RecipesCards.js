@@ -54,7 +54,7 @@ const RecipesCard = (props) => {
           }}
           id={mealId}
           type="button"
-          style={{ backgroundColor: '#94340c', color: '#FFF' }}
+          style={{ backgroundColor: '#E35012', color: '#FFF' }}
           className="btn btn-danger position-absolute top-0 end-0 opacity-85"
         >
           <i className="bi bi-bookmark-heart-fill"></i> Save to favorites

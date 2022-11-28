@@ -50,7 +50,7 @@ const AddedByUserCard = (props) => {
       <Card.Img variant="top" src={urlRecipe} />
       <Card.Body>
         <Card.Title>{nameRecipeRecipe}</Card.Title>
-        <Card.Text className="tags fst-italic">
+        <Card.Text>
           {mealTypeRecipe} <br />
           {mealOriginRecipe}
         </Card.Text>
@@ -64,7 +64,7 @@ const AddedByUserCard = (props) => {
 
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title className="tags fst-italic">Edit your Recipe!</Modal.Title>
+            <Modal.Title className="titleModal">Edit your Recipe!</Modal.Title>
           </Modal.Header>
 
           <FastEditor
